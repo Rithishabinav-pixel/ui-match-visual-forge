@@ -19,12 +19,14 @@ export const AboutUs = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             
-            <button className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] w-fit">
+            <button className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px]" style={{ width: 'fit-content' }}>
               <span>Step Into Our World</span>
               <ArrowRight className="w-6 h-6" />
             </button>
           </div>
         </div>
+        
+        <div className="w-8 max-md:hidden"></div>
         
         <div className="self-stretch min-w-60 overflow-hidden flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
           <img

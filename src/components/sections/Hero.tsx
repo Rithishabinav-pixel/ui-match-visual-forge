@@ -19,15 +19,17 @@ export const Hero = () => {
             <span className="font-semibold italic">eiusmod tempor</span>
           </h1>
           
-          <div className="flex flex-col items-center text-base font-normal mt-[60px] max-md:max-w-full max-md:mt-10">
-            <p className="leading-6 text-center max-md:max-w-full">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-            
-            <button className="bg-[rgba(217,37,70,1)] min-h-12 mt-6 flex items-center justify-center gap-2.5 px-4 py-3 rounded-[58px]">
-              <span>Enquire Now</span>
-              <ArrowRight className="w-6 h-6" />
-            </button>
+          <div className="w-[505px] max-w-full ml-auto mt-[60px] max-md:mt-10 max-md:ml-0">
+            <div className="flex flex-col items-start text-base font-normal max-md:items-center">
+              <p className="leading-6 text-left max-md:text-center max-md:max-w-full">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+              
+              <button className="bg-[rgba(217,37,70,1)] min-h-12 mt-6 flex items-center justify-center gap-2.5 px-4 py-3 rounded-[58px] w-fit">
+                <span>Enquire Now</span>
+                <ArrowRight className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

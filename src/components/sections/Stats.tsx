@@ -54,7 +54,7 @@ export const Stats = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </p>
           
-          <button className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] w-fit">
+          <button className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px]" style={{ width: 'fit-content' }}>
             <span>Step Into Our World</span>
             <ArrowRight className="w-6 h-6" />
           </button>
@@ -62,15 +62,27 @@ export const Stats = () => {
       </div>
 
       <div className="flex w-full items-center gap-[30px] justify-center flex-wrap mt-10 max-md:max-w-full">
-        {[...Array(3)].map((_, index) => (
-          <div key={index} className="self-stretch min-w-60 flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
-            <img
-              src={`https://images.unsplash.com/photo-${1486718448742 + index}-163732cd1544?w=500&h=380&fit=crop`}
-              alt={`Stats Image ${index + 1}`}
-              className="aspect-[1.32] object-contain w-full rounded-3xl max-md:max-w-full"
-            />
-          </div>
-        ))}
+        <div className="self-stretch min-w-60 flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
+          <img
+            src="https://images.unsplash.com/photo-1486718448742-163732cd1544?w=500&h=380&fit=crop"
+            alt="Stats Image 1"
+            className="aspect-[1.32] object-cover w-full rounded-3xl max-md:max-w-full"
+          />
+        </div>
+        <div className="self-stretch min-w-60 flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
+          <img
+            src="https://images.unsplash.com/photo-1486718448743-163732cd1545?w=500&h=380&fit=crop"
+            alt="Stats Image 2"
+            className="aspect-[1.32] object-cover w-full rounded-3xl max-md:max-w-full"
+          />
+        </div>
+        <div className="self-stretch min-w-60 flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
+          <img
+            src="https://images.unsplash.com/photo-1486718448744-163732cd1546?w=500&h=380&fit=crop"
+            alt="Stats Image 3"
+            className="aspect-[1.32] object-cover w-full rounded-3xl max-md:max-w-full"
+          />
+        </div>
       </div>
     </section>
   );

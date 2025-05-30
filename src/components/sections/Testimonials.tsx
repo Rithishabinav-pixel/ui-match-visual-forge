@@ -55,7 +55,7 @@ export const Testimonials = () => {
           </div>
 
           <div className="min-w-60 w-[765px] max-md:max-w-full">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {testimonials.map((testimonial, index) => (
                 <div key={index} className="bg-[rgba(191,42,55,0.2)] flex flex-col items-stretch text-base font-normal justify-center px-[17px] py-6 rounded-2xl">
                   <div className="flex w-full flex-col items-stretch">
