@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
@@ -50,4 +51,23 @@ export const Testimonials = () => {
                     <span className="text-[rgba(217,37,70,1)]">Read more</span>
                   </p>
                   
-                  <div className="flex items-center gap-6 text-
+                  <div className="flex items-center gap-6 text-sm font-semibold mt-4">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.author}
+                      className="w-12 h-12 rounded-full object-cover"
+                    />
+                    <div className="flex flex-col">
+                      <span className="text-[rgba(40,45,64,1)]">{testimonial.author}</span>
+                      <span className="text-[rgba(217,37,70,1)]">{testimonial.project}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
