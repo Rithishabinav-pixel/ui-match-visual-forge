@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, RulerPen, Building2, ArrowRight } from 'lucide-react';
+import { MapPin, Ruler, Building2, ArrowRight } from 'lucide-react';
 
 export const Projects = () => {
   return (
@@ -52,7 +52,7 @@ export const Projects = () => {
                         </p>
                       </div>
                       <div className="flex w-full gap-4 mt-4">
-                        <RulerPen className="w-6 h-6" />
+                        <Ruler className="w-6 h-6" />
                         <span>1298 -1257 -977 Sq.ft Unit Sizes</span>
                       </div>
                       <div className="flex w-full gap-4 mt-4">
