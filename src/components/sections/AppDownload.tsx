@@ -3,62 +3,64 @@ import { ArrowRight } from 'lucide-react';
 
 export const AppDownload = () => {
   return (
-    <section className="self-center flex w-[1530px] max-w-full items-center justify-between flex-wrap mt-[120px] max-md:mt-10">
-      <div className="self-stretch flex min-w-60 flex-col flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/e0c4bd0eeab3f837342dddd40fe6940df68bf76d?placeholderIfAbsent=true"
-          alt="Mobile App"
-          className="aspect-[0.7] object-contain w-[386px] max-w-full"
-        />
-      </div>
-      
-      <div className="self-stretch flex min-w-60 flex-col items-stretch justify-center flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
-        <h2 className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full">
-          Lorem ipsum dolor sit amet,{" "}
-          <span className="font-semibold italic text-[rgba(217,37,70,1)]">
-            consectetur adipiscing
-          </span>
-        </h2>
+    <section className="w-full mt-[120px] max-md:mt-10">
+      <div className="max-w-[1530px] mx-auto px-5 flex items-center justify-between flex-wrap">
+        <div className="self-stretch flex min-w-60 flex-col flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/e0c4bd0eeab3f837342dddd40fe6940df68bf76d?placeholderIfAbsent=true"
+            alt="Mobile App"
+            className="aspect-[0.7] object-contain w-[386px] max-w-full"
+          />
+        </div>
         
-        <div className="flex w-full flex-col justify-center mt-8 max-md:max-w-full">
-          <p className="text-neutral-800 text-base font-normal leading-6 self-stretch max-md:max-w-full">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+        <div className="self-stretch flex min-w-60 flex-col items-stretch justify-center flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
+          <h2 className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full">
+            Lorem ipsum dolor sit amet,{" "}
+            <span className="font-semibold italic text-[rgba(217,37,70,1)]">
+              consectetur adipiscing
+            </span>
+          </h2>
           
-          <div className="flex gap-[30px] text-black mt-6">
-            <button className="bg-white border flex items-stretch gap-[9px] overflow-hidden text-[13px] font-normal uppercase w-[150px] px-[11px] py-2 rounded-lg border-black border-solid">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/b3a1ba8e8be4b44fff1f0f85701796442afe8e05?placeholderIfAbsent=true"
-                alt="Google Play"
-                className="aspect-[0.87] object-contain w-[26px] shrink-0 mt-1"
-              />
-              <div>
-                <span>GET IT ON</span>
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/d4cfbf1173dfc89b10b0d1a6c1b5bc5ebff8eb22?placeholderIfAbsent=true"
-                  alt="Google Play"
-                  className="aspect-[5.15] object-contain w-[93px] mt-1"
-                />
-              </div>
-            </button>
+          <div className="flex w-full flex-col justify-center mt-8 max-md:max-w-full">
+            <p className="text-neutral-800 text-base font-normal leading-6 self-stretch max-md:max-w-full">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
             
-            <button className="bg-white border flex items-stretch gap-2.5 overflow-hidden font-medium leading-none w-[150px] px-[9px] py-2.5 rounded-lg border-black border-solid">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/1f734a22779269d9fb7ffbd0996f03608a466856?placeholderIfAbsent=true"
-                alt="App Store"
-                className="aspect-[0.83] object-contain w-[25px] shrink-0"
-              />
-              <div>
-                <span className="text-[11px]">Download on the</span>
-                <span className="text-[23px] tracking-[-0.59px] block">App Store</span>
-              </div>
+            <div className="flex gap-[30px] text-black mt-6">
+              <button className="bg-white border flex items-stretch gap-[9px] overflow-hidden text-[13px] font-normal uppercase w-[150px] px-[11px] py-2 rounded-lg border-black border-solid">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/b3a1ba8e8be4b44fff1f0f85701796442afe8e05?placeholderIfAbsent=true"
+                  alt="Google Play"
+                  className="aspect-[0.87] object-contain w-[26px] shrink-0 mt-1"
+                />
+                <div>
+                  <span>GET IT ON</span>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/d4cfbf1173dfc89b10b0d1a6c1b5bc5ebff8eb22?placeholderIfAbsent=true"
+                    alt="Google Play"
+                    className="aspect-[5.15] object-contain w-[93px] mt-1"
+                  />
+                </div>
+              </button>
+              
+              <button className="bg-white border flex items-stretch gap-2.5 overflow-hidden font-medium leading-none w-[150px] px-[9px] py-2.5 rounded-lg border-black border-solid">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/1f734a22779269d9fb7ffbd0996f03608a466856?placeholderIfAbsent=true"
+                  alt="App Store"
+                  className="aspect-[0.83] object-contain w-[25px] shrink-0"
+                />
+                <div>
+                  <span className="text-[11px]">Download on the</span>
+                  <span className="text-[23px] tracking-[-0.59px] block">App Store</span>
+                </div>
+              </button>
+            </div>
+            
+            <button className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px]">
+              <span>Step Into Our World</span>
+              <ArrowRight className="w-6 h-6" />
             </button>
           </div>
-          
-          <button className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px]">
-            <span>Step Into Our World</span>
-            <ArrowRight className="w-6 h-6" />
-          </button>
         </div>
       </div>
     </section>

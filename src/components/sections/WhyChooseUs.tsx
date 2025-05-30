@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Crown, ArrowRight } from 'lucide-react';
 
@@ -22,9 +23,9 @@ export const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="bg-[rgba(40,45,64,1)] flex min-h-[817px] w-full flex-col items-center text-white justify-center mt-[120px] py-[102px] max-md:max-w-full max-md:mt-10 max-md:py-[100px]">
-      <div className="flex w-[1530px] max-w-full flex-col items-stretch justify-center">
-        <div className="self-center flex w-[1076px] max-w-full flex-col items-stretch justify-center">
+    <section className="bg-[rgba(40,45,64,1)] min-h-[817px] w-full text-white mt-[120px] py-[102px] max-md:mt-10 max-md:py-[100px]">
+      <div className="max-w-[1530px] mx-auto px-5 flex flex-col items-stretch justify-center">
+        <div className="flex w-[1076px] max-w-full mx-auto flex-col items-stretch justify-center">
           <h2 className="text-[40px] font-bold leading-[1.2] text-center max-md:max-w-full">
             Lorem ipsum dolor sit amet,{" "}
             <span className="font-semibold italic text-[rgba(217,37,70,1)]">
@@ -37,7 +38,7 @@ export const WhyChooseUs = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
             
-            <button className="bg-[rgba(217,37,70,1)] self-center flex items-center justify-center gap-2.5 mt-6 px-4 py-3 rounded-[58px]">
+            <button className="bg-[rgba(217,37,70,1)] mx-auto flex items-center justify-center gap-2.5 mt-6 px-4 py-3 rounded-[58px] w-fit">
               <span>Step Into Our World</span>
               <ArrowRight className="w-6 h-6" />
             </button>

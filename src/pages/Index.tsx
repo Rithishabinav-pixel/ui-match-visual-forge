@@ -7,10 +7,11 @@ import { AboutUs } from '@/components/sections/AboutUs';
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
 import { AppDownload } from '@/components/sections/AppDownload';
 import { Testimonials } from '@/components/sections/Testimonials';
+import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[rgba(40,45,64,1)] to-[rgba(40,45,64,0.8)]">
+    <div className="min-h-screen">
       <Hero />
       <Stats />
       <Projects />
@@ -18,6 +19,7 @@ const Index = () => {
       <WhyChooseUs />
       <AppDownload />
       <Testimonials />
+      <Footer />
     </div>
   );
 };

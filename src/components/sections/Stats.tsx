@@ -1,5 +1,29 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { useCountUp } from '@/hooks/useCountUp';
+
+const StatItem = ({ number, label }: { number: string; label: string }) => {
+  const { elementRef, hasIntersected } = useIntersectionObserver({
+    threshold: 0.5,
+  });
+
+  // Extract the numeric part and suffix
+  const numericValue = parseInt(number.replace(/\D/g, ''));
+  const suffix = number.replace(/\d/g, '');
+  
+  const animatedCount = useCountUp(numericValue, 2000, hasIntersected);
+
+  return (
+    <div ref={elementRef} className="self-stretch flex flex-col items-stretch justify-center flex-1 shrink basis-[0%] my-auto">
+      <div className="text-[40px] font-medium leading-[1.2]">
+        {animatedCount}{suffix}
+      </div>
+      <div className="text-base font-normal mt-6">{label}</div>
+    </div>
+  );
+};
 
 export const Stats = () => {
   const stats = [
@@ -10,7 +34,7 @@ export const Stats = () => {
   ];
 
   return (
-    <section className="self-center w-[1530px] max-w-full mt-[120px] max-md:mt-10">
+    <section className="max-w-[1530px] mx-auto mt-[120px] px-5 max-md:mt-10">
       <div className="min-h-[520px] w-[765px] max-w-[765px] max-md:max-w-full">
         <h2 className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do{" "}
@@ -21,10 +45,7 @@ export const Stats = () => {
 
         <div className="flex w-full items-center gap-[30px] text-[rgba(40,45,64,1)] flex-wrap mt-8 max-md:max-w-full">
           {stats.map((stat, index) => (
-            <div key={index} className="self-stretch flex flex-col items-stretch justify-center flex-1 shrink basis-[0%] my-auto">
-              <div className="text-[40px] font-medium leading-[1.2]">{stat.number}</div>
-              <div className="text-base font-normal mt-6">{stat.label}</div>
-            </div>
+            <StatItem key={index} number={stat.number} label={stat.label} />
           ))}
         </div>
 
@@ -44,7 +65,7 @@ export const Stats = () => {
         {[...Array(3)].map((_, index) => (
           <div key={index} className="self-stretch min-w-60 flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
             <img
-              src={`URL_${10 + index}`}
+              src={`https://images.unsplash.com/photo-${1486718448742 + index}-163732cd1544?w=500&h=380&fit=crop`}
               alt={`Stats Image ${index + 1}`}
               className="aspect-[1.32] object-contain w-full rounded-3xl max-md:max-w-full"
             />
