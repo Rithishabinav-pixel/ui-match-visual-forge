@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 export const AboutUs = () => {
   return (
     <section className="w-full mt-[120px] max-md:mt-10">
-      <div className="max-w-[1530px] mx-auto px-5 flex items-center justify-between flex-wrap">
+      <div className="max-w-[1530px] mx-auto px-5 flex items-center justify-between gap-[60px] flex-wrap">
         <div className="self-stretch flex min-w-60 flex-col items-stretch justify-center flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
           <h2 className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full">
             Lorem ipsum dolor sit amet,{" "}
