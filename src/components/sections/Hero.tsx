@@ -13,7 +13,7 @@ export const Hero = () => {
         
         <div className="flex min-h-[617px] w-[959px] max-w-full mx-auto flex-col text-white justify-center items-center mt-[163px] max-md:mt-10">
           <h1 
-            className="text-[64px] font-medium leading-[72px] text-center max-md:max-w-full max-md:text-[40px] max-md:leading-[50px]"
+            className="text-[64px] font-medium leading-[72px] text-center max-md:max-w-full max-md:text-[30px] max-md:leading-[38px]"
             data-aos="fade-up"
             data-aos-delay="200"
           >
@@ -34,7 +34,7 @@ export const Hero = () => {
               </p>
               
               <button 
-                className="bg-[rgba(217,37,70,1)] min-h-12 mt-6 flex items-center justify-center gap-2.5 px-4 py-3 rounded-[58px] w-fit transition-all duration-300 hover:scale-105"
+                className="bg-[rgba(217,37,70,1)] min-h-12 mt-6 flex items-center justify-center gap-2.5 px-4 py-3 rounded-[58px] w-fit transition-all duration-300 hover:scale-105 hover:bg-[rgba(197,27,60,1)]"
                 data-aos="zoom-in"
                 data-aos-delay="600"
               >

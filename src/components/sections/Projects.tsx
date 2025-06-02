@@ -106,7 +106,7 @@ export const Projects = () => {
         />
         <div className="self-center z-0 flex min-h-56 w-[328px] max-w-full flex-col items-stretch text-base mt-4">
           <div className="w-full text-[rgba(40,45,64,1)]">
-            <h3 className="text-2xl font-bold leading-none">{project.title}</h3>
+            <h3 className="text-2xl font-bold leading-none max-md:text-[30px] max-md:leading-[38px]">{project.title}</h3>
             <div className="flex w-full gap-4 leading-6 mt-4">
               <MapPin className="w-6 h-6" />
               <p style={{ whiteSpace: 'pre-line' }}>{project.location}</p>
@@ -120,7 +120,7 @@ export const Projects = () => {
               <span>{project.type}</span>
             </div>
           </div>
-          <button className="flex items-center gap-2.5 text-[rgba(185,3,0,1)] mt-6 transition-all duration-300 hover:text-[rgba(217,37,70,1)] hover:gap-3">
+          <button className="flex items-center gap-2.5 text-[rgba(185,3,0,1)] mt-6 transition-all duration-300 hover:text-[rgba(217,37,70,1)] hover:gap-3 hover:scale-105">
             <span>View More Details</span>
             <ArrowRight className="w-6 h-6" />
           </button>
@@ -138,7 +138,7 @@ export const Projects = () => {
         <div className="flex w-full flex-col items-center">
           <div className="w-[620px] max-w-full text-white text-center">
             <div className="flex w-full flex-col max-md:max-w-full">
-              <h2 className="text-[40px] leading-[48px] max-md:max-w-full">
+              <h2 className="text-[40px] leading-[48px] max-md:max-w-full max-md:text-[30px] max-md:leading-[38px]">
                 <span className="font-bold">Lorem ipsum dolor sit amet,</span>
                 <br />
                 <span className="italic">consectetur adipiscing elit</span>
@@ -154,7 +154,7 @@ export const Projects = () => {
               <TabsList className="bg-transparent flex items-center gap-6 text-base text-[rgba(217,37,70,1)] justify-center flex-wrap max-md:max-w-full h-auto p-0">
                 <TabsTrigger 
                   value="ongoing" 
-                  className="bg-[rgba(217,37,70,1)] data-[state=active]:bg-[rgba(217,37,70,1)] data-[state=inactive]:bg-white data-[state=inactive]:border data-[state=inactive]:border-[rgba(217,37,70,1)] data-[state=inactive]:text-[rgba(217,37,70,1)] min-h-12 gap-2.5 text-white whitespace-nowrap w-[174px] px-4 py-3 rounded-lg transition-all duration-300 hover:scale-105"
+                  className="bg-[rgba(217,37,70,1)] text-white data-[state=active]:bg-[rgba(217,37,70,1)] data-[state=active]:text-white data-[state=inactive]:bg-white data-[state=inactive]:border data-[state=inactive]:border-[rgba(217,37,70,1)] data-[state=inactive]:text-[rgba(217,37,70,1)] min-h-12 gap-2.5 whitespace-nowrap w-[174px] px-4 py-3 rounded-lg transition-all duration-300 hover:scale-105"
                 >
                   Ongoing
                 </TabsTrigger>
