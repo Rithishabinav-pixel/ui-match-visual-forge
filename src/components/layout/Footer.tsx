@@ -1,7 +1,10 @@
+
 import React from 'react';
 import { Facebook, Instagram, Linkedin, X, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
+
 export const Footer = () => {
-  return <footer className="bg-[rgba(40,45,64,1)] text-white">
+  return (
+    <footer className="bg-[rgba(40,45,64,1)] text-white">
       {/* Hero Section */}
       <div className="max-w-[1530px] mx-auto px-5 py-16">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
@@ -29,7 +32,7 @@ export const Footer = () => {
 
       {/* Main Footer Content */}
       <div className="max-w-[1530px] mx-auto px-5 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Logo and Tagline */}
           <div className="lg:col-span-1">
             <div className="mb-8">
@@ -54,8 +57,11 @@ export const Footer = () => {
               <li><a href="#" className="text-sm hover:text-[rgba(217,37,70,1)] transition-colors">JKB Care</a></li>
               <li><a href="#" className="text-sm hover:text-[rgba(217,37,70,1)] transition-colors">Testimonials</a></li>
             </ul>
-            
-            <h4 className="text-lg font-semibold mt-8 mb-4">News and Events</h4>
+          </div>
+          
+          {/* News and Events */}
+          <div className="lg:col-span-1">
+            <h3 className="text-lg font-semibold mb-6">News and Events</h3>
             <ul className="space-y-3">
               <li><a href="#" className="text-sm hover:text-[rgba(217,37,70,1)] transition-colors">Career</a></li>
               <li><a href="#" className="text-sm hover:text-[rgba(217,37,70,1)] transition-colors">Blog</a></li>
@@ -108,5 +114,6 @@ export const Footer = () => {
           <p className="text-sm">Copyright © 2025 jkbhousing, All Rights Reserved.</p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
