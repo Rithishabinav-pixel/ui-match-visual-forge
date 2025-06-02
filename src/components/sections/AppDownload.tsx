@@ -10,12 +10,18 @@ export const AppDownload = () => {
           <img
             src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/e0c4bd0eeab3f837342dddd40fe6940df68bf76d?placeholderIfAbsent=true"
             alt="Mobile App"
-            className="aspect-[0.7] object-contain w-[386px] max-w-full"
+            className="aspect-[0.7] object-contain w-[386px] max-w-full transform transition-all duration-700 hover:scale-105 hover:rotate-2 animate-[float_3s_ease-in-out_infinite] cursor-pointer"
+            data-aos="fade-right"
+            data-aos-duration="1000"
           />
         </div>
         
         <div className="self-stretch flex min-w-60 flex-col items-stretch justify-center flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
-          <h2 className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full">
+          <h2 
+            className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full"
+            data-aos="fade-left"
+            data-aos-delay="200"
+          >
             Lorem ipsum dolor sit amet,{" "}
             <span className="font-semibold italic text-[rgba(217,37,70,1)]">
               consectetur adipiscing
@@ -23,12 +29,20 @@ export const AppDownload = () => {
           </h2>
           
           <div className="flex w-full flex-col justify-center mt-8 max-md:max-w-full">
-            <p className="text-neutral-800 text-base font-normal leading-6 self-stretch max-md:max-w-full">
+            <p 
+              className="text-neutral-800 text-base font-normal leading-6 self-stretch max-md:max-w-full"
+              data-aos="fade-left"
+              data-aos-delay="300"
+            >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             
-            <div className="flex gap-[30px] text-black mt-6 max-md:flex-col max-md:gap-4">
-              <button className="bg-white border flex items-stretch gap-[9px] overflow-hidden text-[13px] font-normal uppercase px-[11px] py-2 rounded-lg border-black border-solid" style={{ width: 'fit-content' }}>
+            <div 
+              className="flex gap-[30px] text-black mt-6 max-md:flex-col max-md:gap-4"
+              data-aos="fade-left"
+              data-aos-delay="400"
+            >
+              <button className="bg-white border flex items-stretch gap-[9px] overflow-hidden text-[13px] font-normal uppercase px-[11px] py-2 rounded-lg border-black border-solid transition-all duration-300 hover:scale-105 hover:shadow-lg" style={{ width: 'fit-content' }}>
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/b3a1ba8e8be4b44fff1f0f85701796442afe8e05?placeholderIfAbsent=true"
                   alt="Google Play"
@@ -44,7 +58,7 @@ export const AppDownload = () => {
                 </div>
               </button>
               
-              <button className="bg-white border flex items-stretch gap-2.5 overflow-hidden font-medium leading-none px-[9px] py-2.5 rounded-lg border-black border-solid" style={{ width: 'fit-content' }}>
+              <button className="bg-white border flex items-stretch gap-2.5 overflow-hidden font-medium leading-none px-[9px] py-2.5 rounded-lg border-black border-solid transition-all duration-300 hover:scale-105 hover:shadow-lg" style={{ width: 'fit-content' }}>
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/1f734a22779269d9fb7ffbd0996f03608a466856?placeholderIfAbsent=true"
                   alt="App Store"
@@ -57,7 +71,12 @@ export const AppDownload = () => {
               </button>
             </div>
             
-            <button className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px]" style={{ width: 'fit-content' }}>
+            <button 
+              className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] transition-all duration-300 hover:scale-105 hover:bg-[rgba(197,27,60,1)]" 
+              style={{ width: 'fit-content' }}
+              data-aos="zoom-in"
+              data-aos-delay="500"
+            >
               <span>Step Into Our World</span>
               <ArrowRight className="w-6 h-6" />
             </button>
