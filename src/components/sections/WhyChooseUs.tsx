@@ -1,6 +1,14 @@
 
 import React from 'react';
-import { Crown, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+
+const CustomIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="80" height="81" viewBox="0 0 80 81" fill="none">
+    <path d="M55.6664 63.7667H24.333C22.933 63.7667 21.3664 62.6667 20.8997 61.3334L7.09969 22.7334C5.13302 17.2 7.43302 15.5 12.1664 18.9L25.1664 28.2C27.333 29.7 29.7997 28.9334 30.733 26.5L36.5997 10.8667C38.4664 5.8667 41.5664 5.8667 43.433 10.8667L49.2997 26.5C50.233 28.9334 52.6997 29.7 54.833 28.2L67.033 19.5C72.233 15.7667 74.733 17.6667 72.5997 23.7L59.133 61.4C58.633 62.6667 57.0664 63.7667 55.6664 63.7667Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M21.667 73.8335H58.3337" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M31.667 47.1665H48.3337" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
 export const WhyChooseUs = () => {
   const features = [
@@ -64,7 +72,7 @@ export const WhyChooseUs = () => {
               data-aos="fade-up"
               data-aos-delay={200 + (index * 200)}
             >
-              <Crown className="w-20 h-20" />
+              <CustomIcon />
               <div className="w-full mt-[94px] max-md:mt-10">
                 <h3 className="text-2xl font-bold leading-none">{feature.title}</h3>
                 <p className="text-base font-normal leading-6 mt-6">{feature.description}</p>
