@@ -4,8 +4,8 @@ import { ArrowRight } from 'lucide-react';
 
 export const AppDownload = () => {
   return (
-    <section className="w-full mt-[120px] max-md:mt-10">
-      <div className="max-w-[1530px] mx-auto px-5 flex items-center justify-between flex-wrap">
+    <section className="w-full mt-[120px] max-md:mt-16">
+      <div className="max-w-[1530px] mx-auto px-5 flex items-center justify-between flex-wrap max-md:gap-12">
         <div className="self-stretch flex min-w-60 flex-col flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
           <img
             src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/e0c4bd0eeab3f837342dddd40fe6940df68bf76d?placeholderIfAbsent=true"
@@ -27,7 +27,7 @@ export const AppDownload = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             
-            <div className="flex gap-[30px] text-black mt-6">
+            <div className="flex gap-[30px] text-black mt-6 max-md:flex-col max-md:gap-4">
               <button className="bg-white border flex items-stretch gap-[9px] overflow-hidden text-[13px] font-normal uppercase px-[11px] py-2 rounded-lg border-black border-solid" style={{ width: 'fit-content' }}>
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/b3a1ba8e8be4b44fff1f0f85701796442afe8e05?placeholderIfAbsent=true"

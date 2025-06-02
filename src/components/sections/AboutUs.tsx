@@ -4,9 +4,12 @@ import { ArrowRight } from 'lucide-react';
 
 export const AboutUs = () => {
   return (
-    <section className="w-full mt-[120px] max-md:mt-10">
+    <section className="w-full mt-[120px] max-md:mt-16">
       <div className="max-w-[1530px] mx-auto px-5 flex items-center justify-between gap-[60px] flex-wrap">
-        <div className="self-stretch flex min-w-60 flex-col items-stretch justify-center flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
+        <div 
+          className="self-stretch flex min-w-60 flex-col items-stretch justify-center flex-1 shrink basis-[0%] my-auto max-md:max-w-full"
+          data-aos="fade-right"
+        >
           <h2 className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full">
             Lorem ipsum dolor sit amet,{" "}
             <span className="font-semibold italic text-[rgba(217,37,70,1)]">
@@ -19,7 +22,12 @@ export const AboutUs = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             
-            <button className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px]" style={{ width: 'fit-content' }}>
+            <button 
+              className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] transition-all duration-300 hover:scale-105" 
+              style={{ width: 'fit-content' }}
+              data-aos="zoom-in"
+              data-aos-delay="400"
+            >
               <span>Step Into Our World</span>
               <ArrowRight className="w-6 h-6" />
             </button>
@@ -28,7 +36,11 @@ export const AboutUs = () => {
         
         <div className="w-8 max-md:hidden"></div>
         
-        <div className="self-stretch min-w-60 overflow-hidden flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
+        <div 
+          className="self-stretch min-w-60 overflow-hidden flex-1 shrink basis-[0%] my-auto max-md:max-w-full"
+          data-aos="fade-left"
+          data-aos-delay="200"
+        >
           <img
             src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/6548ff2e33da161a9450d29cd00fd5e89bd091d0?placeholderIfAbsent=true"
             alt="About Us Image"

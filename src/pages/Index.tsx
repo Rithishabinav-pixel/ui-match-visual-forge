@@ -9,8 +9,11 @@ import { AppDownload } from '@/components/sections/AppDownload';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { CTA } from '@/components/sections/CTA';
 import { Footer } from '@/components/layout/Footer';
+import { useAOS } from '@/hooks/useAOS';
 
 const Index = () => {
+  useAOS();
+
   return (
     <div className="min-h-screen">
       <Hero />
