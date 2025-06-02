@@ -14,11 +14,11 @@ export const CTA = () => {
             Join hundreds of satisfied customers who trusted JKB Housing for their dream homes. Get in touch with us today for a free consultation.
           </p>
           <div className="flex gap-6 justify-center flex-wrap max-md:gap-4">
-            <button className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 px-8 py-4 rounded-[58px] text-lg font-medium transition-all duration-300 hover:scale-105 hover:bg-[rgba(197,27,60,1)] w-fit">
+            <button className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 px-8 py-4 rounded-[58px] text-lg font-medium w-fit btn-hover-red">
               <span>Get Free Consultation</span>
               <ArrowRight className="w-6 h-6" />
             </button>
-            <button className="bg-transparent border-2 border-white flex items-center justify-center text-white gap-2.5 px-8 py-4 rounded-[58px] text-lg font-medium transition-all duration-300 hover:scale-105 hover:bg-white hover:text-[rgba(40,45,64,1)] w-fit">
+            <button className="bg-transparent border-2 border-white flex items-center justify-center text-white gap-2.5 px-8 py-4 rounded-[58px] text-lg font-medium w-fit btn-hover-outline hover:bg-white hover:text-[rgba(40,45,64,1)]">
               <span>View Our Projects</span>
             </button>
           </div>

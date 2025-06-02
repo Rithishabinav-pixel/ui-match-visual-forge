@@ -34,7 +34,7 @@ export const Hero = () => {
               </p>
               
               <button 
-                className="bg-[rgba(217,37,70,1)] min-h-12 mt-6 flex items-center justify-center gap-2.5 px-4 py-3 rounded-[58px] w-fit transition-all duration-300 hover:scale-105 hover:bg-[rgba(197,27,60,1)]"
+                className="bg-[rgba(217,37,70,1)] min-h-12 mt-6 flex items-center justify-center gap-2.5 px-4 py-3 rounded-[58px] w-fit btn-hover-red"
                 data-aos="zoom-in"
                 data-aos-delay="600"
               >

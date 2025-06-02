@@ -23,7 +23,7 @@ export const AboutUs = () => {
             </p>
             
             <button 
-              className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] transition-all duration-300 hover:scale-105" 
+              className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] btn-hover-red" 
               style={{ width: 'fit-content' }}
               data-aos="zoom-in"
               data-aos-delay="400"

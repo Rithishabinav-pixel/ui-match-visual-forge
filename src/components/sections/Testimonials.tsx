@@ -46,7 +46,7 @@ export const Testimonials = () => {
               </p>
               
               <button 
-                className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] w-fit transition-all duration-300 hover:scale-105"
+                className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] w-fit btn-hover-red"
                 data-aos="zoom-in"
                 data-aos-delay="400"
               >

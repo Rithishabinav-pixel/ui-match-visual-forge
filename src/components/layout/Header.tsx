@@ -87,17 +87,17 @@ export const Header = () => {
 
         <div className="self-stretch flex min-w-60 gap-[29px] my-auto max-md:min-w-auto">
           <div className="flex min-w-60 items-center gap-6 text-base font-normal justify-center hidden md:flex">
-            <a href="tel:9710397104" className="bg-white border self-stretch flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center my-auto px-6 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid max-md:px-5 transition-all duration-300 hover:scale-105 hover:bg-[rgba(217,37,70,1)] hover:text-white">
+            <a href="tel:9710397104" className="bg-white border self-stretch flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center my-auto px-6 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid max-md:px-5 btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white">
               <Phone className="w-6 h-6" />
               <span>97103 97104</span>
             </a>
-            <button className="self-stretch bg-[rgba(217,37,70,1)] min-h-12 gap-2.5 text-white my-auto px-4 py-3 rounded-[98px] transition-all duration-300 hover:scale-105 hover:bg-[rgba(197,27,60,1)]">
+            <button className="self-stretch bg-[rgba(217,37,70,1)] min-h-12 gap-2.5 text-white my-auto px-4 py-3 rounded-[98px] btn-hover-red">
               Enquire Now
             </button>
           </div>
           
           <button 
-            className="bg-[rgba(217,37,70,1)] border flex min-h-[50px] items-center gap-2.5 w-[50px] h-[50px] p-[9px] rounded-[25px] border-[rgba(217,37,70,1)] border-solid md:hidden transition-all duration-300 hover:scale-105 hover:bg-[rgba(197,27,60,1)] z-50 relative"
+            className="bg-[rgba(217,37,70,1)] border flex min-h-[50px] items-center gap-2.5 w-[50px] h-[50px] p-[9px] rounded-[25px] border-[rgba(217,37,70,1)] border-solid md:hidden z-50 relative btn-hover-red"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="w-8 h-8 text-white" /> : <Menu className="w-8 h-8 text-white" />}
@@ -120,11 +120,11 @@ export const Header = () => {
         <div className="pt-20 px-6 pb-6 h-full flex flex-col">
           {/* Micro Nav */}
           <div className="border-b border-gray-600 pb-6 mb-6">
-            <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-4 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid transition-all duration-300 hover:scale-105 hover:bg-[rgba(217,37,70,1)] hover:text-white mb-4">
+            <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-4 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid mb-4 btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white">
               <Phone className="w-5 h-5" />
               <span>97103 97104</span>
             </a>
-            <button className="w-full bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 px-4 py-3 rounded-[98px] transition-all duration-300 hover:scale-105 hover:bg-[rgba(197,27,60,1)]">
+            <button className="w-full bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 px-4 py-3 rounded-[98px] btn-hover-red">
               <span>Enquire Now</span>
               <ArrowRight className="w-5 h-5" />
             </button>

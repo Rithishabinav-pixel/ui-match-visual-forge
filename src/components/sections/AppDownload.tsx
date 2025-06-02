@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
@@ -42,7 +41,7 @@ export const AppDownload = () => {
               data-aos="fade-left"
               data-aos-delay="400"
             >
-              <button className="bg-white border flex items-stretch gap-[9px] overflow-hidden text-[13px] font-normal uppercase px-[11px] py-2 rounded-lg border-black border-solid transition-all duration-300 hover:scale-105 hover:shadow-lg" style={{ width: 'fit-content' }}>
+              <button className="bg-white border flex items-stretch gap-[9px] overflow-hidden text-[13px] font-normal uppercase px-[11px] py-2 rounded-lg border-black border-solid btn-hover-outline" style={{ width: 'fit-content' }}>
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/b3a1ba8e8be4b44fff1f0f85701796442afe8e05?placeholderIfAbsent=true"
                   alt="Google Play"
@@ -58,7 +57,7 @@ export const AppDownload = () => {
                 </div>
               </button>
               
-              <button className="bg-white border flex items-stretch gap-2.5 overflow-hidden font-medium leading-none px-[9px] py-2.5 rounded-lg border-black border-solid transition-all duration-300 hover:scale-105 hover:shadow-lg" style={{ width: 'fit-content' }}>
+              <button className="bg-white border flex items-stretch gap-2.5 overflow-hidden font-medium leading-none px-[9px] py-2.5 rounded-lg border-black border-solid btn-hover-outline" style={{ width: 'fit-content' }}>
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/1f734a22779269d9fb7ffbd0996f03608a466856?placeholderIfAbsent=true"
                   alt="App Store"
@@ -72,7 +71,7 @@ export const AppDownload = () => {
             </div>
             
             <button 
-              className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] transition-all duration-300 hover:scale-105 hover:bg-[rgba(197,27,60,1)]" 
+              className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] btn-hover-red" 
               style={{ width: 'fit-content' }}
               data-aos="zoom-in"
               data-aos-delay="500"

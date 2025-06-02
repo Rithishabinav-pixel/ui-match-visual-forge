@@ -139,3 +139,34 @@
 .animate-fade-in {
   animation: fade-in 0.5s ease-out;
 }
+
+/* Global Button Hover Animations */
+@layer components {
+  .btn-hover-primary {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-hover-secondary {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-md;
+  }
+  
+  .btn-hover-outline {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-hover-ghost {
+    @apply transition-all duration-300 hover:scale-105;
+  }
+  
+  .btn-hover-red {
+    @apply transition-all duration-300 hover:scale-105 hover:bg-[rgba(197,27,60,1)] hover:shadow-lg;
+  }
+  
+  .btn-hover-tab {
+    @apply transition-all duration-300 hover:scale-105;
+  }
+  
+  .btn-hover-link {
+    @apply transition-all duration-300 hover:scale-105 hover:gap-3;
+  }
+}
