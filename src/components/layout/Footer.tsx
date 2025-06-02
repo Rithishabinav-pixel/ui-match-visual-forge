@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Facebook, Instagram, Linkedin, X, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
 
