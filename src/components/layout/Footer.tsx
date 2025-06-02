@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Facebook, Instagram, Linkedin, X, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
 
@@ -39,10 +40,18 @@ export const Footer = () => {
               <p className="text-lg font-medium">Delivered with Integrity</p>
             </div>
             <div className="flex gap-4">
-              <Facebook className="w-6 h-6 cursor-pointer hover:text-[rgba(217,37,70,1)] transition-colors" />
-              <X className="w-6 h-6 cursor-pointer hover:text-[rgba(217,37,70,1)] transition-colors" />
-              <Instagram className="w-6 h-6 cursor-pointer hover:text-[rgba(217,37,70,1)] transition-colors" />
-              <Linkedin className="w-6 h-6 cursor-pointer hover:text-[rgba(217,37,70,1)] transition-colors" />
+              <div className="w-10 h-10 bg-[rgba(217,37,70,1)] rounded-full flex items-center justify-center cursor-pointer hover:bg-[rgba(197,27,60,1)] transition-colors">
+                <Facebook className="w-5 h-5 text-white" />
+              </div>
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors">
+                <X className="w-5 h-5 text-black" />
+              </div>
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors">
+                <Instagram className="w-5 h-5 text-[rgba(217,37,70,1)]" />
+              </div>
+              <div className="w-10 h-10 bg-[rgba(217,37,70,1)] rounded-full flex items-center justify-center cursor-pointer hover:bg-[rgba(197,27,60,1)] transition-colors">
+                <Linkedin className="w-5 h-5 text-white" />
+              </div>
             </div>
           </div>
           
