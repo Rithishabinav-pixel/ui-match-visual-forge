@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { Facebook, Instagram, Linkedin, X, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
-
 export const Footer = () => {
-  return (
-    <footer className="bg-[rgba(40,45,64,1)] text-white">
+  return <footer className="bg-[rgba(40,45,64,1)] text-white">
       {/* Hero Section */}
       <div className="max-w-[1530px] mx-auto px-5 py-16">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
@@ -36,11 +33,7 @@ export const Footer = () => {
           {/* Logo and Tagline */}
           <div className="lg:col-span-1">
             <div className="mb-8">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true"
-                alt="JKB Housing Logo"
-                className="w-[190px] mb-4"
-              />
+              <img src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true" alt="JKB Housing Logo" className="w-[190px] mb-4" />
               <p className="text-lg font-medium">Delivered with Integrity</p>
             </div>
             <div className="flex gap-4">
@@ -115,6 +108,5 @@ export const Footer = () => {
           <p className="text-sm">Copyright © 2025 jkbhousing, All Rights Reserved.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
