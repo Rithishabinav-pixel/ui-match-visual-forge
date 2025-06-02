@@ -25,7 +25,7 @@ export const Testimonials = () => {
   return <section className="bg-[rgba(242,242,242,1)] w-full overflow-hidden mt-[120px] py-20 max-md:mt-10">
       <div className="max-w-[1530px] mx-auto px-5">
         <div className="flex items-start justify-between gap-[30px] flex-wrap max-md:flex-col flex">
-          <div className="flex min-w-60 min-h-[344px] flex-col items-stretch justify-center w-[765px] max-md:max-w-full">
+          <div className="flex min-w-60 min-h-[344px] flex-col items-stretch justify-center w-[500] max-md:max-w-full">
             <h2 className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full">
               Lorem ipsum dolor sit amet,{" "}
               <span className="font-semibold italic text-[rgba(217,37,70,1)]">
