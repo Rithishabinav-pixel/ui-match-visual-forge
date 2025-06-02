@@ -1,15 +1,12 @@
-
 import React from 'react';
 import { Facebook, Instagram, Linkedin, X, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
-
 export const Footer = () => {
-  return (
-    <footer className="bg-[rgba(40,45,64,1)] text-white">
+  return <footer className="bg-[rgba(40,45,64,1)] text-white">
       {/* Hero Section */}
       <div className="max-w-[1530px] mx-auto px-5 py-16">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
           <div className="flex-1">
-            <h2 className="text-4xl lg:text-5xl font-normal leading-tight mb-4 w-[65%]">
+            <h2 className="text-4xl lg:text-5xl font-normal leading-tight mb-4 w-[72%]">
               From the first handshake to the final finish,{' '}
               <span className="text-[rgba(217,37,70,1)] italic">
                 we deliver on promises and dreams alike.
@@ -114,6 +111,5 @@ export const Footer = () => {
           <p className="text-sm">Copyright © 2025 jkbhousing, All Rights Reserved.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
