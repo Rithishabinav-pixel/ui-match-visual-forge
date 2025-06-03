@@ -1,25 +1,20 @@
-
 import React, { useState, useEffect } from 'react';
 import { X, Phone, ChevronDown, ArrowRight } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Link, useLocation } from 'react-router-dom';
-
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsFixed(scrollTop > 100);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   useEffect(() => {
     // Prevent body scroll when menu is open
     if (isMenuOpen) {
@@ -33,11 +28,12 @@ export const Header = () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMenuOpen]);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
     setIsMenuOpen(false);
   };
@@ -49,29 +45,15 @@ export const Header = () => {
     }
     return isFixed ? 'bg-[rgba(40,45,64,0.95)] backdrop-blur-sm' : '';
   };
-
-  return (
-    <>
+  return <>
       {/* Fixed Header Container */}
-      <div className={`w-full transition-all duration-300 ${
-        isFixed || !isHomePage
-          ? `fixed top-0 left-0 right-0 z-50 ${getHeaderBackground()} shadow-lg animate-slide-in-down` 
-          : 'relative'
-      }`}>
-        <div className={`max-w-7xl mx-auto transition-all duration-300 ${
-          isFixed || !isHomePage ? 'px-4 py-3' : 'px-5 py-0'
-        }`}>
+      <div className={`w-full transition-all duration-300 ${isFixed || !isHomePage ? `fixed top-0 left-0 right-0 z-50 ${getHeaderBackground()} shadow-lg animate-slide-in-down` : 'relative'}`}>
+        <div className={`max-w-7xl mx-auto transition-all duration-300 ${isFixed || !isHomePage ? 'px-4 py-3' : 'px-5 py-0'}`}>
           <header className="flex w-full items-center justify-between min-h-[60px]">
             {/* Logo - Left aligned */}
             <div className="flex-shrink-0">
               <Link to="/">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true"
-                  alt="JKB Housing Logo"
-                  className={`aspect-[1.94] object-contain transition-all duration-300 ${
-                    isFixed || !isHomePage ? 'w-[120px] max-md:w-[90px]' : 'w-[190px] max-md:w-[140px]'
-                  }`}
-                />
+                <img src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true" alt="JKB Housing Logo" className={`aspect-[1.94] object-contain transition-all duration-300 ${isFixed || !isHomePage ? 'w-[120px] max-md:w-[90px]' : 'w-[190px] max-md:w-[140px]'}`} />
               </Link>
             </div>
             
@@ -88,22 +70,13 @@ export const Header = () => {
                       All Projects
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    onClick={() => scrollToSection('projects')}
-                    className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
-                  >
+                  <DropdownMenuItem onClick={() => scrollToSection('projects')} className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin">
                     Ongoing
                   </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    onClick={() => scrollToSection('projects')}
-                    className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
-                  >
+                  <DropdownMenuItem onClick={() => scrollToSection('projects')} className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin">
                     Completed
                   </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    onClick={() => scrollToSection('projects')}
-                    className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
-                  >
+                  <DropdownMenuItem onClick={() => scrollToSection('projects')} className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin">
                     Future Landmark
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -116,7 +89,7 @@ export const Header = () => {
             <div className="flex items-center gap-4 flex-shrink-0">
               {/* Desktop Phone & Enquire Buttons */}
               <div className="hidden md:flex items-center gap-4 text-base font-normal font-acumin">
-                <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-4 py-2 rounded-[98px] border-[rgba(217,37,70,1)] border-solid btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white whitespace-nowrap">
+                <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-4 rounded-[98px] border-[rgba(217,37,70,1)] border-solid btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white whitespace-nowrap py-[13px]">
                   <Phone className="w-5 h-5 flex-shrink-0" />
                   <span className="text-sm">97103 97104</span>
                 </a>
@@ -126,24 +99,14 @@ export const Header = () => {
               </div>
               
               {/* Hamburger Menu Button - Always visible on mobile */}
-              <button 
-                className={`transition-all duration-300 hover:scale-105 z-[60] relative flex-shrink-0 ${
-                  isFixed || !isHomePage ? 'w-10 h-10' : 'w-[50px] h-[50px]'
-                }`}
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Toggle menu"
-              >
-                {isMenuOpen ? (
-                  <div className={`bg-[rgba(217,37,70,1)] border flex items-center justify-center rounded-[25px] border-[rgba(217,37,70,1)] border-solid btn-hover-red w-full h-full`}>
+              <button className={`transition-all duration-300 hover:scale-105 z-[60] relative flex-shrink-0 ${isFixed || !isHomePage ? 'w-10 h-10' : 'w-[50px] h-[50px]'}`} onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+                {isMenuOpen ? <div className={`bg-[rgba(217,37,70,1)] border flex items-center justify-center rounded-[25px] border-[rgba(217,37,70,1)] border-solid btn-hover-red w-full h-full`}>
                     <X className={`text-white ${isFixed || !isHomePage ? 'w-6 h-6' : 'w-8 h-8'}`} />
-                  </div>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 50 50" fill="none" className="min-w-[40px] min-h-[40px]">
-                    <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" fill="#D92546"/>
-                    <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" stroke="#D92546"/>
-                    <path d="M13 25H37M13 33H37M21 17H37" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                )}
+                  </div> : <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 50 50" fill="none" className="min-w-[40px] min-h-[40px]">
+                    <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" fill="#D92546" />
+                    <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" stroke="#D92546" />
+                    <path d="M13 25H37M13 33H37M21 17H37" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>}
               </button>
             </div>
           </header>
@@ -151,17 +114,10 @@ export const Header = () => {
       </div>
 
       {/* Menu Overlay */}
-      {isMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={() => setIsMenuOpen(false)}
-        />
-      )}
+      {isMenuOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setIsMenuOpen(false)} />}
 
       {/* Slide-in Menu - Full height, responsive width */}
-      <div className={`fixed top-0 right-0 h-full w-full max-w-[320px] sm:max-w-[300px] bg-[rgba(40,45,64,1)] z-50 transform transition-transform duration-300 ease-in-out ${
-        isMenuOpen ? 'animate-slide-in-right' : 'translate-x-full'
-      }`}>
+      <div className={`fixed top-0 right-0 h-full w-full max-w-[320px] sm:max-w-[300px] bg-[rgba(40,45,64,1)] z-50 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'animate-slide-in-right' : 'translate-x-full'}`}>
         <div className="pt-20 px-6 pb-6 h-full flex flex-col overflow-y-auto">
           {/* Micro Nav */}
           <div className="border-b border-gray-600 pb-6 mb-6">
@@ -177,42 +133,25 @@ export const Header = () => {
 
           {/* Navigation */}
           <nav className="flex flex-col gap-6 text-white font-acumin">
-            <Link 
-              to="/" 
-              onClick={() => setIsMenuOpen(false)}
-              className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]"
-            >
+            <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">
               Home
             </Link>
-            <Link 
-              to="/about" 
-              onClick={() => setIsMenuOpen(false)}
-              className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]"
-            >
+            <Link to="/about" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">
               About
             </Link>
             <div className="flex items-center gap-2 text-lg font-medium cursor-pointer transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">
-              <Link 
-                to="/projects" 
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center gap-2"
-              >
+              <Link to="/projects" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2">
                 <span>Projects</span>
                 <ChevronDown className="w-5 h-5" />
               </Link>
             </div>
             <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">Joint Ventures</a>
             <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">JKB Care</a>
-            <Link 
-              to="/contact" 
-              onClick={() => setIsMenuOpen(false)}
-              className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]"
-            >
+            <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">
               Contact
             </Link>
           </nav>
         </div>
       </div>
-    </>
-  );
+    </>;
 };
