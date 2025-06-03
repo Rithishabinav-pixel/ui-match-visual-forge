@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { MapPin, Ruler, Building2, ArrowRight } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -96,26 +97,26 @@ export const Projects = () => {
   const [activeTab, setActiveTab] = useState("ongoing");
 
   const renderProjectCard = (project: any) => (
-    <div key={project.id} className="bg-white flex flex-col w-full max-w-[300px] min-h-[616px] gap-2.5 rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-lg max-md:max-w-full max-md:min-w-0">
-      <div className="relative flex flex-col items-stretch w-full">
+    <div key={project.id} className="bg-white flex min-w-60 min-h-[616px] gap-2.5 grow shrink w-[300px] rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-lg">
+      <div className="relative flex min-w-60 w-[375px] flex-col items-stretch">
         <img
           src={project.image}
           alt={`${project.title} Image`}
           className="aspect-[1.04] object-contain w-full z-0 min-h-[360px] rounded-[24px_24px_0px_0px]"
         />
-        <div className="flex flex-col items-stretch text-base mt-4 px-4 pb-4">
+        <div className="self-center z-0 flex min-h-56 w-[328px] max-w-full flex-col items-stretch text-base mt-4">
           <div className="w-full text-[rgba(40,45,64,1)]">
             <h3 className="text-2xl font-bold leading-none max-md:text-[30px] max-md:leading-[38px]">{project.title}</h3>
             <div className="flex w-full gap-4 leading-6 mt-4">
-              <MapPin className="w-6 h-6 flex-shrink-0" />
+              <MapPin className="w-6 h-6" />
               <p style={{ whiteSpace: 'pre-line' }}>{project.location}</p>
             </div>
             <div className="flex w-full gap-4 mt-4">
-              <Ruler className="w-6 h-6 flex-shrink-0" />
+              <Ruler className="w-6 h-6" />
               <span>{project.sizes}</span>
             </div>
             <div className="flex w-full gap-4 mt-4">
-              <Building2 className="w-6 h-6 flex-shrink-0" />
+              <Building2 className="w-6 h-6" />
               <span>{project.type}</span>
             </div>
           </div>
@@ -133,7 +134,7 @@ export const Projects = () => {
 
   return (
     <section className="bg-[rgba(40,45,64,1)] w-full overflow-hidden mt-[120px] py-20 max-md:mt-10">
-      <div className="max-w-[1530px] mx-auto px-5 max-md:px-4">
+      <div className="max-w-[1530px] mx-auto px-5">
         <div className="flex w-full flex-col items-center">
           <div className="w-[620px] max-w-full text-white text-center">
             <div className="flex w-full flex-col max-md:max-w-full">
@@ -172,19 +173,19 @@ export const Projects = () => {
               </TabsList>
 
               <TabsContent value="ongoing" className="w-full mt-[30px]">
-                <div className="flex w-full max-w-[1185px] gap-[30px] justify-center flex-wrap animate-fade-in max-md:gap-4 max-md:justify-center">
+                <div className="flex w-full max-w-[1185px] gap-[30px] justify-center flex-wrap animate-fade-in">
                   {projectsData.ongoing.map(renderProjectCard)}
                 </div>
               </TabsContent>
 
               <TabsContent value="completed" className="w-full mt-[30px]">
-                <div className="flex w-full max-w-[1185px] gap-[30px] justify-center flex-wrap animate-fade-in max-md:gap-4 max-md:justify-center">
+                <div className="flex w-full max-w-[1185px] gap-[30px] justify-center flex-wrap animate-fade-in">
                   {projectsData.completed.map(renderProjectCard)}
                 </div>
               </TabsContent>
 
               <TabsContent value="future" className="w-full mt-[30px]">
-                <div className="flex w-full max-w-[1185px] gap-[30px] justify-center flex-wrap animate-fade-in max-md:gap-4 max-md:justify-center">
+                <div className="flex w-full max-w-[1185px] gap-[30px] justify-center flex-wrap animate-fade-in">
                   {projectsData.future.map(renderProjectCard)}
                 </div>
               </TabsContent>
