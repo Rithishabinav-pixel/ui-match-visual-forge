@@ -97,7 +97,11 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-acumin;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat;
   }
 }
 
@@ -132,12 +136,25 @@
   }
 }
 
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 .animate-slide-in-down {
   animation: slide-in-down 0.3s ease-out;
 }
 
 .animate-fade-in {
   animation: fade-in 0.5s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
 }
 
 /* Global Button Hover Animations */

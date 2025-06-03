@@ -28,12 +28,12 @@ export const Testimonials = () => {
   return (
     <section className="bg-[rgba(242,242,242,1)] w-full overflow-hidden mt-[120px] py-20 max-md:mt-16">
       <div className="max-w-[1530px] mx-auto px-5">
-        <div className="flex items-start justify-between gap-[30px] flex-wrap max-md:flex-col flex">
+        <div className="flex items-start justify-between gap-[30px] flex-wrap max-xl:flex-col xl:flex-row">
           <div 
-            className="flex min-w-60 min-h-[344px] flex-col items-stretch justify-center w-[695px] max-md:max-w-full"
+            className="flex min-w-60 min-h-[344px] flex-col items-stretch justify-center w-[695px] max-xl:max-w-full xl:w-[695px]"
             data-aos="fade-right"
           >
-            <h2 className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full">
+            <h2 className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full font-montserrat">
               Lorem ipsum dolor sit amet,{" "}
               <span className="font-semibold italic text-[rgba(217,37,70,1)]">
                 consectetur adipiscing
@@ -41,12 +41,12 @@ export const Testimonials = () => {
             </h2>
             
             <div className="flex w-full flex-col items-stretch text-base font-normal mt-8 max-md:max-w-full">
-              <p className="text-[rgba(40,45,64,1)] leading-6 max-md:max-w-full">
+              <p className="text-[rgba(40,45,64,1)] leading-6 max-md:max-w-full font-acumin">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               </p>
               
               <button 
-                className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] w-fit btn-hover-red"
+                className="bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 mt-6 px-4 py-3 rounded-[58px] w-fit btn-hover-red font-acumin"
                 data-aos="zoom-in"
                 data-aos-delay="400"
               >
@@ -57,7 +57,7 @@ export const Testimonials = () => {
           </div>
 
           <div 
-            className="min-w-60 w-[765px] max-md:max-w-full"
+            className="min-w-60 w-[765px] max-xl:max-w-full xl:w-[765px]"
             data-aos="fade-left"
             data-aos-delay="200"
           >
@@ -70,7 +70,7 @@ export const Testimonials = () => {
                   data-aos-delay={300 + (index * 200)}
                 >
                   <div className="flex w-full flex-col items-stretch">
-                    <p className="text-[rgba(40,45,64,1)] leading-6 text-sm">
+                    <p className="text-[rgba(40,45,64,1)] leading-6 text-sm font-acumin">
                       {testimonial.content}{" "}
                       <span className="text-[rgba(217,37,70,1)]">Read more</span>
                     </p>
@@ -78,8 +78,8 @@ export const Testimonials = () => {
                     <div className="flex items-center gap-3 text-sm font-semibold mt-4">
                       <img src={testimonial.image} alt={testimonial.author} className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
                       <div className="flex flex-col">
-                        <span className="text-[rgba(40,45,64,1)]">{testimonial.author}</span>
-                        <span className="text-[rgba(217,37,70,1)]">{testimonial.project}</span>
+                        <span className="text-[rgba(40,45,64,1)] font-acumin">{testimonial.author}</span>
+                        <span className="text-[rgba(217,37,70,1)] font-acumin">{testimonial.project}</span>
                       </div>
                     </div>
                   </div>

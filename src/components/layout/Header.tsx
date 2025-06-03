@@ -54,7 +54,7 @@ export const Header = () => {
           } max-md:w-[100px]`}
         />
         
-        <nav className="self-stretch flex min-w-60 items-center gap-[40px_52px] text-base text-white font-normal text-center my-auto hidden md:flex">
+        <nav className="self-stretch flex min-w-60 items-center gap-[40px_52px] text-base text-white font-normal text-center my-auto hidden md:flex font-acumin">
           <DropdownMenu>
             <DropdownMenuTrigger className="self-stretch flex items-center gap-2 whitespace-nowrap my-auto transition-colors duration-300 hover:text-[rgba(217,37,70,1)] cursor-pointer">
               <span className="self-stretch my-auto">Projects</span>
@@ -63,19 +63,19 @@ export const Header = () => {
             <DropdownMenuContent className="bg-white border border-gray-200 rounded-lg shadow-lg min-w-[180px]">
               <DropdownMenuItem 
                 onClick={() => scrollToSection('projects')}
-                className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300"
+                className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
               >
                 Ongoing
               </DropdownMenuItem>
               <DropdownMenuItem 
                 onClick={() => scrollToSection('projects')}
-                className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300"
+                className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
               >
                 Completed
               </DropdownMenuItem>
               <DropdownMenuItem 
                 onClick={() => scrollToSection('projects')}
-                className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300"
+                className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
               >
                 Future Landmark
               </DropdownMenuItem>
@@ -86,7 +86,7 @@ export const Header = () => {
         </nav>
 
         <div className="self-stretch flex min-w-60 gap-[29px] my-auto max-md:min-w-auto">
-          <div className="flex min-w-60 items-center gap-6 text-base font-normal justify-center hidden md:flex">
+          <div className="flex min-w-60 items-center gap-6 text-base font-normal justify-center hidden md:flex font-acumin">
             <a href="tel:9710397104" className="bg-white border self-stretch flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center my-auto px-6 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid max-md:px-5 btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white">
               <Phone className="w-6 h-6" />
               <span>97103 97104</span>
@@ -113,25 +113,25 @@ export const Header = () => {
         />
       )}
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu with Right-to-Left Animation */}
       <div className={`fixed top-0 right-0 h-full w-80 bg-[rgba(40,45,64,1)] z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
-        isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        isMenuOpen ? 'animate-slide-in-right' : 'translate-x-full'
       }`}>
         <div className="pt-20 px-6 pb-6 h-full flex flex-col">
           {/* Micro Nav */}
           <div className="border-b border-gray-600 pb-6 mb-6">
-            <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-4 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid mb-4 btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white">
+            <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-4 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid mb-4 btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white font-acumin">
               <Phone className="w-5 h-5" />
               <span>97103 97104</span>
             </a>
-            <button className="w-full bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 px-4 py-3 rounded-[98px] btn-hover-red">
+            <button className="w-full bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 px-4 py-3 rounded-[98px] btn-hover-red font-acumin">
               <span>Enquire Now</span>
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>
 
           {/* Navigation */}
-          <nav className="flex flex-col gap-6 text-white">
+          <nav className="flex flex-col gap-6 text-white font-acumin">
             <div className="flex items-center gap-2 text-lg font-medium cursor-pointer transition-colors duration-300 hover:text-[rgba(217,37,70,1)]">
               <span>Projects</span>
               <ChevronDown className="w-5 h-5" />
