@@ -38,7 +38,20 @@ const Contact = () => {
       return;
     }
 
-    // Simulate form submission
+    // Create email content
+    const emailBody = `
+Name: ${formData.name}
+Email: ${formData.email}
+Subject: ${formData.subject}
+Message: ${formData.message}
+    `;
+
+    // Create mailto link
+    const mailtoLink = `mailto:rithish.pixel@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+
     toast({
       title: "Message Sent!",
       description: "Thank you for your message. We'll get back to you soon.",
@@ -223,7 +236,6 @@ const Contact = () => {
         <div className="max-w-6xl mx-auto px-5">
           <h2 className="text-3xl font-bold text-[rgba(40,45,64,1)] mb-8 text-center max-md:text-2xl">Find Our Office</h2>
           <div className="relative w-full h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
-            {/* Placeholder for Google Maps - In real implementation, use Google Maps embed */}
             <div className="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
               <div className="text-center text-white">
                 <MapPin className="w-16 h-16 mx-auto mb-4" />

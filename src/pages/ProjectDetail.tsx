@@ -1,14 +1,15 @@
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ArrowRight, MapPin, Calendar, Users, Award, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { EnquiryPopup } from '@/components/EnquiryPopup';
 
 const ProjectDetail = () => {
   const { id } = useParams();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
   // Mock project data (in real app, fetch based on id)
   const project = {
@@ -216,7 +217,10 @@ const ProjectDetail = () => {
                       <p className="text-gray-800 font-medium">{project.unitSizes}</p>
                     </div>
                   </div>
-                  <Button className="w-full mt-6 bg-[rgba(217,37,70,1)] hover:bg-[rgba(217,37,70,0.9)]">
+                  <Button 
+                    onClick={() => setIsEnquiryOpen(true)}
+                    className="w-full mt-6 bg-[rgba(217,37,70,1)] hover:bg-[rgba(217,37,70,0.9)]"
+                  >
                     Contact for Details
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -357,7 +361,10 @@ const ProjectDetail = () => {
             Get in touch with our team to learn more about this project or discuss your own construction needs.
           </p>
           <div className="flex gap-4 justify-center max-md:flex-col max-md:items-center">
-            <Button className="bg-white text-[rgba(217,37,70,1)] hover:bg-gray-100 px-8 py-3 text-lg">
+            <Button 
+              onClick={() => setIsEnquiryOpen(true)}
+              className="bg-white text-[rgba(217,37,70,1)] hover:bg-gray-100 px-8 py-3 text-lg"
+            >
               Contact Our Team
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
@@ -367,6 +374,13 @@ const ProjectDetail = () => {
           </div>
         </div>
       </section>
+
+      {/* Enquiry Popup */}
+      <EnquiryPopup 
+        isOpen={isEnquiryOpen}
+        onClose={() => setIsEnquiryOpen(false)}
+        projectTitle={project.title}
+      />
     </div>
   );
 };
