@@ -6,7 +6,7 @@ const JointVenture = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[rgba(40,45,64,1)] to-[rgba(217,37,70,1)] text-white py-20">
+      <section className="bg-[rgba(40,45,64,1)] text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Joint Ventures</h1>
