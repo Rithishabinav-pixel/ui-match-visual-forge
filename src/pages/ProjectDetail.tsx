@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ArrowRight, MapPin, Calendar, Users, Award, ChevronLeft, ChevronRight, Star } from 'lucide-react';
@@ -108,7 +109,7 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Project Hero */}
-      <section className="relative h-[70vh] overflow-hidden">
+      <section className="relative h-[70vh] mt-20 overflow-hidden">
         <div className="relative w-full h-full">
           <img 
             src={project.gallery[currentImageIndex]} 
