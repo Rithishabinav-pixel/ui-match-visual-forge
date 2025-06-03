@@ -18,7 +18,7 @@ const StatItem = ({ number, label, delay = 0 }: { number: string; label: string;
   return (
     <div 
       ref={elementRef} 
-      className="self-stretch flex flex-col items-stretch justify-center flex-1 shrink basis-[0%] my-auto"
+      className="self-stretch flex flex-col items-stretch justify-center flex-1 shrink basis-[0%] my-auto max-md:basis-[calc(50%-15px)] max-md:min-w-[calc(50%-15px)]"
       data-aos="fade-up"
       data-aos-delay={delay}
     >
@@ -51,7 +51,7 @@ export const Stats = () => {
           </span>
         </h2>
 
-        <div className="flex w-full items-center gap-[30px] text-[rgba(40,45,64,1)] flex-wrap mt-8 max-md:max-w-full">
+        <div className="flex w-full items-center gap-[30px] text-[rgba(40,45,64,1)] flex-wrap mt-8 max-md:max-w-full max-md:gap-[15px]">
           {stats.map((stat, index) => (
             <StatItem key={index} number={stat.number} label={stat.label} delay={200 + (index * 100)} />
           ))}
