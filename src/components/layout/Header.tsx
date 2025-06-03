@@ -41,69 +41,76 @@ export const Header = () => {
 
   return (
     <>
-      <header className={`flex w-full items-center gap-[40px_100px] justify-between flex-wrap max-md:max-w-full transition-all duration-300 ${
+      {/* Fixed Header Container */}
+      <div className={`w-full transition-all duration-300 ${
         isFixed 
-          ? 'fixed top-0 left-0 right-0 z-50 bg-[rgba(40,45,64,0.95)] backdrop-blur-sm shadow-lg animate-slide-in-down px-5 py-4' 
+          ? 'fixed top-0 left-0 right-0 z-50 bg-[rgba(40,45,64,0.95)] backdrop-blur-sm shadow-lg animate-slide-in-down' 
           : 'relative'
-      } max-md:justify-between max-md:gap-0`}>
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true"
-          alt="JKB Housing Logo"
-          className={`aspect-[1.94] object-contain self-stretch shrink-0 my-auto transition-all duration-300 ${
-            isFixed ? 'w-[150px]' : 'w-[190px]'
-          } max-md:w-[100px]`}
-        />
-        
-        <nav className="self-stretch flex min-w-60 items-center gap-[40px_52px] text-base text-white font-normal text-center my-auto hidden md:flex font-acumin">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="self-stretch flex items-center gap-2 whitespace-nowrap my-auto transition-colors duration-300 hover:text-[rgba(217,37,70,1)] cursor-pointer">
-              <span className="self-stretch my-auto">Projects</span>
-              <ChevronDown className="w-6 h-6" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-white border border-gray-200 rounded-lg shadow-lg min-w-[180px]">
-              <DropdownMenuItem 
-                onClick={() => scrollToSection('projects')}
-                className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
-              >
-                Ongoing
-              </DropdownMenuItem>
-              <DropdownMenuItem 
-                onClick={() => scrollToSection('projects')}
-                className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
-              >
-                Completed
-              </DropdownMenuItem>
-              <DropdownMenuItem 
-                onClick={() => scrollToSection('projects')}
-                className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
-              >
-                Future Landmark
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <a href="#" className="self-stretch my-auto transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Joint Venture</a>
-          <a href="#" className="self-stretch my-auto transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">JKB Care</a>
-        </nav>
+      }`}>
+        <div className={`max-w-7xl mx-auto transition-all duration-300 ${
+          isFixed ? 'px-5 py-4' : 'px-0 py-0'
+        }`}>
+          <header className={`flex w-full items-center gap-[40px_100px] justify-between flex-wrap max-md:max-w-full max-md:justify-between max-md:gap-0`}>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true"
+              alt="JKB Housing Logo"
+              className={`aspect-[1.94] object-contain self-stretch shrink-0 my-auto transition-all duration-300 ${
+                isFixed ? 'w-[150px]' : 'w-[190px]'
+              } max-md:w-[100px]`}
+            />
+            
+            <nav className="self-stretch flex min-w-60 items-center gap-[40px_52px] text-base text-white font-normal text-center my-auto hidden md:flex font-acumin">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="self-stretch flex items-center gap-2 whitespace-nowrap my-auto transition-colors duration-300 hover:text-[rgba(217,37,70,1)] cursor-pointer">
+                  <span className="self-stretch my-auto">Projects</span>
+                  <ChevronDown className="w-6 h-6" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white border border-gray-200 rounded-lg shadow-lg min-w-[180px]">
+                  <DropdownMenuItem 
+                    onClick={() => scrollToSection('projects')}
+                    className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
+                  >
+                    Ongoing
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => scrollToSection('projects')}
+                    className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
+                  >
+                    Completed
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => scrollToSection('projects')}
+                    className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
+                  >
+                    Future Landmark
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <a href="#" className="self-stretch my-auto transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Joint Venture</a>
+              <a href="#" className="self-stretch my-auto transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">JKB Care</a>
+            </nav>
 
-        <div className="self-stretch flex min-w-60 gap-[29px] my-auto max-md:min-w-auto">
-          <div className="flex min-w-60 items-center gap-6 text-base font-normal justify-center hidden md:flex font-acumin">
-            <a href="tel:9710397104" className="bg-white border self-stretch flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center my-auto px-6 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid max-md:px-5 btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white">
-              <Phone className="w-6 h-6" />
-              <span>97103 97104</span>
-            </a>
-            <button className="self-stretch bg-[rgba(217,37,70,1)] min-h-12 gap-2.5 text-white my-auto px-4 py-3 rounded-[98px] btn-hover-red">
-              Enquire Now
-            </button>
-          </div>
-          
-          <button 
-            className="bg-[rgba(217,37,70,1)] border flex min-h-[50px] items-center gap-2.5 w-[50px] h-[50px] p-[9px] rounded-[25px] border-[rgba(217,37,70,1)] border-solid md:hidden z-50 relative btn-hover-red"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="w-8 h-8 text-white" /> : <Menu className="w-8 h-8 text-white" />}
-          </button>
+            <div className="self-stretch flex min-w-60 gap-[29px] my-auto max-md:min-w-auto">
+              <div className="flex min-w-60 items-center gap-6 text-base font-normal justify-center hidden md:flex font-acumin">
+                <a href="tel:9710397104" className="bg-white border self-stretch flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center my-auto px-6 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid max-md:px-5 btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white">
+                  <Phone className="w-6 h-6" />
+                  <span>97103 97104</span>
+                </a>
+                <button className="self-stretch bg-[rgba(217,37,70,1)] min-h-12 gap-2.5 text-white my-auto px-4 py-3 rounded-[98px] btn-hover-red">
+                  Enquire Now
+                </button>
+              </div>
+              
+              <button 
+                className="bg-[rgba(217,37,70,1)] border flex min-h-[50px] items-center gap-2.5 w-[50px] h-[50px] p-[9px] rounded-[25px] border-[rgba(217,37,70,1)] border-solid md:hidden z-50 relative btn-hover-red"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                {isMenuOpen ? <X className="w-8 h-8 text-white" /> : <Menu className="w-8 h-8 text-white" />}
+              </button>
+            </div>
+          </header>
         </div>
-      </header>
+      </div>
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
