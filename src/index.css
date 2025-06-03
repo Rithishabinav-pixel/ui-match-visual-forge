@@ -96,8 +96,14 @@
     @apply border-border;
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground font-acumin;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -184,7 +190,7 @@
   }
   
   .btn-hover-red {
-    @apply transition-all duration-300 hover:scale-105 hover:bg-[rgba(197,27,60,1)] hover:shadow-lg;
+    @apply transition-all duration-300 hover:scale-105 hover:bg-white hover:text-[rgba(217,37,70,1)] hover:border-[rgba(217,37,70,1)] hover:shadow-lg;
   }
   
   .btn-hover-tab {

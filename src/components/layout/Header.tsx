@@ -135,18 +135,18 @@ export const Header = () => {
         />
       )}
 
-      {/* Slide-in Menu - Full height, max width 300px */}
-      <div className={`fixed top-0 right-0 h-full w-full max-w-[300px] bg-[rgba(40,45,64,1)] z-50 transform transition-transform duration-300 ease-in-out ${
+      {/* Slide-in Menu - Full height, responsive width */}
+      <div className={`fixed top-0 right-0 h-full w-full max-w-[320px] sm:max-w-[300px] bg-[rgba(40,45,64,1)] z-50 transform transition-transform duration-300 ease-in-out ${
         isMenuOpen ? 'animate-slide-in-right' : 'translate-x-full'
       }`}>
         <div className="pt-20 px-6 pb-6 h-full flex flex-col overflow-y-auto">
           {/* Micro Nav */}
           <div className="border-b border-gray-600 pb-6 mb-6">
-            <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-4 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid mb-4 btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white font-acumin">
+            <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-4 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid mb-4 transition-all duration-300 hover:bg-[rgba(217,37,70,1)] hover:text-white hover:scale-105 font-acumin">
               <Phone className="w-5 h-5" />
               <span>97103 97104</span>
             </a>
-            <button className="w-full bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 px-4 py-3 rounded-[98px] btn-hover-red font-acumin">
+            <button className="w-full bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 px-4 py-3 rounded-[98px] transition-all duration-300 hover:bg-white hover:text-[rgba(217,37,70,1)] hover:border-[rgba(217,37,70,1)] hover:scale-105 font-acumin border border-transparent">
               <span>Enquire Now</span>
               <ArrowRight className="w-5 h-5" />
             </button>
