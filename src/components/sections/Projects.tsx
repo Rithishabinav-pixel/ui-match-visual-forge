@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { MapPin, Ruler, Building2, ArrowRight } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -97,14 +96,14 @@ export const Projects = () => {
   const [activeTab, setActiveTab] = useState("ongoing");
 
   const renderProjectCard = (project: any) => (
-    <div key={project.id} className="bg-white flex min-w-60 min-h-[616px] gap-2.5 grow shrink w-[300px] rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-lg max-md:w-full max-md:min-w-0 max-md:mx-0 max-md:rounded-2xl">
+    <div key={project.id} className="bg-white flex min-w-60 min-h-[616px] gap-2.5 grow shrink w-[300px] rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-lg max-md:w-full max-md:min-w-0 max-md:mx-0 max-md:rounded-2xl max-md:min-h-auto">
       <div className="relative flex min-w-60 w-[375px] flex-col items-stretch max-md:w-full max-md:min-w-0">
         <img
           src={project.image}
           alt={`${project.title} Image`}
           className="aspect-[1.04] object-contain w-full z-0 min-h-[360px] rounded-[24px_24px_0px_0px] max-md:min-h-[240px] max-md:rounded-[16px_16px_0px_0px]"
         />
-        <div className="self-center z-0 flex min-h-56 w-[328px] max-w-full flex-col items-stretch text-base mt-4 px-5 pb-6 max-md:px-4 max-md:pb-4 max-md:mt-0 max-md:w-full max-md:min-h-auto">
+        <div className="self-center z-0 flex min-h-56 w-[328px] max-w-full flex-col items-stretch text-base mt-4 px-5 pb-6 max-md:px-4 max-md:pb-0 max-md:mt-0 max-md:w-full max-md:min-h-auto">
           <div className="w-full text-[rgba(40,45,64,1)] max-md:pt-4">
             <h3 className="text-2xl font-bold leading-none max-md:text-[20px] max-md:leading-[26px]">{project.title}</h3>
             <div className="flex w-full gap-3 leading-6 mt-4 max-md:gap-2 max-md:mt-3">
@@ -120,7 +119,7 @@ export const Projects = () => {
               <span className="max-md:text-sm">{project.type}</span>
             </div>
           </div>
-          <button className="flex items-center gap-2.5 text-[rgba(185,3,0,1)] mt-6 btn-hover-link hover:text-[rgba(217,37,70,1)] max-md:mt-4 max-md:text-sm">
+          <button className="flex items-center gap-2.5 text-[rgba(185,3,0,1)] mt-6 btn-hover-link hover:text-[rgba(217,37,70,1)] max-md:mt-4 max-md:text-sm max-md:mb-4">
             <span>View More Details</span>
             <ArrowRight className="w-6 h-6 max-md:w-4 max-md:h-4" />
           </button>
