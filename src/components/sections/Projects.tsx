@@ -151,7 +151,7 @@ export const Projects = () => {
 
           <div className="flex w-[1185px] max-w-full flex-col items-center mt-[60px] max-md:mt-10">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full flex flex-col items-center">
-              <TabsList className="bg-transparent flex items-center gap-6 text-base text-[rgba(217,37,70,1)] justify-center h-auto p-0 max-md:gap-2 max-md:overflow-x-auto max-md:w-full max-md:justify-start">
+              <TabsList className="bg-transparent flex items-center gap-6 text-base text-[rgba(217,37,70,1)] justify-center h-auto p-0 max-md:gap-2 max-md:w-full max-md:justify-start">
                 <TabsTrigger 
                   value="ongoing" 
                   className="bg-[rgba(217,37,70,1)] text-white data-[state=active]:bg-[rgba(217,37,70,1)] data-[state=active]:text-white data-[state=inactive]:bg-white data-[state=inactive]:border data-[state=inactive]:border-[rgba(217,37,70,1)] data-[state=inactive]:text-[rgba(217,37,70,1)] min-h-12 gap-2.5 whitespace-nowrap w-[174px] px-4 py-3 rounded-lg btn-hover-tab max-md:w-auto max-md:px-3 max-md:text-sm"
