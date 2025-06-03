@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { X, Phone, ChevronDown, ArrowRight } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -33,13 +34,7 @@ export const Header = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      // Use Lenis smooth scroll instead of native scrollIntoView
-      const lenis = (window as any).lenis;
-      if (lenis) {
-        lenis.scrollTo(element, { duration: 1.5 });
-      } else {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMenuOpen(false);
   };
