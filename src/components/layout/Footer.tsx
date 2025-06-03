@@ -6,9 +6,9 @@ export const Footer = () => {
       <div className="max-w-[1530px] mx-auto px-5 py-16 lg:py-16 md:py-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-8 md:gap-6">
           <div className="flex-1">
-            <h2 className="text-4xl lg:text-5xl md:text-3xl sm:text-2xl font-normal leading-tight mb-4 lg:w-[72%] md:w-[80%] w-full">
+            <h2 className="text-4xl lg:text-5xl md:text-3xl sm:text-2xl font-normal leading-tight mb-4 lg:w-[81%] md:w-[80%] w-full">
               From the first handshake to the final finish,{' '}
-              <span className="text-[rgba(217,37,70,1)] italic">
+              <span className="text-[rgba(217,37,70,1)] italic font-semibold">
                 we deliver on promises and dreams alike.
               </span>
             </h2>
