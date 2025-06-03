@@ -6,12 +6,12 @@ import { Header } from '@/components/layout/Header';
 export const Hero = () => {
   return (
     <div className="relative min-h-[878px] w-full bg-gradient-to-b from-[rgba(40,45,64,1)] to-[rgba(40,45,64,0.8)]">
-      <div className="max-w-[1530px] mx-auto px-5">
+      <div className="max-w-[1530px] mx-auto">
         <div className="pt-6">
           <Header />
         </div>
         
-        <div className="flex min-h-[617px] w-[959px] max-w-full mx-auto flex-col text-white justify-center items-center mt-[163px] max-md:mt-10">
+        <div className="flex min-h-[617px] w-[959px] max-w-full mx-auto flex-col text-white justify-center items-center mt-[163px] max-md:mt-10 px-5">
           <h1 
             className="text-[64px] font-medium leading-[72px] text-center max-md:max-w-full max-md:text-[30px] max-md:leading-[38px]"
             data-aos="fade-up"
