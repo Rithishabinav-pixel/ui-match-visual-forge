@@ -54,7 +54,7 @@ export const WhyChooseUs = () => {
             </p>
             
             <button 
-              className="bg-[rgba(217,37,70,1)] mx-auto flex items-center justify-center gap-2.5 mt-6 px-4 py-3 rounded-[58px] w-fit transition-all duration-300 hover:scale-105 hover:bg-white hover:text-[rgba(217,37,70,1)] hover:border-2 hover:border-[rgba(217,37,70,1)] hover:shadow-lg"
+              className="bg-[rgba(217,37,70,1)] mx-auto flex items-center justify-center gap-2.5 mt-6 px-4 py-3 rounded-[58px] w-fit transition-all duration-300 hover:scale-105"
               data-aos="zoom-in"
               data-aos-delay="400"
             >
