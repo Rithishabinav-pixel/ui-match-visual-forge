@@ -48,17 +48,19 @@ export const Header = () => {
           : 'relative'
       }`}>
         <div className={`max-w-7xl mx-auto transition-all duration-300 ${
-          isFixed ? 'px-5 py-4' : 'px-5 py-0'
+          isFixed ? 'px-4 py-3' : 'px-5 py-0'
         }`}>
-          <header className="flex w-full items-center justify-between">
+          <header className="flex w-full items-center justify-between min-h-[60px]">
             {/* Logo - Left aligned */}
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true"
-              alt="JKB Housing Logo"
-              className={`aspect-[1.94] object-contain transition-all duration-300 ${
-                isFixed ? 'w-[150px]' : 'w-[190px]'
-              } max-md:w-[100px]`}
-            />
+            <div className="flex-shrink-0">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true"
+                alt="JKB Housing Logo"
+                className={`aspect-[1.94] object-contain transition-all duration-300 ${
+                  isFixed ? 'w-[120px] max-md:w-[90px]' : 'w-[190px] max-md:w-[140px]'
+                }`}
+              />
+            </div>
             
             {/* Desktop Navigation - Center */}
             <nav className="hidden md:flex items-center gap-[40px_52px] text-base text-white font-normal text-center font-acumin">
@@ -93,29 +95,32 @@ export const Header = () => {
             </nav>
 
             {/* Right Side Controls */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 flex-shrink-0">
               {/* Desktop Phone & Enquire Buttons */}
-              <div className="hidden md:flex items-center gap-6 text-base font-normal font-acumin">
-                <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-6 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white">
-                  <Phone className="w-6 h-6" />
-                  <span>97103 97104</span>
+              <div className="hidden md:flex items-center gap-4 text-base font-normal font-acumin">
+                <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-4 py-2 rounded-[98px] border-[rgba(217,37,70,1)] border-solid btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white whitespace-nowrap">
+                  <Phone className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-sm">97103 97104</span>
                 </a>
-                <button className="bg-[rgba(217,37,70,1)] min-h-12 gap-2.5 text-white px-4 py-3 rounded-[98px] btn-hover-red">
+                <button className="bg-[rgba(217,37,70,1)] min-h-10 gap-2.5 text-white px-4 py-2 rounded-[98px] btn-hover-red whitespace-nowrap">
                   Enquire Now
                 </button>
               </div>
               
-              {/* Hamburger Menu Button - Right aligned */}
+              {/* Hamburger Menu Button - Always visible on mobile */}
               <button 
-                className="transition-all duration-300 hover:scale-105 z-[60] relative"
+                className={`transition-all duration-300 hover:scale-105 z-[60] relative flex-shrink-0 ${
+                  isFixed ? 'w-10 h-10' : 'w-[50px] h-[50px]'
+                }`}
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle menu"
               >
                 {isMenuOpen ? (
-                  <div className="bg-[rgba(217,37,70,1)] border flex min-h-[50px] items-center justify-center w-[50px] h-[50px] rounded-[25px] border-[rgba(217,37,70,1)] border-solid btn-hover-red">
-                    <X className="w-8 h-8 text-white" />
+                  <div className={`bg-[rgba(217,37,70,1)] border flex items-center justify-center rounded-[25px] border-[rgba(217,37,70,1)] border-solid btn-hover-red w-full h-full`}>
+                    <X className={`text-white ${isFixed ? 'w-6 h-6' : 'w-8 h-8'}`} />
                   </div>
                 ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 50 50" fill="none" className="min-w-[40px] min-h-[40px]">
                     <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" fill="#D92546"/>
                     <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" stroke="#D92546"/>
                     <path d="M13 25H37M13 33H37M21 17H37" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
