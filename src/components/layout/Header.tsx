@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, ChevronDown, ArrowRight } from 'lucide-react';
+import { X, Phone, ChevronDown, ArrowRight } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 export const Header = () => {
@@ -99,13 +99,36 @@ export const Header = () => {
                 <button className="self-stretch bg-[rgba(217,37,70,1)] min-h-12 gap-2.5 text-white my-auto px-4 py-3 rounded-[98px] btn-hover-red">
                   Enquire Now
                 </button>
+                {/* Custom SVG Hamburger Menu Icon */}
+                <button 
+                  className="transition-all duration-300 hover:scale-105 z-50 relative"
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                  {isMenuOpen ? (
+                    <div className="bg-[rgba(217,37,70,1)] border flex min-h-[50px] items-center justify-center w-[50px] h-[50px] rounded-[25px] border-[rgba(217,37,70,1)] border-solid btn-hover-red">
+                      <X className="w-8 h-8 text-white" />
+                    </div>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                      <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" fill="#D92546"/>
+                      <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" stroke="#D92546"/>
+                      <path d="M13 25H37M13 33H37M21 17H37" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                </button>
               </div>
               
               <button 
                 className="bg-[rgba(217,37,70,1)] border flex min-h-[50px] items-center gap-2.5 w-[50px] h-[50px] p-[9px] rounded-[25px] border-[rgba(217,37,70,1)] border-solid md:hidden z-50 relative btn-hover-red"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                {isMenuOpen ? <X className="w-8 h-8 text-white" /> : <Menu className="w-8 h-8 text-white" />}
+                {isMenuOpen ? <X className="w-8 h-8 text-white" /> : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 50 50" fill="none">
+                    <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" fill="#D92546"/>
+                    <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" stroke="#D92546"/>
+                    <path d="M13 25H37M13 33H37M21 17H37" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
               </button>
             </div>
           </header>
@@ -115,13 +138,13 @@ export const Header = () => {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={() => setIsMenuOpen(false)}
         />
       )}
 
-      {/* Mobile Menu with Right-to-Left Animation */}
-      <div className={`fixed top-0 right-0 h-full w-80 bg-[rgba(40,45,64,1)] z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
+      {/* Menu with Right-to-Left Animation - Updated width to 300px */}
+      <div className={`fixed top-0 right-0 h-full w-[300px] bg-[rgba(40,45,64,1)] z-50 transform transition-transform duration-300 ease-in-out ${
         isMenuOpen ? 'animate-slide-in-right' : 'translate-x-full'
       }`}>
         <div className="pt-20 px-6 pb-6 h-full flex flex-col">
