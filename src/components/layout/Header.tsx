@@ -1,11 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
 import { X, Phone, ChevronDown, ArrowRight } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Link, useLocation } from 'react-router-dom';
+import { EnquiryPopup } from '@/components/EnquiryPopup';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
+  const [isEnquiryPopupOpen, setIsEnquiryPopupOpen] = useState(false);
+  const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -42,6 +46,18 @@ export const Header = () => {
     setIsMenuOpen(false);
   };
 
+  const handleEnquireNowClick = () => {
+    setIsEnquiryPopupOpen(true);
+  };
+
+  const handleProjectsClick = (e: React.MouseEvent) => {
+    // On mobile, prevent default and toggle dropdown
+    if (window.innerWidth < 768) {
+      e.preventDefault();
+      setIsProjectsDropdownOpen(!isProjectsDropdownOpen);
+    }
+  };
+
   // Determine header background
   const getHeaderBackground = () => {
     if (!isHomePage) {
@@ -62,14 +78,22 @@ export const Header = () => {
               </Link>
             </div>
             
-            {/* Desktop Navigation - Center - Only Projects, Joint Ventures, JKB Care */}
+            {/* Desktop Navigation - Center - Projects, Joint Ventures, JKB Care */}
             <nav className="hidden md:flex items-center gap-[40px_52px] text-base text-white font-normal text-center font-acumin">
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center gap-2 whitespace-nowrap transition-colors duration-300 hover:text-[rgba(217,37,70,1)] cursor-pointer">
+                <DropdownMenuTrigger 
+                  className="flex items-center gap-2 whitespace-nowrap transition-colors duration-300 hover:text-[rgba(217,37,70,1)] cursor-pointer group"
+                  onMouseEnter={() => setIsProjectsDropdownOpen(true)}
+                  onMouseLeave={() => setIsProjectsDropdownOpen(false)}
+                >
                   <span>Projects</span>
                   <ChevronDown className="w-6 h-6" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white border border-gray-200 rounded-lg shadow-lg min-w-[180px]">
+                <DropdownMenuContent 
+                  className="bg-white border border-gray-200 rounded-lg shadow-lg min-w-[180px]"
+                  onMouseEnter={() => setIsProjectsDropdownOpen(true)}
+                  onMouseLeave={() => setIsProjectsDropdownOpen(false)}
+                >
                   <DropdownMenuItem asChild>
                     <Link to="/projects" className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin">
                       All Projects
@@ -86,8 +110,8 @@ export const Header = () => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <a href="#" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Joint Ventures</a>
-              <a href="#" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">JKB Care</a>
+              <Link to="/joint-venture" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Joint Ventures</Link>
+              <Link to="/jkb-care" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">JKB Care</Link>
             </nav>
 
             {/* Right Side Controls */}
@@ -98,7 +122,10 @@ export const Header = () => {
                   <Phone className="w-5 h-5 flex-shrink-0" />
                   <span className="text-sm">97103 97104</span>
                 </a>
-                <button className="bg-[rgba(217,37,70,1)] min-h-10 gap-2.5 text-white px-4 py-2 rounded-[98px] btn-hover-red whitespace-nowrap">
+                <button 
+                  onClick={handleEnquireNowClick}
+                  className="bg-[rgba(217,37,70,1)] min-h-10 gap-2.5 text-white px-4 py-2 rounded-[98px] btn-hover-red whitespace-nowrap"
+                >
                   Enquire Now
                 </button>
               </div>
@@ -136,7 +163,13 @@ export const Header = () => {
               <Phone className="w-5 h-5" />
               <span>97103 97104</span>
             </a>
-            <button className="w-full bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 px-4 py-3 rounded-[98px] transition-all duration-300 hover:bg-white hover:text-[rgba(217,37,70,1)] hover:border-[rgba(217,37,70,1)] hover:scale-105 font-acumin border border-transparent">
+            <button 
+              onClick={() => {
+                setIsMenuOpen(false);
+                handleEnquireNowClick();
+              }}
+              className="w-full bg-[rgba(217,37,70,1)] flex items-center justify-center text-white gap-2.5 px-4 py-3 rounded-[98px] transition-all duration-300 hover:bg-white hover:text-[rgba(217,37,70,1)] hover:border-[rgba(217,37,70,1)] hover:scale-105 font-acumin border border-transparent"
+            >
               <span>Enquire Now</span>
               <ArrowRight className="w-5 h-5" />
             </button>
@@ -150,19 +183,44 @@ export const Header = () => {
             <Link to="/about" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">
               About
             </Link>
-            <div className="flex items-center gap-2 text-lg font-medium cursor-pointer transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">
-              <Link to="/projects" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2">
+            <div className="relative">
+              <div 
+                className="flex items-center gap-2 text-lg font-medium cursor-pointer transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]"
+                onClick={handleProjectsClick}
+              >
                 <span>Projects</span>
-                <ChevronDown className="w-5 h-5" />
-              </Link>
+                <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isProjectsDropdownOpen ? 'rotate-180' : ''}`} />
+              </div>
+              {isProjectsDropdownOpen && (
+                <div className="mt-2 ml-4 space-y-2">
+                  <Link to="/projects" onClick={() => setIsMenuOpen(false)} className="block text-base font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[20px] max-md:leading-[28px]">
+                    All Projects
+                  </Link>
+                  <button onClick={() => { scrollToSection('projects'); setIsMenuOpen(false); }} className="block text-base font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[20px] max-md:leading-[28px] text-left">
+                    Ongoing
+                  </button>
+                  <button onClick={() => { scrollToSection('projects'); setIsMenuOpen(false); }} className="block text-base font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[20px] max-md:leading-[28px] text-left">
+                    Completed
+                  </button>
+                  <button onClick={() => { scrollToSection('projects'); setIsMenuOpen(false); }} className="block text-base font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[20px] max-md:leading-[28px] text-left">
+                    Future Landmark
+                  </button>
+                </div>
+              )}
             </div>
-            <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">Joint Ventures</a>
-            <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">JKB Care</a>
+            <Link to="/joint-venture" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">Joint Ventures</Link>
+            <Link to="/jkb-care" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">JKB Care</Link>
             <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">
               Contact
             </Link>
           </nav>
         </div>
       </div>
+
+      {/* Enquiry Popup */}
+      <EnquiryPopup 
+        isOpen={isEnquiryPopupOpen}
+        onClose={() => setIsEnquiryPopupOpen(false)}
+      />
     </>;
 };
