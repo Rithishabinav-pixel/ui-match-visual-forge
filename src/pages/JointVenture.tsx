@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Handshake, Building2, TrendingUp, Award, Users, MapPin, Phone } from 'lucide-react';
+import { Footer } from '@/components/layout/Footer';
 
 const JointVenture = () => {
   return (
@@ -176,6 +176,8 @@ const JointVenture = () => {
           </a>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };

@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Heart, Users, Building, Award, CheckCircle, Phone } from 'lucide-react';
+import { Footer } from '@/components/layout/Footer';
 
 const JKBCare = () => {
   return (
@@ -163,6 +163,8 @@ const JKBCare = () => {
           </a>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
