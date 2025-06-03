@@ -104,7 +104,7 @@ export const Projects = () => {
           alt={`${project.title} Image`}
           className="aspect-[1.04] object-contain w-full z-0 min-h-[360px] rounded-[24px_24px_0px_0px]"
         />
-        <div className="self-center z-0 flex min-h-56 w-[328px] max-w-full flex-col items-stretch text-base mt-4 max-md:px-5 max-md:mt-0">
+        <div className="self-center z-0 flex min-h-56 w-[328px] max-w-full flex-col items-stretch text-base mt-4 px-5 pb-6 max-md:px-4 max-md:pb-5">
           <div className="w-full text-[rgba(40,45,64,1)]">
             <h3 className="text-2xl font-bold leading-none max-md:text-[30px] max-md:leading-[38px]">{project.title}</h3>
             <div className="flex w-full gap-4 leading-6 mt-4">
