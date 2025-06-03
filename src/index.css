@@ -190,7 +190,25 @@
   }
   
   .btn-hover-red {
-    @apply transition-all duration-300 hover:scale-105 hover:bg-white hover:text-[rgba(217,37,70,1)] hover:border-[rgba(217,37,70,1)] hover:shadow-lg;
+    display: flex !important;
+    height: 48px !important;
+    padding: 11px 16px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    border: 1px solid red !important;
+    color: white !important;
+    transition: 0.3s all !important;
+    background-color: rgba(217, 37, 70, 1) !important;
+  }
+  
+  .btn-hover-red:hover {
+    background-color: white !important;
+    color: red !important;
+  }
+  
+  .btn-hover-red:hover svg {
+    color: red !important;
   }
   
   .btn-hover-tab {
