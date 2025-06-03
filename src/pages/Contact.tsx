@@ -17,6 +17,7 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -26,7 +27,7 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -39,32 +40,49 @@ const Contact = () => {
       return;
     }
 
-    // Create email content
-    const emailBody = `
-Name: ${formData.name}
+    setIsSubmitting(true);
+
+    try {
+      // Create email content
+      const emailBody = `Name: ${formData.name}
 Email: ${formData.email}
 Subject: ${formData.subject}
-Message: ${formData.message}
-    `;
+Message: ${formData.message}`;
 
-    // Create mailto link
-    const mailtoLink = `mailto:rithish.pixel@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailBody)}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
+      // Create mailto link with better encoding
+      const mailtoLink = `mailto:rithish.pixel@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Try to open email client with better browser support
+      const mailtoElement = document.createElement('a');
+      mailtoElement.href = mailtoLink;
+      mailtoElement.style.display = 'none';
+      document.body.appendChild(mailtoElement);
+      mailtoElement.click();
+      document.body.removeChild(mailtoElement);
 
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. We'll get back to you soon.",
-    });
+      // Show success message
+      toast({
+        title: "Message Sent!",
+        description: "Your message has been prepared for sending. Please complete the process in your email client.",
+      });
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      toast({
+        title: "Error",
+        description: "There was an issue preparing your message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactDetails = [
@@ -139,6 +157,7 @@ Message: ${formData.message}
                           placeholder="Enter your full name"
                           className="w-full"
                           required
+                          disabled={isSubmitting}
                         />
                       </div>
                       <div>
@@ -154,6 +173,7 @@ Message: ${formData.message}
                           placeholder="Enter your email address"
                           className="w-full"
                           required
+                          disabled={isSubmitting}
                         />
                       </div>
                     </div>
@@ -171,6 +191,7 @@ Message: ${formData.message}
                         placeholder="What is this regarding?"
                         className="w-full"
                         required
+                        disabled={isSubmitting}
                       />
                     </div>
                     
@@ -185,17 +206,25 @@ Message: ${formData.message}
                         onChange={handleInputChange}
                         placeholder="Tell us about your project or inquiry..."
                         rows={6}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[rgba(217,37,70,1)] focus:border-transparent resize-none"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[rgba(217,37,70,1)] focus:border-transparent resize-none disabled:bg-gray-50 disabled:cursor-not-allowed"
                         required
+                        disabled={isSubmitting}
                       />
                     </div>
                     
                     <Button 
                       type="submit" 
                       className="w-full bg-[rgba(217,37,70,1)] hover:bg-[rgba(217,37,70,0.9)] text-white py-3 text-lg"
+                      disabled={isSubmitting}
                     >
-                      Send Message
-                      <Send className="w-5 h-5 ml-2" />
+                      {isSubmitting ? (
+                        "Preparing Email..."
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="w-5 h-5 ml-2" />
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>

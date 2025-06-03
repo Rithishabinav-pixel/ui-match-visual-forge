@@ -21,6 +21,7 @@ export const EnquiryPopup = ({ isOpen, onClose, projectTitle }: EnquiryPopupProp
     phone: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -30,7 +31,7 @@ export const EnquiryPopup = ({ isOpen, onClose, projectTitle }: EnquiryPopupProp
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -43,35 +44,52 @@ export const EnquiryPopup = ({ isOpen, onClose, projectTitle }: EnquiryPopupProp
       return;
     }
 
-    // Create email content
-    const subject = projectTitle ? `Enquiry for ${projectTitle}` : 'Project Enquiry';
-    const emailBody = `
-Name: ${formData.name}
+    setIsSubmitting(true);
+
+    try {
+      // Create email content
+      const subject = projectTitle ? `Enquiry for ${projectTitle}` : 'Project Enquiry';
+      const emailBody = `Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone}
 Project: ${projectTitle || 'General Enquiry'}
-Message: ${formData.message}
-    `;
+Message: ${formData.message}`;
 
-    // Create mailto link
-    const mailtoLink = `mailto:rithish.pixel@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
+      // Create mailto link with better encoding
+      const mailtoLink = `mailto:rithish.pixel@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Try to open email client with better browser support
+      const mailtoElement = document.createElement('a');
+      mailtoElement.href = mailtoLink;
+      mailtoElement.style.display = 'none';
+      document.body.appendChild(mailtoElement);
+      mailtoElement.click();
+      document.body.removeChild(mailtoElement);
 
-    toast({
-      title: "Enquiry Sent!",
-      description: "Your enquiry has been sent. We'll get back to you soon.",
-    });
+      // Show success message
+      toast({
+        title: "Enquiry Sent!",
+        description: "Your enquiry has been prepared for sending. Please complete the process in your email client.",
+      });
 
-    // Reset form and close popup
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
-    });
-    onClose();
+      // Reset form and close popup
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+      onClose();
+    } catch (error) {
+      console.error('Error submitting enquiry:', error);
+      toast({
+        title: "Error",
+        description: "There was an issue preparing your enquiry. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -83,6 +101,7 @@ Message: ${formData.message}
           <button
             onClick={onClose}
             className="absolute right-4 top-4 text-gray-500 hover:text-gray-700 transition-colors"
+            disabled={isSubmitting}
           >
             <X className="w-6 h-6" />
           </button>
@@ -110,6 +129,7 @@ Message: ${formData.message}
                   placeholder="Enter your full name"
                   className="pl-10"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
             </div>
@@ -129,6 +149,7 @@ Message: ${formData.message}
                   placeholder="Enter your email address"
                   className="pl-10"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
             </div>
@@ -148,6 +169,7 @@ Message: ${formData.message}
                   placeholder="Enter your phone number"
                   className="pl-10"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
             </div>
@@ -165,8 +187,9 @@ Message: ${formData.message}
                   onChange={handleInputChange}
                   placeholder="Tell us about your requirements..."
                   rows={4}
-                  className="w-full pl-10 pt-3 pr-3 pb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[rgba(217,37,70,1)] focus:border-transparent resize-none"
+                  className="w-full pl-10 pt-3 pr-3 pb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[rgba(217,37,70,1)] focus:border-transparent resize-none disabled:bg-gray-50 disabled:cursor-not-allowed"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
             </div>
@@ -174,9 +197,18 @@ Message: ${formData.message}
             <Button 
               type="submit" 
               className="w-full bg-[rgba(217,37,70,1)] hover:bg-[rgba(217,37,70,0.9)] text-white py-3 text-lg"
+              disabled={isSubmitting}
             >
-              Send Enquiry
-              <Send className="w-5 h-5 ml-2" />
+              {isSubmitting ? (
+                <>
+                  Preparing Email...
+                </>
+              ) : (
+                <>
+                  Send Enquiry
+                  <Send className="w-5 h-5 ml-2" />
+                </>
+              )}
             </Button>
           </form>
         </CardContent>

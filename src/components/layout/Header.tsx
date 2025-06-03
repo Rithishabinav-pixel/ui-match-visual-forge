@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { X, Phone, ChevronDown, ArrowRight } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Link, useLocation } from 'react-router-dom';
+
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -15,6 +17,7 @@ export const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   useEffect(() => {
     // Prevent body scroll when menu is open
     if (isMenuOpen) {
@@ -28,6 +31,7 @@ export const Header = () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMenuOpen]);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -45,6 +49,7 @@ export const Header = () => {
     }
     return isFixed ? 'bg-[rgba(40,45,64,0.95)] backdrop-blur-sm' : '';
   };
+
   return <>
       {/* Fixed Header Container */}
       <div className={`w-full transition-all duration-300 ${isFixed || !isHomePage ? `fixed top-0 left-0 right-0 z-50 ${getHeaderBackground()} shadow-lg animate-slide-in-down` : 'relative'}`}>
@@ -100,13 +105,19 @@ export const Header = () => {
               
               {/* Hamburger Menu Button - Always visible on mobile */}
               <button className={`transition-all duration-300 hover:scale-105 z-[60] relative flex-shrink-0 ${isFixed || !isHomePage ? 'w-10 h-10' : 'w-[50px] h-[50px]'}`} onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-                {isMenuOpen ? <div className={`bg-[rgba(217,37,70,1)] border flex items-center justify-center rounded-[25px] border-[rgba(217,37,70,1)] border-solid btn-hover-red w-full h-full`}>
-                    <X className={`text-white ${isFixed || !isHomePage ? 'w-6 h-6' : 'w-8 h-8'}`} />
-                  </div> : <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 50 50" fill="none" className="min-w-[40px] min-h-[40px]">
+                {isMenuOpen ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 50 50" fill="none" className="min-w-[40px] min-h-[40px]">
+                    <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" fill="#D92546" />
+                    <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" stroke="#D92546" />
+                    <X className="w-8 h-8 text-white" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 50 50" fill="none" className="min-w-[40px] min-h-[40px]">
                     <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" fill="#D92546" />
                     <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" stroke="#D92546" />
                     <path d="M13 25H37M13 33H37M21 17H37" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>}
+                  </svg>
+                )}
               </button>
             </div>
           </header>
