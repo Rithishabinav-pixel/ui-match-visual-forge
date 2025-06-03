@@ -61,7 +61,7 @@ export const Testimonials = () => {
             data-aos="fade-left"
             data-aos-delay="200"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
               {testimonials.map((testimonial, index) => (
                 <div 
                   key={index} 
