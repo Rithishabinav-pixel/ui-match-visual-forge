@@ -1,10 +1,11 @@
-
 import React, { useState } from 'react';
 import { ArrowRight, MapPin, Calendar, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 const ProjectListing = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -140,6 +141,8 @@ const ProjectListing = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <Header />
+      
       {/* Page Header */}
       <section className="bg-[rgba(40,45,64,1)] py-20 max-md:py-12">
         <div className="max-w-6xl mx-auto px-5 text-center">
@@ -288,6 +291,8 @@ const ProjectListing = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };

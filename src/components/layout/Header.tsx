@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Phone, ChevronDown, ArrowRight } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,23 +54,36 @@ export const Header = () => {
           <header className="flex w-full items-center justify-between min-h-[60px]">
             {/* Logo - Left aligned */}
             <div className="flex-shrink-0">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true"
-                alt="JKB Housing Logo"
-                className={`aspect-[1.94] object-contain transition-all duration-300 ${
-                  isFixed ? 'w-[120px] max-md:w-[90px]' : 'w-[190px] max-md:w-[140px]'
-                }`}
-              />
+              <Link to="/">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true"
+                  alt="JKB Housing Logo"
+                  className={`aspect-[1.94] object-contain transition-all duration-300 ${
+                    isFixed ? 'w-[120px] max-md:w-[90px]' : 'w-[190px] max-md:w-[140px]'
+                  }`}
+                />
+              </Link>
             </div>
             
             {/* Desktop Navigation - Center */}
             <nav className="hidden md:flex items-center gap-[40px_52px] text-base text-white font-normal text-center font-acumin">
+              <Link to="/" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+                Home
+              </Link>
+              <Link to="/about" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+                About
+              </Link>
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center gap-2 whitespace-nowrap transition-colors duration-300 hover:text-[rgba(217,37,70,1)] cursor-pointer">
                   <span>Projects</span>
                   <ChevronDown className="w-6 h-6" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-white border border-gray-200 rounded-lg shadow-lg min-w-[180px]">
+                  <DropdownMenuItem asChild>
+                    <Link to="/projects" className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin">
+                      All Projects
+                    </Link>
+                  </DropdownMenuItem>
                   <DropdownMenuItem 
                     onClick={() => scrollToSection('projects')}
                     className="text-[rgba(40,45,64,1)] hover:bg-[rgba(217,37,70,0.1)] hover:text-[rgba(217,37,70,1)] cursor-pointer px-4 py-2 transition-colors duration-300 font-acumin"
@@ -92,6 +106,9 @@ export const Header = () => {
               </DropdownMenu>
               <a href="#" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Joint Venture</a>
               <a href="#" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">JKB Care</a>
+              <Link to="/contact" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+                Contact
+              </Link>
             </nav>
 
             {/* Right Side Controls */}
@@ -159,12 +176,39 @@ export const Header = () => {
 
           {/* Navigation */}
           <nav className="flex flex-col gap-6 text-white font-acumin">
+            <Link 
+              to="/" 
+              onClick={() => setIsMenuOpen(false)}
+              className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]"
+            >
+              Home
+            </Link>
+            <Link 
+              to="/about" 
+              onClick={() => setIsMenuOpen(false)}
+              className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]"
+            >
+              About
+            </Link>
             <div className="flex items-center gap-2 text-lg font-medium cursor-pointer transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">
-              <span>Projects</span>
-              <ChevronDown className="w-5 h-5" />
+              <Link 
+                to="/projects" 
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center gap-2"
+              >
+                <span>Projects</span>
+                <ChevronDown className="w-5 h-5" />
+              </Link>
             </div>
             <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">Joint Venture</a>
             <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">JKB Care</a>
+            <Link 
+              to="/contact" 
+              onClick={() => setIsMenuOpen(false)}
+              className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]"
+            >
+              Contact
+            </Link>
           </nav>
         </div>
       </div>
