@@ -75,14 +75,8 @@ export const Header = () => {
               </Link>
             </div>
             
-            {/* Desktop Navigation - Center */}
+            {/* Desktop Navigation - Center - Only Projects, Joint Ventures, JKB Care */}
             <nav className="hidden md:flex items-center gap-[40px_52px] text-base text-white font-normal text-center font-acumin">
-              <Link to="/" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
-                Home
-              </Link>
-              <Link to="/about" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
-                About
-              </Link>
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center gap-2 whitespace-nowrap transition-colors duration-300 hover:text-[rgba(217,37,70,1)] cursor-pointer">
                   <span>Projects</span>
@@ -114,11 +108,8 @@ export const Header = () => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <a href="#" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Joint Venture</a>
+              <a href="#" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Joint Ventures</a>
               <a href="#" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">JKB Care</a>
-              <Link to="/contact" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
-                Contact
-              </Link>
             </nav>
 
             {/* Right Side Controls */}
@@ -210,7 +201,7 @@ export const Header = () => {
                 <ChevronDown className="w-5 h-5" />
               </Link>
             </div>
-            <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">Joint Venture</a>
+            <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">Joint Ventures</a>
             <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">JKB Care</a>
             <Link 
               to="/contact" 
