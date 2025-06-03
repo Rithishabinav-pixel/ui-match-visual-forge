@@ -48,21 +48,23 @@ export const Header = () => {
           : 'relative'
       }`}>
         <div className={`max-w-7xl mx-auto transition-all duration-300 ${
-          isFixed ? 'px-5 py-4' : 'px-0 py-0'
+          isFixed ? 'px-5 py-4' : 'px-5 py-0'
         }`}>
-          <header className={`flex w-full items-center gap-[40px_100px] justify-between flex-wrap max-md:max-w-full max-md:justify-between max-md:gap-0`}>
+          <header className="flex w-full items-center justify-between">
+            {/* Logo - Left aligned */}
             <img
               src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true"
               alt="JKB Housing Logo"
-              className={`aspect-[1.94] object-contain self-stretch shrink-0 my-auto transition-all duration-300 ${
+              className={`aspect-[1.94] object-contain transition-all duration-300 ${
                 isFixed ? 'w-[150px]' : 'w-[190px]'
               } max-md:w-[100px]`}
             />
             
-            <nav className="self-stretch flex min-w-60 items-center gap-[40px_52px] text-base text-white font-normal text-center my-auto hidden md:flex font-acumin">
+            {/* Desktop Navigation - Center */}
+            <nav className="hidden md:flex items-center gap-[40px_52px] text-base text-white font-normal text-center font-acumin">
               <DropdownMenu>
-                <DropdownMenuTrigger className="self-stretch flex items-center gap-2 whitespace-nowrap my-auto transition-colors duration-300 hover:text-[rgba(217,37,70,1)] cursor-pointer">
-                  <span className="self-stretch my-auto">Projects</span>
+                <DropdownMenuTrigger className="flex items-center gap-2 whitespace-nowrap transition-colors duration-300 hover:text-[rgba(217,37,70,1)] cursor-pointer">
+                  <span>Projects</span>
                   <ChevronDown className="w-6 h-6" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-white border border-gray-200 rounded-lg shadow-lg min-w-[180px]">
@@ -86,44 +88,34 @@ export const Header = () => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <a href="#" className="self-stretch my-auto transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Joint Venture</a>
-              <a href="#" className="self-stretch my-auto transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">JKB Care</a>
+              <a href="#" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Joint Venture</a>
+              <a href="#" className="transition-colors duration-300 hover:text-[rgba(217,37,70,1)] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[rgba(217,37,70,1)] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">JKB Care</a>
             </nav>
 
-            <div className="self-stretch flex min-w-60 gap-[29px] my-auto max-md:min-w-auto">
-              <div className="flex min-w-60 items-center gap-6 text-base font-normal justify-center hidden md:flex font-acumin">
-                <a href="tel:9710397104" className="bg-white border self-stretch flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center my-auto px-6 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid max-md:px-5 btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white">
+            {/* Right Side Controls */}
+            <div className="flex items-center gap-6">
+              {/* Desktop Phone & Enquire Buttons */}
+              <div className="hidden md:flex items-center gap-6 text-base font-normal font-acumin">
+                <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-6 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white">
                   <Phone className="w-6 h-6" />
                   <span>97103 97104</span>
                 </a>
-                <button className="self-stretch bg-[rgba(217,37,70,1)] min-h-12 gap-2.5 text-white my-auto px-4 py-3 rounded-[98px] btn-hover-red">
+                <button className="bg-[rgba(217,37,70,1)] min-h-12 gap-2.5 text-white px-4 py-3 rounded-[98px] btn-hover-red">
                   Enquire Now
-                </button>
-                {/* Custom SVG Hamburger Menu Icon */}
-                <button 
-                  className="transition-all duration-300 hover:scale-105 z-50 relative"
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                >
-                  {isMenuOpen ? (
-                    <div className="bg-[rgba(217,37,70,1)] border flex min-h-[50px] items-center justify-center w-[50px] h-[50px] rounded-[25px] border-[rgba(217,37,70,1)] border-solid btn-hover-red">
-                      <X className="w-8 h-8 text-white" />
-                    </div>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-                      <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" fill="#D92546"/>
-                      <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" stroke="#D92546"/>
-                      <path d="M13 25H37M13 33H37M21 17H37" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  )}
                 </button>
               </div>
               
+              {/* Hamburger Menu Button - Right aligned */}
               <button 
-                className="bg-[rgba(217,37,70,1)] border flex min-h-[50px] items-center gap-2.5 w-[50px] h-[50px] p-[9px] rounded-[25px] border-[rgba(217,37,70,1)] border-solid md:hidden z-50 relative btn-hover-red"
+                className="transition-all duration-300 hover:scale-105 z-[60] relative"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                {isMenuOpen ? <X className="w-8 h-8 text-white" /> : (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 50 50" fill="none">
+                {isMenuOpen ? (
+                  <div className="bg-[rgba(217,37,70,1)] border flex min-h-[50px] items-center justify-center w-[50px] h-[50px] rounded-[25px] border-[rgba(217,37,70,1)] border-solid btn-hover-red">
+                    <X className="w-8 h-8 text-white" />
+                  </div>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
                     <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" fill="#D92546"/>
                     <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" stroke="#D92546"/>
                     <path d="M13 25H37M13 33H37M21 17H37" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -135,7 +127,7 @@ export const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Menu Overlay */}
       {isMenuOpen && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-50 z-40"
@@ -143,11 +135,11 @@ export const Header = () => {
         />
       )}
 
-      {/* Menu with Right-to-Left Animation - Updated width to 300px */}
-      <div className={`fixed top-0 right-0 h-full w-[300px] bg-[rgba(40,45,64,1)] z-50 transform transition-transform duration-300 ease-in-out ${
+      {/* Slide-in Menu - Full height, max width 300px */}
+      <div className={`fixed top-0 right-0 h-full w-full max-w-[300px] bg-[rgba(40,45,64,1)] z-50 transform transition-transform duration-300 ease-in-out ${
         isMenuOpen ? 'animate-slide-in-right' : 'translate-x-full'
       }`}>
-        <div className="pt-20 px-6 pb-6 h-full flex flex-col">
+        <div className="pt-20 px-6 pb-6 h-full flex flex-col overflow-y-auto">
           {/* Micro Nav */}
           <div className="border-b border-gray-600 pb-6 mb-6">
             <a href="tel:9710397104" className="bg-white border flex items-center gap-2.5 text-[rgba(217,37,70,1)] justify-center px-4 py-3 rounded-[98px] border-[rgba(217,37,70,1)] border-solid mb-4 btn-hover-outline hover:bg-[rgba(217,37,70,1)] hover:text-white font-acumin">
@@ -162,12 +154,12 @@ export const Header = () => {
 
           {/* Navigation */}
           <nav className="flex flex-col gap-6 text-white font-acumin">
-            <div className="flex items-center gap-2 text-lg font-medium cursor-pointer transition-colors duration-300 hover:text-[rgba(217,37,70,1)]">
+            <div className="flex items-center gap-2 text-lg font-medium cursor-pointer transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">
               <span>Projects</span>
               <ChevronDown className="w-5 h-5" />
             </div>
-            <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)]">Joint Venture</a>
-            <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)]">JKB Care</a>
+            <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">Joint Venture</a>
+            <a href="#" className="text-lg font-medium transition-colors duration-300 hover:text-[rgba(217,37,70,1)] max-md:text-[26px] max-md:leading-[34px]">JKB Care</a>
           </nav>
         </div>
       </div>
