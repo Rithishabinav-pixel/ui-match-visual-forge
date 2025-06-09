@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { useEnquiries } from '@/hooks/useEnquiries';
+import { useMarkEnquiryAsRead } from '@/hooks/useEnquiryMutations';
 import { 
   Table, 
   TableBody, 
@@ -13,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { format } from 'date-fns';
-import { Mail, Phone, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MessageSquare, MailOpen } from 'lucide-react';
 import { EnquiryReplyDialog } from './EnquiryReplyDialog';
 
 export const EnquiriesList = () => {
@@ -30,6 +31,8 @@ export const EnquiriesList = () => {
   } = useEnquiries('contact');
 
   const [replyEnquiry, setReplyEnquiry] = useState<any>(null);
+  const [replyType, setReplyType] = useState<'project' | 'contact'>('project');
+  const markAsRead = useMarkEnquiryAsRead();
 
   const isLoading = loadingProject || loadingContact;
   const error = errorProject || errorContact;
@@ -38,6 +41,20 @@ export const EnquiriesList = () => {
     if (phoneNumber) {
       window.location.href = `tel:${phoneNumber}`;
     }
+  };
+
+  const handleReply = (enquiry: any, type: 'project' | 'contact') => {
+    setReplyEnquiry(enquiry);
+    setReplyType(type);
+    
+    // Mark as read when opening reply dialog
+    if (!enquiry.is_read) {
+      markAsRead.mutate({ enquiryId: enquiry.id, type });
+    }
+  };
+
+  const handleMarkAsRead = (enquiryId: string, type: 'project' | 'contact') => {
+    markAsRead.mutate({ enquiryId, type });
   };
 
   if (isLoading) {
@@ -60,6 +77,9 @@ export const EnquiriesList = () => {
     );
   }
 
+  const unreadProjectCount = projectEnquiries?.filter(e => !e.is_read).length || 0;
+  const unreadContactCount = contactEnquiries?.filter(e => !e.is_read).length || 0;
+
   return (
     <>
       <div className="p-6">
@@ -68,10 +88,20 @@ export const EnquiriesList = () => {
             <TabsTrigger value="project" className="flex items-center gap-2">
               <MessageSquare className="w-4 h-4" />
               Project Enquiries ({projectEnquiries?.length || 0})
+              {unreadProjectCount > 0 && (
+                <Badge variant="destructive" className="ml-1 text-xs">
+                  {unreadProjectCount}
+                </Badge>
+              )}
             </TabsTrigger>
             <TabsTrigger value="contact" className="flex items-center gap-2">
               <Mail className="w-4 h-4" />
               Contact Enquiries ({contactEnquiries?.length || 0})
+              {unreadContactCount > 0 && (
+                <Badge variant="destructive" className="ml-1 text-xs">
+                  {unreadContactCount}
+                </Badge>
+              )}
             </TabsTrigger>
           </TabsList>
           
@@ -94,8 +124,20 @@ export const EnquiriesList = () => {
                 </TableHeader>
                 <TableBody>
                   {projectEnquiries.map((enquiry) => (
-                    <TableRow key={enquiry.id}>
-                      <TableCell className="font-medium">{enquiry.name}</TableCell>
+                    <TableRow 
+                      key={enquiry.id} 
+                      className={!enquiry.is_read ? 'bg-blue-50' : ''}
+                    >
+                      <TableCell className="font-medium">
+                        <div className="flex items-center gap-2">
+                          {enquiry.name}
+                          {!enquiry.is_read && (
+                            <Badge variant="destructive" className="text-xs">
+                              New
+                            </Badge>
+                          )}
+                        </div>
+                      </TableCell>
                       <TableCell>
                         <div className="space-y-1">
                           <div className="flex items-center gap-2 text-sm">
@@ -125,6 +167,16 @@ export const EnquiriesList = () => {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
+                          {!enquiry.is_read && (
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={() => handleMarkAsRead(enquiry.id, 'project')}
+                              title="Mark as read"
+                            >
+                              <MailOpen className="w-4 h-4" />
+                            </Button>
+                          )}
                           {enquiry.phone && (
                             <Button 
                               variant="ghost" 
@@ -138,7 +190,7 @@ export const EnquiriesList = () => {
                           <Button 
                             variant="ghost" 
                             size="sm"
-                            onClick={() => setReplyEnquiry(enquiry)}
+                            onClick={() => handleReply(enquiry, 'project')}
                           >
                             <Mail className="w-4 h-4 mr-1" />
                             Reply
@@ -171,8 +223,20 @@ export const EnquiriesList = () => {
                 </TableHeader>
                 <TableBody>
                   {contactEnquiries.map((enquiry) => (
-                    <TableRow key={enquiry.id}>
-                      <TableCell className="font-medium">{enquiry.name}</TableCell>
+                    <TableRow 
+                      key={enquiry.id} 
+                      className={!enquiry.is_read ? 'bg-blue-50' : ''}
+                    >
+                      <TableCell className="font-medium">
+                        <div className="flex items-center gap-2">
+                          {enquiry.name}
+                          {!enquiry.is_read && (
+                            <Badge variant="destructive" className="text-xs">
+                              New
+                            </Badge>
+                          )}
+                        </div>
+                      </TableCell>
                       <TableCell>
                         <div className="space-y-1">
                           <div className="flex items-center gap-2 text-sm">
@@ -204,6 +268,16 @@ export const EnquiriesList = () => {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
+                          {!enquiry.is_read && (
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={() => handleMarkAsRead(enquiry.id, 'contact')}
+                              title="Mark as read"
+                            >
+                              <MailOpen className="w-4 h-4" />
+                            </Button>
+                          )}
                           {enquiry.phone && (
                             <Button 
                               variant="ghost" 
@@ -217,7 +291,7 @@ export const EnquiriesList = () => {
                           <Button 
                             variant="ghost" 
                             size="sm"
-                            onClick={() => setReplyEnquiry(enquiry)}
+                            onClick={() => handleReply(enquiry, 'contact')}
                           >
                             <Mail className="w-4 h-4 mr-1" />
                             Reply

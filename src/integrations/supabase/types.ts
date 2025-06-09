@@ -9,11 +9,33 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      admin_sessions: {
+        Row: {
+          created_at: string
+          expires_at: string
+          id: string
+          session_token: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at: string
+          id?: string
+          session_token: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string
+          id?: string
+          session_token?: string
+        }
+        Relationships: []
+      }
       contact_enquiries: {
         Row: {
           created_at: string
           email: string
           id: string
+          is_read: boolean
           message: string
           name: string
           phone: string | null
@@ -23,6 +45,7 @@ export type Database = {
           created_at?: string
           email: string
           id?: string
+          is_read?: boolean
           message: string
           name: string
           phone?: string | null
@@ -32,6 +55,7 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
+          is_read?: boolean
           message?: string
           name?: string
           phone?: string | null
@@ -44,6 +68,7 @@ export type Database = {
           created_at: string
           email: string
           id: string
+          is_read: boolean
           message: string
           name: string
           phone: string | null
@@ -53,6 +78,7 @@ export type Database = {
           created_at?: string
           email: string
           id?: string
+          is_read?: boolean
           message: string
           name: string
           phone?: string | null
@@ -62,6 +88,7 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
+          is_read?: boolean
           message?: string
           name?: string
           phone?: string | null

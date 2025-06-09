@@ -15,11 +15,13 @@ import { Edit, Eye, Trash2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { ProjectViewDialog } from './ProjectViewDialog';
 import { ProjectDeleteDialog } from './ProjectDeleteDialog';
+import { ProjectEditDialog } from './ProjectEditDialog';
 import { Project } from '@/types/project';
 
 export const ProjectsList = () => {
   const { data: projects, isLoading, error } = useProjects();
   const [viewProject, setViewProject] = useState<Project | null>(null);
+  const [editProject, setEditProject] = useState<Project | null>(null);
   const [deleteProject, setDeleteProject] = useState<Project | null>(null);
 
   if (isLoading) {
@@ -109,7 +111,7 @@ export const ProjectsList = () => {
                     <Button 
                       variant="ghost" 
                       size="sm"
-                      onClick={() => {/* TODO: Implement edit functionality */}}
+                      onClick={() => setEditProject(project)}
                       title="Edit project"
                     >
                       <Edit className="w-4 h-4" />
@@ -135,6 +137,12 @@ export const ProjectsList = () => {
         project={viewProject}
         isOpen={!!viewProject}
         onClose={() => setViewProject(null)}
+      />
+
+      <ProjectEditDialog
+        project={editProject}
+        isOpen={!!editProject}
+        onClose={() => setEditProject(null)}
       />
 
       <ProjectDeleteDialog
