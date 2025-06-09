@@ -23,9 +23,10 @@ export const useMarkEnquiriesAsRead = () => {
       queryClient.invalidateQueries({ queryKey: ['enquiry-notifications'] });
     },
     onError: (error: Error) => {
+      console.error('Error marking project enquiries as read:', error);
       toast({
         title: "Error",
-        description: "Failed to mark enquiries as read",
+        description: "Failed to mark project enquiries as read",
         variant: "destructive",
       });
     },
@@ -47,9 +48,10 @@ export const useMarkEnquiriesAsRead = () => {
       queryClient.invalidateQueries({ queryKey: ['enquiry-notifications'] });
     },
     onError: (error: Error) => {
+      console.error('Error marking contact enquiries as read:', error);
       toast({
         title: "Error",
-        description: "Failed to mark enquiries as read",
+        description: "Failed to mark contact enquiries as read",
         variant: "destructive",
       });
     },

@@ -10,8 +10,7 @@ import {
   TableRow 
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Eye, Mail, Phone } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { format } from 'date-fns';
 import { useEnquiries } from '@/hooks/useEnquiries';
 import { useMarkEnquiriesAsRead } from '@/hooks/useEnquiryMutations';
@@ -22,14 +21,18 @@ export const EnquiriesList = () => {
   const { markProjectEnquiriesAsRead, markContactEnquiriesAsRead } = useMarkEnquiriesAsRead();
   const [activeTab, setActiveTab] = useState('project');
 
-  useEffect(() => {
-    // Mark enquiries as read when the component mounts or tab changes
-    if (activeTab === 'project' && projectEnquiries && projectEnquiries.some(e => !e.is_read)) {
+  const handleTabChange = (tabValue: string) => {
+    setActiveTab(tabValue);
+    
+    // Mark enquiries as read when switching to the tab
+    if (tabValue === 'project' && projectEnquiries && projectEnquiries.some(e => !e.is_read)) {
+      console.log('Marking project enquiries as read');
       markProjectEnquiriesAsRead.mutate();
-    } else if (activeTab === 'contact' && contactEnquiries && contactEnquiries.some(e => !e.is_read)) {
+    } else if (tabValue === 'contact' && contactEnquiries && contactEnquiries.some(e => !e.is_read)) {
+      console.log('Marking contact enquiries as read');
       markContactEnquiriesAsRead.mutate();
     }
-  }, [activeTab, projectEnquiries, contactEnquiries]);
+  };
 
   if (loadingProject || loadingContact) {
     return (
@@ -43,7 +46,7 @@ export const EnquiriesList = () => {
 
   return (
     <div className="p-6">
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={handleTabChange}>
         <TabsList className="mb-4">
           <TabsTrigger value="project" className="flex items-center gap-2">
             Project Enquiries

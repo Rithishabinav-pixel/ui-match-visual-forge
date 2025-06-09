@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ArrowRight, MapPin, Calendar, Users, Award, ChevronLeft, ChevronRight, Star, Loader2 } from 'lucide-react';
@@ -6,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { EnquiryPopup } from '@/components/EnquiryPopup';
 import { useProject } from '@/hooks/useProjects';
+import { Footer } from '@/components/layout/Footer';
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -303,6 +305,9 @@ const ProjectDetail = () => {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
 
       {/* Enquiry Popup - Updated to pass project ID */}
       <EnquiryPopup 
