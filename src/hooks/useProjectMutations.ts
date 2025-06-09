@@ -1,3 +1,4 @@
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -66,13 +67,13 @@ export const useUpdateProject = () => {
       // Transform the data to match Supabase's expected types
       const transformedData: Record<string, any> = { ...updateData };
       
-      // Cast complex types to Json for Supabase
+      // Cast complex types to Json for Supabase through unknown
       if (updateData.client_feedback) {
-        transformedData.client_feedback = updateData.client_feedback as Json;
+        transformedData.client_feedback = updateData.client_feedback as unknown as Json;
       }
       
       if (updateData.timeline_steps) {
-        transformedData.timeline_steps = updateData.timeline_steps as Json;
+        transformedData.timeline_steps = updateData.timeline_steps as unknown as Json;
       }
 
       // completion_date is already a string in the Project interface, no conversion needed
