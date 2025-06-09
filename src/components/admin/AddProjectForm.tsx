@@ -18,58 +18,62 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { CalendarIcon, Plus, Trash2, Upload, Star } from 'lucide-react';
+import { CalendarIcon, Plus, Trash2, Upload, Star, Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
+import { useCreateProject } from '@/hooks/useProjects';
+import { CreateProjectRequest, TimelineStep, ClientFeedback } from '@/types/project';
 
 const projectSchema = z.object({
   title: z.string().min(1, 'Project title is required'),
   subtitle: z.string().min(1, 'Project subtitle is required'),
-  clientName: z.string().min(1, 'Client name is required'),
+  client_name: z.string().min(1, 'Client name is required'),
   status: z.array(z.string()).min(1, 'At least one status is required'),
   type: z.string().min(1, 'Project type is required'),
   overview: z.string().min(1, 'Project overview is required'),
   objectives: z.string().min(1, 'Project objectives are required'),
   highlights: z.array(z.string()),
   location: z.string().min(1, 'Location is required'),
-  completionDate: z.date(),
-  unitTypes: z.string().min(1, 'Unit types are required'),
-  unitSizes: z.string().min(1, 'Unit sizes are required'),
-  ctaTitle: z.string().min(1, 'CTA title is required'),
-  ctaSubtitle: z.string().min(1, 'CTA subtitle is required'),
-  buttonText: z.string().min(1, 'Button text is required'),
-  buttonLink: z.string().min(1, 'Button link is required'),
+  completion_date: z.date(),
+  unit_types: z.string().min(1, 'Unit types are required'),
+  unit_sizes: z.string().min(1, 'Unit sizes are required'),
+  cta_title: z.string().min(1, 'CTA title is required'),
+  cta_subtitle: z.string().min(1, 'CTA subtitle is required'),
+  button_text: z.string().min(1, 'Button text is required'),
+  button_link: z.string().min(1, 'Button link is required'),
 });
 
 type ProjectFormData = z.infer<typeof projectSchema>;
 
 export const AddProjectForm = () => {
-  const [timelineSteps, setTimelineSteps] = useState([
+  const [timelineSteps, setTimelineSteps] = useState<TimelineStep[]>([
     { title: '', status: 'upcoming', description: '', duration: '', unit: 'months' }
   ]);
-  const [clientFeedback, setClientFeedback] = useState({
+  const [clientFeedback, setClientFeedback] = useState<ClientFeedback>({
     name: '', designation: '', company: '', testimonial: '', rating: 5
   });
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
+
+  const createProject = useCreateProject();
 
   const form = useForm<ProjectFormData>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
       title: '',
       subtitle: '',
-      clientName: '',
+      client_name: '',
       status: [],
       type: '',
       overview: '',
       objectives: '',
       highlights: [],
       location: '',
-      unitTypes: '',
-      unitSizes: '',
-      ctaTitle: '',
-      ctaSubtitle: '',
-      buttonText: '',
-      buttonLink: '',
+      unit_types: '',
+      unit_sizes: '',
+      cta_title: '',
+      cta_subtitle: '',
+      button_text: '',
+      button_link: '',
     },
   });
 
@@ -98,12 +102,21 @@ export const AddProjectForm = () => {
     }
   };
 
-  const onSubmit = (data: ProjectFormData) => {
-    console.log('Form Data:', data);
-    console.log('Timeline Steps:', timelineSteps);
-    console.log('Client Feedback:', clientFeedback);
-    console.log('Images:', selectedImages);
-    // Handle form submission here
+  const onSubmit = async (data: ProjectFormData) => {
+    const projectData: CreateProjectRequest = {
+      ...data,
+      gallery_images: selectedImages,
+      timeline_steps: timelineSteps,
+      client_feedback: clientFeedback,
+    };
+
+    await createProject.mutateAsync(projectData);
+
+    // Reset form after successful submission
+    form.reset();
+    setTimelineSteps([{ title: '', status: 'upcoming', description: '', duration: '', unit: 'months' }]);
+    setClientFeedback({ name: '', designation: '', company: '', testimonial: '', rating: 5 });
+    setSelectedImages([]);
   };
 
   return (
@@ -144,7 +157,7 @@ export const AddProjectForm = () => {
 
               <FormField
                 control={form.control}
-                name="clientName"
+                name="client_name"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Client Name</FormLabel>
@@ -343,7 +356,7 @@ export const AddProjectForm = () => {
 
               <FormField
                 control={form.control}
-                name="completionDate"
+                name="completion_date"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel>Completion Date</FormLabel>
@@ -386,7 +399,7 @@ export const AddProjectForm = () => {
 
               <FormField
                 control={form.control}
-                name="unitTypes"
+                name="unit_types"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Unit Types</FormLabel>
@@ -400,7 +413,7 @@ export const AddProjectForm = () => {
 
               <FormField
                 control={form.control}
-                name="unitSizes"
+                name="unit_sizes"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Unit Sizes</FormLabel>
@@ -677,14 +690,28 @@ export const AddProjectForm = () => {
             <Button 
               type="submit" 
               className="bg-[rgba(217,37,70,1)] hover:bg-[rgba(217,37,70,0.9)] px-8"
+              disabled={createProject.isPending}
             >
-              Submit Project
+              {createProject.isPending ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Creating Project...
+                </>
+              ) : (
+                'Submit Project'
+              )}
             </Button>
             <Button 
               type="button" 
               variant="outline" 
-              onClick={() => form.reset()}
+              onClick={() => {
+                form.reset();
+                setTimelineSteps([{ title: '', status: 'upcoming', description: '', duration: '', unit: 'months' }]);
+                setClientFeedback({ name: '', designation: '', company: '', testimonial: '', rating: 5 });
+                setSelectedImages([]);
+              }}
               className="px-8"
+              disabled={createProject.isPending}
             >
               Reset Form
             </Button>
