@@ -9,6 +9,7 @@ export interface ProjectEnquiry {
   email: string;
   phone: string | null;
   message: string;
+  is_read: boolean;
   created_at: string;
 }
 
@@ -19,6 +20,7 @@ export interface ContactEnquiry {
   phone: string | null;
   subject: string | null;
   message: string;
+  is_read: boolean;
   created_at: string;
 }
 
