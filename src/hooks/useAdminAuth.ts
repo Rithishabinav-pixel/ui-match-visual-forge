@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 export interface AdminSession {
   id: string;
@@ -14,6 +15,7 @@ export const useAdminAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   // Check if admin is authenticated on mount
   useEffect(() => {
@@ -78,6 +80,9 @@ export const useAdminAuth = () => {
           description: "Logged in successfully!",
         });
         
+        // Redirect to admin dashboard after successful login
+        navigate('/admin');
+        
         return { success: true };
       } else {
         throw new Error('Invalid credentials');
@@ -103,6 +108,7 @@ export const useAdminAuth = () => {
           .eq('session_token', token);
       }
       
+      // Clear all session data
       localStorage.removeItem('admin_session_token');
       setIsAuthenticated(false);
       
@@ -110,11 +116,17 @@ export const useAdminAuth = () => {
         title: "Success",
         description: "Logged out successfully!",
       });
+      
+      // Redirect to login page after logout
+      navigate('/admin/login');
+      
     } catch (error) {
       console.error('Logout error:', error);
       // Still remove local session even if DB operation fails
       localStorage.removeItem('admin_session_token');
       setIsAuthenticated(false);
+      // Redirect even if there's an error
+      navigate('/admin/login');
     }
   };
 

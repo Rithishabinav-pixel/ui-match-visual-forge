@@ -15,6 +15,7 @@ import JointVenture from "./pages/JointVenture";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminProjects from "./pages/AdminProjects";
 import AdminEnquiries from "./pages/AdminEnquiries";
+import { AdminLogin } from "./components/admin/AdminLogin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/jkb-care" element={<><Header /><JKBCare /></>} />
           <Route path="/joint-venture" element={<><Header /><JointVenture /></>} />
+          <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/add-project" element={<AdminDashboard />} />
           <Route path="/admin/projects" element={<AdminProjects />} />

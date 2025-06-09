@@ -27,9 +27,8 @@ export const AdminLogin = () => {
     
     try {
       const result = await login(username, password);
-      if (result.success) {
-        navigate('/admin');
-      }
+      // The login function now handles the redirect automatically
+      // No need to manually navigate here since it's handled in the hook
     } catch (error) {
       console.error('Login error:', error);
     } finally {
