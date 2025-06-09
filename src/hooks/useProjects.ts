@@ -62,30 +62,44 @@ export const useCreateProject = () => {
 
   return useMutation({
     mutationFn: async (projectData: CreateProjectRequest): Promise<Project> => {
+      console.log('Starting project creation with data:', projectData);
+      
       // Upload images to Supabase storage if any
       let imageUrls: string[] = [];
       
       if (projectData.gallery_images && projectData.gallery_images.length > 0) {
+        console.log('Uploading', projectData.gallery_images.length, 'images...');
+        
         const uploadPromises = projectData.gallery_images.map(async (file, index) => {
           const fileExt = file.name.split('.').pop();
           const fileName = `${Date.now()}-${index}.${fileExt}`;
           
+          console.log('Uploading file:', fileName);
+          
           const { data, error } = await supabase.storage
             .from('project-images')
-            .upload(fileName, file);
+            .upload(fileName, file, {
+              cacheControl: '3600',
+              upsert: false
+            });
 
           if (error) {
+            console.error('Storage upload error:', error);
             throw new Error(`Image upload failed: ${error.message}`);
           }
+
+          console.log('Upload successful:', data);
 
           const { data: urlData } = supabase.storage
             .from('project-images')
             .getPublicUrl(data.path);
 
+          console.log('Public URL generated:', urlData.publicUrl);
           return urlData.publicUrl;
         });
 
         imageUrls = await Promise.all(uploadPromises);
+        console.log('All images uploaded successfully:', imageUrls);
       }
 
       // Prepare data for database insertion - cast our types to Json for Supabase
@@ -111,6 +125,8 @@ export const useCreateProject = () => {
         client_feedback: projectData.client_feedback as any, // Cast to Json for Supabase
       };
 
+      console.log('Inserting project data:', dbData);
+
       const { data, error } = await supabase
         .from('projects')
         .insert(dbData) // Insert single object, not array
@@ -118,8 +134,11 @@ export const useCreateProject = () => {
         .single();
 
       if (error) {
+        console.error('Database insert error:', error);
         throw new Error(error.message);
       }
+
+      console.log('Project created successfully:', data);
 
       // Cast the returned data back to our Project type through unknown
       return {
@@ -136,6 +155,7 @@ export const useCreateProject = () => {
       });
     },
     onError: (error: Error) => {
+      console.error('Project creation failed:', error);
       toast({
         title: "Error",
         description: error.message,
