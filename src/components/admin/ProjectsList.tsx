@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useProjects } from '@/hooks/useProjects';
 import { 
   Table, 
@@ -13,9 +13,14 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Edit, Eye, Trash2 } from 'lucide-react';
 import { format } from 'date-fns';
+import { ProjectViewDialog } from './ProjectViewDialog';
+import { ProjectDeleteDialog } from './ProjectDeleteDialog';
+import { Project } from '@/types/project';
 
 export const ProjectsList = () => {
   const { data: projects, isLoading, error } = useProjects();
+  const [viewProject, setViewProject] = useState<Project | null>(null);
+  const [deleteProject, setDeleteProject] = useState<Project | null>(null);
 
   if (isLoading) {
     return (
@@ -49,64 +54,94 @@ export const ProjectsList = () => {
   }
 
   return (
-    <div className="p-6">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Project</TableHead>
-            <TableHead>Client</TableHead>
-            <TableHead>Type</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Location</TableHead>
-            <TableHead>Created</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {projects.map((project) => (
-            <TableRow key={project.id}>
-              <TableCell>
-                <div>
-                  <div className="font-medium">{project.title}</div>
-                  {project.subtitle && (
-                    <div className="text-sm text-gray-500">{project.subtitle}</div>
-                  )}
-                </div>
-              </TableCell>
-              <TableCell>{project.client_name}</TableCell>
-              <TableCell>
-                <Badge variant="outline">{project.type}</Badge>
-              </TableCell>
-              <TableCell>
-                <div className="flex flex-wrap gap-1">
-                  {project.status.map((status, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs">
-                      {status}
-                    </Badge>
-                  ))}
-                </div>
-              </TableCell>
-              <TableCell>{project.location || 'N/A'}</TableCell>
-              <TableCell>
-                {format(new Date(project.created_at), 'MMM dd, yyyy')}
-              </TableCell>
-              <TableCell className="text-right">
-                <div className="flex justify-end gap-2">
-                  <Button variant="ghost" size="sm">
-                    <Eye className="w-4 h-4" />
-                  </Button>
-                  <Button variant="ghost" size="sm">
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-red-600">
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
-              </TableCell>
+    <>
+      <div className="p-6">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Project</TableHead>
+              <TableHead>Client</TableHead>
+              <TableHead>Type</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Location</TableHead>
+              <TableHead>Created</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+          </TableHeader>
+          <TableBody>
+            {projects.map((project) => (
+              <TableRow key={project.id}>
+                <TableCell>
+                  <div>
+                    <div className="font-medium">{project.title}</div>
+                    {project.subtitle && (
+                      <div className="text-sm text-gray-500">{project.subtitle}</div>
+                    )}
+                  </div>
+                </TableCell>
+                <TableCell>{project.client_name}</TableCell>
+                <TableCell>
+                  <Badge variant="outline">{project.type}</Badge>
+                </TableCell>
+                <TableCell>
+                  <div className="flex flex-wrap gap-1">
+                    {project.status.map((status, index) => (
+                      <Badge key={index} variant="secondary" className="text-xs">
+                        {status}
+                      </Badge>
+                    ))}
+                  </div>
+                </TableCell>
+                <TableCell>{project.location || 'N/A'}</TableCell>
+                <TableCell>
+                  {format(new Date(project.created_at), 'MMM dd, yyyy')}
+                </TableCell>
+                <TableCell className="text-right">
+                  <div className="flex justify-end gap-2">
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      onClick={() => setViewProject(project)}
+                      title="View project details"
+                    >
+                      <Eye className="w-4 h-4" />
+                    </Button>
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      onClick={() => {/* TODO: Implement edit functionality */}}
+                      title="Edit project"
+                    >
+                      <Edit className="w-4 h-4" />
+                    </Button>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="text-red-600 hover:text-red-700"
+                      onClick={() => setDeleteProject(project)}
+                      title="Delete project"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+
+      <ProjectViewDialog
+        project={viewProject}
+        isOpen={!!viewProject}
+        onClose={() => setViewProject(null)}
+      />
+
+      <ProjectDeleteDialog
+        project={deleteProject}
+        isOpen={!!deleteProject}
+        onClose={() => setDeleteProject(null)}
+      />
+    </>
   );
 };

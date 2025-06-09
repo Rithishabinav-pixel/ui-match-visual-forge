@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { format } from 'date-fns';
 import { Mail, Phone, MessageSquare } from 'lucide-react';
+import { EnquiryReplyDialog } from './EnquiryReplyDialog';
 
 export const EnquiriesList = () => {
   const { 
@@ -28,8 +29,16 @@ export const EnquiriesList = () => {
     error: errorContact 
   } = useEnquiries('contact');
 
+  const [replyEnquiry, setReplyEnquiry] = useState<any>(null);
+
   const isLoading = loadingProject || loadingContact;
   const error = errorProject || errorContact;
+
+  const handleCall = (phoneNumber: string) => {
+    if (phoneNumber) {
+      window.location.href = `tel:${phoneNumber}`;
+    }
+  };
 
   if (isLoading) {
     return (
@@ -52,141 +61,183 @@ export const EnquiriesList = () => {
   }
 
   return (
-    <div className="p-6">
-      <Tabs defaultValue="project" className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="project" className="flex items-center gap-2">
-            <MessageSquare className="w-4 h-4" />
-            Project Enquiries ({projectEnquiries?.length || 0})
-          </TabsTrigger>
-          <TabsTrigger value="contact" className="flex items-center gap-2">
-            <Mail className="w-4 h-4" />
-            Contact Enquiries ({contactEnquiries?.length || 0})
-          </TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="project" className="mt-6">
-          {!projectEnquiries || projectEnquiries.length === 0 ? (
-            <div className="text-center py-8">
-              <div className="text-gray-500">No project enquiries found</div>
-            </div>
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Contact</TableHead>
-                  <TableHead>Project</TableHead>
-                  <TableHead>Message</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {projectEnquiries.map((enquiry) => (
-                  <TableRow key={enquiry.id}>
-                    <TableCell className="font-medium">{enquiry.name}</TableCell>
-                    <TableCell>
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2 text-sm">
-                          <Mail className="w-3 h-3" />
-                          {enquiry.email}
-                        </div>
-                        {enquiry.phone && (
-                          <div className="flex items-center gap-2 text-sm text-gray-600">
-                            <Phone className="w-3 h-3" />
-                            {enquiry.phone}
-                          </div>
-                        )}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      {enquiry.project_id && (
-                        <Badge variant="outline">Project ID: {enquiry.project_id.slice(0, 8)}...</Badge>
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      <div className="max-w-xs truncate" title={enquiry.message}>
-                        {enquiry.message}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      {format(new Date(enquiry.created_at), 'MMM dd, yyyy HH:mm')}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <Button variant="ghost" size="sm">
-                        Reply
-                      </Button>
-                    </TableCell>
+    <>
+      <div className="p-6">
+        <Tabs defaultValue="project" className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="project" className="flex items-center gap-2">
+              <MessageSquare className="w-4 h-4" />
+              Project Enquiries ({projectEnquiries?.length || 0})
+            </TabsTrigger>
+            <TabsTrigger value="contact" className="flex items-center gap-2">
+              <Mail className="w-4 h-4" />
+              Contact Enquiries ({contactEnquiries?.length || 0})
+            </TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="project" className="mt-6">
+            {!projectEnquiries || projectEnquiries.length === 0 ? (
+              <div className="text-center py-8">
+                <div className="text-gray-500">No project enquiries found</div>
+              </div>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Contact</TableHead>
+                    <TableHead>Project</TableHead>
+                    <TableHead>Message</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </TabsContent>
-        
-        <TabsContent value="contact" className="mt-6">
-          {!contactEnquiries || contactEnquiries.length === 0 ? (
-            <div className="text-center py-8">
-              <div className="text-gray-500">No contact enquiries found</div>
-            </div>
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Contact</TableHead>
-                  <TableHead>Subject</TableHead>
-                  <TableHead>Message</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {contactEnquiries.map((enquiry) => (
-                  <TableRow key={enquiry.id}>
-                    <TableCell className="font-medium">{enquiry.name}</TableCell>
-                    <TableCell>
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2 text-sm">
-                          <Mail className="w-3 h-3" />
-                          {enquiry.email}
-                        </div>
-                        {enquiry.phone && (
-                          <div className="flex items-center gap-2 text-sm text-gray-600">
-                            <Phone className="w-3 h-3" />
-                            {enquiry.phone}
+                </TableHeader>
+                <TableBody>
+                  {projectEnquiries.map((enquiry) => (
+                    <TableRow key={enquiry.id}>
+                      <TableCell className="font-medium">{enquiry.name}</TableCell>
+                      <TableCell>
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2 text-sm">
+                            <Mail className="w-3 h-3" />
+                            {enquiry.email}
                           </div>
+                          {enquiry.phone && (
+                            <div className="flex items-center gap-2 text-sm text-gray-600">
+                              <Phone className="w-3 h-3" />
+                              {enquiry.phone}
+                            </div>
+                          )}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        {enquiry.project_id && (
+                          <Badge variant="outline">Project ID: {enquiry.project_id.slice(0, 8)}...</Badge>
                         )}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      {enquiry.subject ? (
-                        <Badge variant="outline">{enquiry.subject}</Badge>
-                      ) : (
-                        <span className="text-gray-400">No subject</span>
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      <div className="max-w-xs truncate" title={enquiry.message}>
-                        {enquiry.message}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      {format(new Date(enquiry.created_at), 'MMM dd, yyyy HH:mm')}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <Button variant="ghost" size="sm">
-                        Reply
-                      </Button>
-                    </TableCell>
+                      </TableCell>
+                      <TableCell>
+                        <div className="max-w-xs truncate" title={enquiry.message}>
+                          {enquiry.message}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        {format(new Date(enquiry.created_at), 'MMM dd, yyyy HH:mm')}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex justify-end gap-2">
+                          {enquiry.phone && (
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={() => handleCall(enquiry.phone!)}
+                              title={`Call ${enquiry.phone}`}
+                            >
+                              <Phone className="w-4 h-4" />
+                            </Button>
+                          )}
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => setReplyEnquiry(enquiry)}
+                          >
+                            <Mail className="w-4 h-4 mr-1" />
+                            Reply
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+          </TabsContent>
+          
+          <TabsContent value="contact" className="mt-6">
+            {!contactEnquiries || contactEnquiries.length === 0 ? (
+              <div className="text-center py-8">
+                <div className="text-gray-500">No contact enquiries found</div>
+              </div>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Contact</TableHead>
+                    <TableHead>Subject</TableHead>
+                    <TableHead>Message</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </TabsContent>
-      </Tabs>
-    </div>
+                </TableHeader>
+                <TableBody>
+                  {contactEnquiries.map((enquiry) => (
+                    <TableRow key={enquiry.id}>
+                      <TableCell className="font-medium">{enquiry.name}</TableCell>
+                      <TableCell>
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2 text-sm">
+                            <Mail className="w-3 h-3" />
+                            {enquiry.email}
+                          </div>
+                          {enquiry.phone && (
+                            <div className="flex items-center gap-2 text-sm text-gray-600">
+                              <Phone className="w-3 h-3" />
+                              {enquiry.phone}
+                            </div>
+                          )}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        {enquiry.subject ? (
+                          <Badge variant="outline">{enquiry.subject}</Badge>
+                        ) : (
+                          <span className="text-gray-400">No subject</span>
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        <div className="max-w-xs truncate" title={enquiry.message}>
+                          {enquiry.message}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        {format(new Date(enquiry.created_at), 'MMM dd, yyyy HH:mm')}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex justify-end gap-2">
+                          {enquiry.phone && (
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={() => handleCall(enquiry.phone!)}
+                              title={`Call ${enquiry.phone}`}
+                            >
+                              <Phone className="w-4 h-4" />
+                            </Button>
+                          )}
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => setReplyEnquiry(enquiry)}
+                          >
+                            <Mail className="w-4 h-4 mr-1" />
+                            Reply
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+          </TabsContent>
+        </Tabs>
+      </div>
+
+      <EnquiryReplyDialog
+        enquiry={replyEnquiry}
+        isOpen={!!replyEnquiry}
+        onClose={() => setReplyEnquiry(null)}
+      />
+    </>
   );
 };
