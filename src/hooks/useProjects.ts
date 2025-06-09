@@ -1,7 +1,7 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
-import { Project, CreateProjectRequest } from '@/types/project';
+import { Project, CreateProjectRequest, TimelineStep, ClientFeedback } from '@/types/project';
 import { useToast } from '@/hooks/use-toast';
 
 export const useProjects = () => {
@@ -17,7 +17,12 @@ export const useProjects = () => {
         throw new Error(error.message);
       }
 
-      return data || [];
+      // Cast the Json types to our TypeScript interfaces
+      return (data || []).map(project => ({
+        ...project,
+        timeline_steps: project.timeline_steps as TimelineStep[],
+        client_feedback: project.client_feedback as ClientFeedback,
+      }));
     },
   });
 };
@@ -36,7 +41,16 @@ export const useProject = (id: string) => {
         throw new Error(error.message);
       }
 
-      return data;
+      if (!data) {
+        return null;
+      }
+
+      // Cast the Json types to our TypeScript interfaces
+      return {
+        ...data,
+        timeline_steps: data.timeline_steps as TimelineStep[],
+        client_feedback: data.client_feedback as ClientFeedback,
+      };
     },
     enabled: !!id,
   });
@@ -74,7 +88,7 @@ export const useCreateProject = () => {
         imageUrls = await Promise.all(uploadPromises);
       }
 
-      // Prepare data for database insertion
+      // Prepare data for database insertion - cast our types to Json for Supabase
       const dbData = {
         title: projectData.title,
         subtitle: projectData.subtitle,
@@ -93,13 +107,13 @@ export const useCreateProject = () => {
         button_text: projectData.button_text,
         button_link: projectData.button_link,
         gallery_images: imageUrls,
-        timeline_steps: projectData.timeline_steps,
-        client_feedback: projectData.client_feedback,
+        timeline_steps: projectData.timeline_steps as any, // Cast to Json for Supabase
+        client_feedback: projectData.client_feedback as any, // Cast to Json for Supabase
       };
 
       const { data, error } = await supabase
         .from('projects')
-        .insert([dbData])
+        .insert(dbData) // Insert single object, not array
         .select()
         .single();
 
@@ -107,7 +121,12 @@ export const useCreateProject = () => {
         throw new Error(error.message);
       }
 
-      return data;
+      // Cast the returned data back to our Project type
+      return {
+        ...data,
+        timeline_steps: data.timeline_steps as TimelineStep[],
+        client_feedback: data.client_feedback as ClientFeedback,
+      };
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['projects'] });
