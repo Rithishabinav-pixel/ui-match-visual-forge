@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Home, Plus, FolderOpen, MessageSquare, LogOut, Building2 } from 'lucide-react';
+import { Home, Plus, FolderOpen, MessageSquare, LogOut, Building2, Inbox } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
@@ -8,7 +8,7 @@ const sidebarItems = [
   { name: 'Dashboard', icon: Home, href: '/admin' },
   { name: 'Add Project', icon: Plus, href: '/admin/add-project' },
   { name: 'Projects', icon: FolderOpen, href: '/admin/projects' },
-  { name: 'Feedback', icon: MessageSquare, href: '/admin/feedback' },
+  { name: 'Enquiries', icon: Inbox, href: '/admin/enquiries' },
 ];
 
 export const Sidebar = () => {

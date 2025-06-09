@@ -13,6 +13,8 @@ import Contact from "./pages/Contact";
 import JKBCare from "./pages/JKBCare";
 import JointVenture from "./pages/JointVenture";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminProjects from "./pages/AdminProjects";
+import AdminEnquiries from "./pages/AdminEnquiries";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +35,8 @@ const App = () => (
           <Route path="/joint-venture" element={<><Header /><JointVenture /></>} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/add-project" element={<AdminDashboard />} />
+          <Route path="/admin/projects" element={<AdminProjects />} />
+          <Route path="/admin/enquiries" element={<AdminEnquiries />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<><Header /><NotFound /></>} />
         </Routes>
