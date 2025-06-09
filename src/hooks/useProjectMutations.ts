@@ -1,8 +1,8 @@
-
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Project } from '@/types/project';
+import { Json } from '@/integrations/supabase/types';
 
 export const useDeleteProject = () => {
   const queryClient = useQueryClient();
@@ -64,21 +64,18 @@ export const useUpdateProject = () => {
   return useMutation({
     mutationFn: async ({ projectId, updateData }: { projectId: string; updateData: Partial<Project> }) => {
       // Transform the data to match Supabase's expected types
-      const transformedData = { ...updateData };
+      const transformedData: Record<string, any> = { ...updateData };
       
       // Cast complex types to Json for Supabase
       if (updateData.client_feedback) {
-        (transformedData as any).client_feedback = updateData.client_feedback as any;
+        transformedData.client_feedback = updateData.client_feedback as Json;
       }
       
       if (updateData.timeline_steps) {
-        (transformedData as any).timeline_steps = updateData.timeline_steps as any;
+        transformedData.timeline_steps = updateData.timeline_steps as Json;
       }
 
-      // Convert completion_date to string if it's a Date object
-      if (updateData.completion_date && updateData.completion_date instanceof Date) {
-        (transformedData as any).completion_date = updateData.completion_date.toISOString();
-      }
+      // completion_date is already a string in the Project interface, no conversion needed
 
       const { error } = await supabase
         .from('projects')
