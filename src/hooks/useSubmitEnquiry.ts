@@ -63,6 +63,7 @@ export const useSubmitContactEnquiry = () => {
 
   return useMutation({
     mutationFn: async (data: ContactEnquiryData) => {
+      // First, save to database
       const { error } = await supabase
         .from('contact_enquiries')
         .insert({
@@ -76,12 +77,28 @@ export const useSubmitContactEnquiry = () => {
       if (error) {
         throw new Error(error.message);
       }
+
+      // Then, send email via edge function
+      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+        },
+      });
+
+      if (emailError) {
+        console.error('Email sending failed:', emailError);
+        // Don't throw error here - enquiry was saved successfully
+        // Just log the email error
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['enquiries', 'contact'] });
       toast({
         title: "Message Sent!",
-        description: "Thank you for contacting us. We'll get back to you soon.",
+        description: "Thank you for contacting us. We'll get back to you soon and you should receive a confirmation email shortly.",
       });
     },
     onError: (error: Error) => {

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -170,14 +171,14 @@ const Contact = () => {
                       <Label htmlFor="message" className="text-sm font-medium text-gray-700 mb-2 block">
                         Message *
                       </Label>
-                      <textarea
+                      <Textarea
                         id="message"
                         name="message"
                         value={formData.message}
                         onChange={handleInputChange}
                         placeholder="Tell us about your project or inquiry..."
                         rows={6}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[rgba(217,37,70,1)] focus:border-transparent resize-none disabled:bg-gray-50 disabled:cursor-not-allowed"
+                        className="w-full"
                         required
                         disabled={submitEnquiry.isPending}
                       />
