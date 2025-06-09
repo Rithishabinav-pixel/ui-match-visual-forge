@@ -1,44 +1,47 @@
 
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Building2, Lock } from 'lucide-react';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const AdminLogin = () => {
-  const [credentials, setCredentials] = useState({
-    username: '',
-    password: ''
-  });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { login } = useAdminAuth();
+  const { login, isAuthenticated } = useAdminAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/admin/dashboard');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
     try {
-      await login(credentials.username, credentials.password);
+      const result = await login(username, password);
+      if (result.success) {
+        navigate('/admin/dashboard');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="flex justify-center mb-4">
-            <div className="bg-[rgba(217,37,70,1)] p-3 rounded-full">
-              <Building2 className="w-8 h-8 text-white" />
-            </div>
-          </div>
-          <CardTitle className="text-2xl">Admin Login</CardTitle>
-          <CardDescription>
-            Sign in to access the JKB admin dashboard
-          </CardDescription>
+        <CardHeader>
+          <CardTitle className="text-2xl text-center">Admin Login</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -47,43 +50,41 @@ export const AdminLogin = () => {
               <Input
                 id="username"
                 type="text"
-                value={credentials.username}
-                onChange={(e) => setCredentials(prev => ({ ...prev, username: e.target.value }))}
-                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter username"
                 required
                 disabled={isLoading}
               />
             </div>
+            
             <div>
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
                 type="password"
-                value={credentials.password}
-                onChange={(e) => setCredentials(prev => ({ ...prev, password: e.target.value }))}
-                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter password"
                 required
                 disabled={isLoading}
               />
             </div>
+            
             <Button 
               type="submit" 
               className="w-full bg-[rgba(217,37,70,1)] hover:bg-[rgba(217,37,70,0.9)]"
               disabled={isLoading}
             >
-              {isLoading ? (
-                'Signing in...'
-              ) : (
-                <>
-                  <Lock className="w-4 h-4 mr-2" />
-                  Sign In
-                </>
-              )}
+              {isLoading ? 'Logging in...' : 'Login'}
             </Button>
+            
+            <div className="text-sm text-center text-gray-600 mt-4">
+              <p>Demo credentials:</p>
+              <p>Username: <strong>admin</strong></p>
+              <p>Password: <strong>admin123</strong></p>
+            </div>
           </form>
-          <div className="mt-4 text-center text-sm text-gray-600">
-            Demo credentials: admin / admin123
-          </div>
         </CardContent>
       </Card>
     </div>

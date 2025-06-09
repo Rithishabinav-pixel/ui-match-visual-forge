@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Project, CreateProjectRequest, TimelineStep, ClientFeedback } from '@/types/project';
 import { useToast } from '@/hooks/use-toast';
+import { useImageUpload } from '@/hooks/useImageUpload';
 
 export const useProjects = () => {
   return useQuery({
@@ -59,6 +60,7 @@ export const useProject = (id: string) => {
 export const useCreateProject = () => {
   const queryClient = useQueryClient();
   const { toast } = useToast();
+  const { uploadImages } = useImageUpload();
 
   return useMutation({
     mutationFn: async (projectData: CreateProjectRequest): Promise<Project> => {
@@ -69,37 +71,7 @@ export const useCreateProject = () => {
       
       if (projectData.gallery_images && projectData.gallery_images.length > 0) {
         console.log('Uploading', projectData.gallery_images.length, 'images...');
-        
-        const uploadPromises = projectData.gallery_images.map(async (file, index) => {
-          const fileExt = file.name.split('.').pop();
-          const fileName = `${Date.now()}-${index}.${fileExt}`;
-          
-          console.log('Uploading file:', fileName);
-          
-          const { data, error } = await supabase.storage
-            .from('project-images')
-            .upload(fileName, file, {
-              cacheControl: '3600',
-              upsert: false
-            });
-
-          if (error) {
-            console.error('Storage upload error:', error);
-            throw new Error(`Image upload failed: ${error.message}`);
-          }
-
-          console.log('Upload successful:', data);
-
-          const { data: urlData } = supabase.storage
-            .from('project-images')
-            .getPublicUrl(data.path);
-
-          console.log('Public URL generated:', urlData.publicUrl);
-          return urlData.publicUrl;
-        });
-
-        imageUrls = await Promise.all(uploadPromises);
-        console.log('All images uploaded successfully:', imageUrls);
+        imageUrls = await uploadImages(projectData.gallery_images);
       }
 
       // Prepare data for database insertion - cast our types to Json for Supabase

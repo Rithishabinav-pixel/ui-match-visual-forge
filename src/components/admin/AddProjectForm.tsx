@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -22,6 +21,7 @@ import { CalendarIcon, Plus, Trash2, Upload, Star, Loader2 } from 'lucide-react'
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useCreateProject } from '@/hooks/useProjects';
+import { useImageUpload } from '@/hooks/useImageUpload';
 import { CreateProjectRequest, TimelineStep, ClientFeedback } from '@/types/project';
 
 const projectSchema = z.object({
@@ -55,6 +55,7 @@ export const AddProjectForm = () => {
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
 
   const createProject = useCreateProject();
+  const { isUploading } = useImageUpload();
 
   const form = useForm<ProjectFormData>({
     resolver: zodResolver(projectSchema),
@@ -133,6 +134,8 @@ export const AddProjectForm = () => {
     setClientFeedback({ name: '', designation: '', company: '', testimonial: '', rating: 5 });
     setSelectedImages([]);
   };
+
+  const isSubmitting = createProject.isPending || isUploading;
 
   return (
     <div className="p-6">
@@ -451,10 +454,10 @@ export const AddProjectForm = () => {
                 <div className="mt-4">
                   <label htmlFor="images" className="cursor-pointer">
                     <span className="mt-2 block text-sm font-medium text-gray-900">
-                      Upload images
+                      {isUploading ? 'Uploading images...' : 'Upload images'}
                     </span>
                     <span className="mt-1 block text-sm text-gray-600">
-                      PNG, JPG, GIF up to 10MB
+                      PNG, JPG, GIF up to 10MB each
                     </span>
                   </label>
                   <input
@@ -464,6 +467,7 @@ export const AddProjectForm = () => {
                     accept="image/*"
                     className="hidden"
                     onChange={handleImageUpload}
+                    disabled={isUploading}
                   />
                 </div>
               </div>
@@ -476,11 +480,13 @@ export const AddProjectForm = () => {
                         src={URL.createObjectURL(image)}
                         alt={`Preview ${index}`}
                         className="w-full h-24 object-cover rounded-lg"
+                        onLoad={() => URL.revokeObjectURL(URL.createObjectURL(image))}
                       />
                       <button
                         type="button"
                         onClick={() => setSelectedImages(selectedImages.filter((_, i) => i !== index))}
-                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1"
+                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                        disabled={isUploading}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -705,12 +711,12 @@ export const AddProjectForm = () => {
             <Button 
               type="submit" 
               className="bg-[rgba(217,37,70,1)] hover:bg-[rgba(217,37,70,0.9)] px-8"
-              disabled={createProject.isPending}
+              disabled={isSubmitting}
             >
-              {createProject.isPending ? (
+              {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Creating Project...
+                  {isUploading ? 'Uploading Images...' : 'Creating Project...'}
                 </>
               ) : (
                 'Submit Project'
@@ -726,7 +732,7 @@ export const AddProjectForm = () => {
                 setSelectedImages([]);
               }}
               className="px-8"
-              disabled={createProject.isPending}
+              disabled={isSubmitting}
             >
               Reset Form
             </Button>
