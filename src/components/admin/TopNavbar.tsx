@@ -25,7 +25,6 @@ export const TopNavbar = () => {
   const getPageTitle = () => {
     switch (location.pathname) {
       case '/admin':
-      case '/admin/dashboard':
         return 'Dashboard';
       case '/admin/projects':
         return 'Projects';

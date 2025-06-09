@@ -17,7 +17,7 @@ export const AdminLogin = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/admin/dashboard');
+      navigate('/admin');
     }
   }, [isAuthenticated, navigate]);
 
@@ -28,7 +28,7 @@ export const AdminLogin = () => {
     try {
       const result = await login(username, password);
       if (result.success) {
-        navigate('/admin/dashboard');
+        navigate('/admin');
       }
     } catch (error) {
       console.error('Login error:', error);
