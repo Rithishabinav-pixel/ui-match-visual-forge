@@ -30,7 +30,7 @@ export const useProject = (id: string) => {
         .from('projects')
         .select('*')
         .eq('id', id)
-        .single();
+        .maybeSingle();
 
       if (error) {
         throw new Error(error.message);

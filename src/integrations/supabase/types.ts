@@ -9,7 +9,81 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      projects: {
+        Row: {
+          button_link: string | null
+          button_text: string | null
+          client_feedback: Json | null
+          client_name: string
+          completion_date: string | null
+          created_at: string
+          cta_subtitle: string | null
+          cta_title: string | null
+          gallery_images: string[]
+          highlights: string[]
+          id: string
+          location: string | null
+          objectives: string | null
+          overview: string | null
+          status: string[]
+          subtitle: string | null
+          timeline_steps: Json
+          title: string
+          type: string
+          unit_sizes: string | null
+          unit_types: string | null
+          updated_at: string
+        }
+        Insert: {
+          button_link?: string | null
+          button_text?: string | null
+          client_feedback?: Json | null
+          client_name: string
+          completion_date?: string | null
+          created_at?: string
+          cta_subtitle?: string | null
+          cta_title?: string | null
+          gallery_images?: string[]
+          highlights?: string[]
+          id?: string
+          location?: string | null
+          objectives?: string | null
+          overview?: string | null
+          status?: string[]
+          subtitle?: string | null
+          timeline_steps?: Json
+          title: string
+          type: string
+          unit_sizes?: string | null
+          unit_types?: string | null
+          updated_at?: string
+        }
+        Update: {
+          button_link?: string | null
+          button_text?: string | null
+          client_feedback?: Json | null
+          client_name?: string
+          completion_date?: string | null
+          created_at?: string
+          cta_subtitle?: string | null
+          cta_title?: string | null
+          gallery_images?: string[]
+          highlights?: string[]
+          id?: string
+          location?: string | null
+          objectives?: string | null
+          overview?: string | null
+          status?: string[]
+          subtitle?: string | null
+          timeline_steps?: Json
+          title?: string
+          type?: string
+          unit_sizes?: string | null
+          unit_types?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
