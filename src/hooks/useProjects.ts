@@ -17,11 +17,11 @@ export const useProjects = () => {
         throw new Error(error.message);
       }
 
-      // Cast the Json types to our TypeScript interfaces
+      // Cast the Json types to our TypeScript interfaces through unknown
       return (data || []).map(project => ({
         ...project,
-        timeline_steps: project.timeline_steps as TimelineStep[],
-        client_feedback: project.client_feedback as ClientFeedback,
+        timeline_steps: project.timeline_steps as unknown as TimelineStep[],
+        client_feedback: project.client_feedback as unknown as ClientFeedback,
       }));
     },
   });
@@ -45,11 +45,11 @@ export const useProject = (id: string) => {
         return null;
       }
 
-      // Cast the Json types to our TypeScript interfaces
+      // Cast the Json types to our TypeScript interfaces through unknown
       return {
         ...data,
-        timeline_steps: data.timeline_steps as TimelineStep[],
-        client_feedback: data.client_feedback as ClientFeedback,
+        timeline_steps: data.timeline_steps as unknown as TimelineStep[],
+        client_feedback: data.client_feedback as unknown as ClientFeedback,
       };
     },
     enabled: !!id,
@@ -121,11 +121,11 @@ export const useCreateProject = () => {
         throw new Error(error.message);
       }
 
-      // Cast the returned data back to our Project type
+      // Cast the returned data back to our Project type through unknown
       return {
         ...data,
-        timeline_steps: data.timeline_steps as TimelineStep[],
-        client_feedback: data.client_feedback as ClientFeedback,
+        timeline_steps: data.timeline_steps as unknown as TimelineStep[],
+        client_feedback: data.client_feedback as unknown as ClientFeedback,
       };
     },
     onSuccess: () => {
