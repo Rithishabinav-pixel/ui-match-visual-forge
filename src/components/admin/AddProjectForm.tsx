@@ -104,7 +104,22 @@ export const AddProjectForm = () => {
 
   const onSubmit = async (data: ProjectFormData) => {
     const projectData: CreateProjectRequest = {
-      ...data,
+      title: data.title,
+      subtitle: data.subtitle,
+      client_name: data.client_name,
+      status: data.status,
+      type: data.type,
+      overview: data.overview,
+      objectives: data.objectives,
+      highlights: data.highlights,
+      location: data.location,
+      completion_date: data.completion_date,
+      unit_types: data.unit_types,
+      unit_sizes: data.unit_sizes,
+      cta_title: data.cta_title,
+      cta_subtitle: data.cta_subtitle,
+      button_text: data.button_text,
+      button_link: data.button_link,
       gallery_images: selectedImages,
       timeline_steps: timelineSteps,
       client_feedback: clientFeedback,
@@ -516,7 +531,7 @@ export const AddProjectForm = () => {
                     
                     <Select
                       value={step.status}
-                      onValueChange={(value) => {
+                      onValueChange={(value: 'completed' | 'current' | 'upcoming') => {
                         const newSteps = [...timelineSteps];
                         newSteps[index].status = value;
                         setTimelineSteps(newSteps);
@@ -558,7 +573,7 @@ export const AddProjectForm = () => {
                     />
                     <Select
                       value={step.unit}
-                      onValueChange={(value) => {
+                      onValueChange={(value: 'days' | 'weeks' | 'months') => {
                         const newSteps = [...timelineSteps];
                         newSteps[index].unit = value;
                         setTimelineSteps(newSteps);
@@ -629,7 +644,7 @@ export const AddProjectForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
-                name="ctaTitle"
+                name="cta_title"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>CTA Title</FormLabel>
@@ -643,7 +658,7 @@ export const AddProjectForm = () => {
 
               <FormField
                 control={form.control}
-                name="ctaSubtitle"
+                name="cta_subtitle"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>CTA Subtitle</FormLabel>
@@ -657,7 +672,7 @@ export const AddProjectForm = () => {
 
               <FormField
                 control={form.control}
-                name="buttonText"
+                name="button_text"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Button Text</FormLabel>
@@ -671,7 +686,7 @@ export const AddProjectForm = () => {
 
               <FormField
                 control={form.control}
-                name="buttonLink"
+                name="button_link"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Button Link</FormLabel>
