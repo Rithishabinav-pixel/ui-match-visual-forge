@@ -63,9 +63,26 @@ export const useUpdateProject = () => {
 
   return useMutation({
     mutationFn: async ({ projectId, updateData }: { projectId: string; updateData: Partial<Project> }) => {
+      // Transform the data to match Supabase's expected types
+      const transformedData = { ...updateData };
+      
+      // Cast complex types to Json for Supabase
+      if (updateData.client_feedback) {
+        (transformedData as any).client_feedback = updateData.client_feedback as any;
+      }
+      
+      if (updateData.timeline_steps) {
+        (transformedData as any).timeline_steps = updateData.timeline_steps as any;
+      }
+
+      // Convert completion_date to string if it's a Date object
+      if (updateData.completion_date && updateData.completion_date instanceof Date) {
+        (transformedData as any).completion_date = updateData.completion_date.toISOString();
+      }
+
       const { error } = await supabase
         .from('projects')
-        .update(updateData)
+        .update(transformedData)
         .eq('id', projectId);
 
       if (error) {
