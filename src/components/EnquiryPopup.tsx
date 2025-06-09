@@ -5,23 +5,24 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useToast } from '@/hooks/use-toast';
+import { useSubmitProjectEnquiry } from '@/hooks/useSubmitEnquiry';
 
 interface EnquiryPopupProps {
   isOpen: boolean;
   onClose: () => void;
   projectTitle?: string;
+  projectId?: string;
 }
 
-export const EnquiryPopup = ({ isOpen, onClose, projectTitle }: EnquiryPopupProps) => {
-  const { toast } = useToast();
+export const EnquiryPopup = ({ isOpen, onClose, projectTitle, projectId }: EnquiryPopupProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const submitEnquiry = useSubmitProjectEnquiry();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -36,43 +37,19 @@ export const EnquiryPopup = ({ isOpen, onClose, projectTitle }: EnquiryPopupProp
     
     // Basic validation
     if (!formData.name || !formData.email || !formData.phone || !formData.message) {
-      toast({
-        title: "Error",
-        description: "Please fill in all fields before submitting.",
-        variant: "destructive",
-      });
       return;
     }
 
-    setIsSubmitting(true);
-
     try {
-      // Create email content
-      const subject = projectTitle ? `Enquiry for ${projectTitle}` : 'Project Enquiry';
-      const emailBody = `Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Project: ${projectTitle || 'General Enquiry'}
-Message: ${formData.message}`;
-
-      // Create mailto link with better encoding
-      const mailtoLink = `mailto:rithish.pixel@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-      
-      // Try to open email client with better browser support
-      const mailtoElement = document.createElement('a');
-      mailtoElement.href = mailtoLink;
-      mailtoElement.style.display = 'none';
-      document.body.appendChild(mailtoElement);
-      mailtoElement.click();
-      document.body.removeChild(mailtoElement);
-
-      // Show success message
-      toast({
-        title: "Enquiry Sent!",
-        description: "Your enquiry has been prepared for sending. Please complete the process in your email client.",
+      await submitEnquiry.mutateAsync({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        project_id: projectId,
       });
 
-      // Reset form and close popup
+      // Reset form and close popup on success
       setFormData({
         name: '',
         email: '',
@@ -81,14 +58,7 @@ Message: ${formData.message}`;
       });
       onClose();
     } catch (error) {
-      console.error('Error submitting enquiry:', error);
-      toast({
-        title: "Error",
-        description: "There was an issue preparing your enquiry. Please try again or contact us directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
+      // Error handling is done in the mutation hook
     }
   };
 
@@ -101,7 +71,7 @@ Message: ${formData.message}`;
           <button
             onClick={onClose}
             className="absolute right-4 top-4 text-gray-500 hover:text-gray-700 transition-colors"
-            disabled={isSubmitting}
+            disabled={submitEnquiry.isPending}
           >
             <X className="w-6 h-6" />
           </button>
@@ -129,7 +99,7 @@ Message: ${formData.message}`;
                   placeholder="Enter your full name"
                   className="pl-10"
                   required
-                  disabled={isSubmitting}
+                  disabled={submitEnquiry.isPending}
                 />
               </div>
             </div>
@@ -149,7 +119,7 @@ Message: ${formData.message}`;
                   placeholder="Enter your email address"
                   className="pl-10"
                   required
-                  disabled={isSubmitting}
+                  disabled={submitEnquiry.isPending}
                 />
               </div>
             </div>
@@ -169,7 +139,7 @@ Message: ${formData.message}`;
                   placeholder="Enter your phone number"
                   className="pl-10"
                   required
-                  disabled={isSubmitting}
+                  disabled={submitEnquiry.isPending}
                 />
               </div>
             </div>
@@ -189,7 +159,7 @@ Message: ${formData.message}`;
                   rows={4}
                   className="w-full pl-10 pt-3 pr-3 pb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[rgba(217,37,70,1)] focus:border-transparent resize-none disabled:bg-gray-50 disabled:cursor-not-allowed"
                   required
-                  disabled={isSubmitting}
+                  disabled={submitEnquiry.isPending}
                 />
               </div>
             </div>
@@ -197,11 +167,11 @@ Message: ${formData.message}`;
             <Button 
               type="submit" 
               className="w-full bg-[rgba(217,37,70,1)] hover:bg-[rgba(217,37,70,0.9)] text-white py-3 text-lg"
-              disabled={isSubmitting}
+              disabled={submitEnquiry.isPending}
             >
-              {isSubmitting ? (
+              {submitEnquiry.isPending ? (
                 <>
-                  Preparing Email...
+                  Submitting...
                 </>
               ) : (
                 <>
