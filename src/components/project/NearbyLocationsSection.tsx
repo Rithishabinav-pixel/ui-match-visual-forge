@@ -77,7 +77,7 @@ export const NearbyLocationsSection = ({
               
               {/* Places List */}
               <div className="space-y-3">
-                {category.places.map((place, placeIndex) => (
+                {(category.places || []).map((place, placeIndex) => (
                   <div key={placeIndex} className="flex items-center">
                     {/* Custom list icon */}
                     <div className="mr-3 flex-shrink-0">
