@@ -21,11 +21,11 @@ interface LocationCategory {
 export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSectionProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Default data structure based on the screenshot
+  // Default data structure with the correct icons
   const defaultCategories: LocationCategory[] = [
     {
       title: "Hospitals",
-      icon: "🏥",
+      icon: "/lovable-uploads/f9202eb7-71bd-4462-b165-5b8ba7b254ac.png",
       items: [
         { name: "Apollo Medical Centre", distance: "3.1 km" },
         { name: "MGM Healthcare", distance: "4.2 km" },
@@ -34,7 +34,7 @@ export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSecti
     },
     {
       title: "Schools & Colleges",
-      icon: "🎓",
+      icon: "/lovable-uploads/01046858-8bfc-4640-b661-6e1b79c11099.png",
       items: [
         { name: "Anna University", distance: "1.3 km" },
         { name: "IIT", distance: "1.5 km" },
@@ -43,7 +43,7 @@ export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSecti
     },
     {
       title: "IT Parks",
-      icon: "🏢",
+      icon: "/lovable-uploads/ed52daa2-9c0a-49f5-94c2-a446deaaa8bb.png",
       items: [
         { name: "Tidel Park", distance: "5.6 km" },
         { name: "Ramanujam IT City", distance: "5.5 km" },
@@ -52,7 +52,7 @@ export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSecti
     },
     {
       title: "Leisure",
-      icon: "🎪",
+      icon: "/lovable-uploads/3d471bc3-c20f-4a67-b2bf-906862137b8c.png",
       items: [
         { name: "ITC Grand Chola", distance: "2 km" },
         { name: "Phoenix Mall", distance: "5 km" },
@@ -97,10 +97,12 @@ export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSecti
               <Card key={index} className="border border-[rgba(217,37,70,1)] rounded-lg bg-white hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-8 h-8 flex items-center justify-center text-[rgba(217,37,70,1)]">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <rect width="24" height="24" rx="4" />
-                      </svg>
+                    <div className="w-8 h-8 flex items-center justify-center">
+                      <img 
+                        src={category.icon} 
+                        alt={category.title}
+                        className="w-6 h-6 object-contain"
+                      />
                     </div>
                     <h3 className="text-xl font-bold text-[rgba(217,37,70,1)]">
                       {category.title}
@@ -110,10 +112,11 @@ export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSecti
                     {category.items.map((item, itemIndex) => (
                       <div key={itemIndex} className="flex items-start gap-3">
                         <div className="w-4 h-4 mt-0.5 flex-shrink-0">
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <circle cx="8" cy="8" r="2" fill="#D92546"/>
-                            <circle cx="8" cy="8" r="6" stroke="#D92546" strokeWidth="1"/>
-                          </svg>
+                          <img 
+                            src="/lovable-uploads/cf2c111e-2a85-4fba-af35-2d35a8e86479.png" 
+                            alt="Location marker"
+                            className="w-4 h-4 object-contain"
+                          />
                         </div>
                         <div className="flex-1 text-sm">
                           <span className="text-gray-700 font-medium">{item.name}</span>

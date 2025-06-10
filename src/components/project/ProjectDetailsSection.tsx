@@ -11,7 +11,7 @@ interface ProjectDetailsSectionProps {
 export const ProjectDetailsSection = ({ projectDetails, title, overview }: ProjectDetailsSectionProps) => {
   return (
     <section className="py-16 bg-white max-md:py-8">
-      <div className="max-w-6xl mx-auto px-5">
+      <div className="w-full max-w-[1530px] mx-auto px-5">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-[rgba(40,45,64,1)] mb-6 max-md:text-3xl">
             Lorem ipsum dolor sit amet, <span className="text-[rgba(217,37,70,1)]">consectetur adipiscing elit</span>
