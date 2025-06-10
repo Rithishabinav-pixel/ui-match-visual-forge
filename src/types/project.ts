@@ -1,4 +1,5 @@
 
+
 export interface Project {
   id: string;
   title: string;
@@ -83,6 +84,15 @@ export interface ProjectDetails {
   highlights?: string[];
   specifications?: string[];
   amenities?: string[];
+  // Additional properties used by components
+  approval_status?: string;
+  floors?: string;
+  rera_number?: string;
+  possession_date?: string;
+  total_area?: string;
+  total_towers?: string;
+  total_units?: string;
+  builder?: string;
 }
 
 export interface AmenitiesSection {
@@ -171,6 +181,10 @@ export interface ProgressImage {
   url: string;
   caption?: string;
   date?: string;
+  // Additional properties used by components
+  image: string;
+  title: string;
+  description?: string;
 }
 
 export interface LocationDetails {
@@ -180,6 +194,9 @@ export interface LocationDetails {
     lng: number;
   };
   nearby_locations?: NearbyLocationCategory[];
+  // Additional properties used by components
+  nearby_landmarks?: string[];
+  connectivity?: string[];
 }
 
 export interface FAQ {
@@ -218,3 +235,4 @@ export interface CreateProjectRequest {
   brochure_section?: BrochureDownloadSection;
   gallery_section?: GallerySection;
 }
+
