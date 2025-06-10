@@ -15,7 +15,15 @@ import {
   BrochureSection,
   ProgressImage,
   ProjectSpecifications,
-  LocationDetails
+  LocationDetails,
+  HeroSection,
+  ProjectInfoStat,
+  ProjectDetailSection,
+  AmenitiesSection,
+  NearbyLocationsSection,
+  SpecificationsSection,
+  FloorPlansSection,
+  BrochureDownloadSection
 } from '@/types/project';
 import { useToast } from '@/hooks/use-toast';
 import { useImageUpload } from '@/hooks/useImageUpload';
@@ -48,6 +56,14 @@ export const useProjects = () => {
         progress_gallery: ((project.progress_gallery || []) as unknown) as ProgressImage[],
         specifications: ((project.specifications || {}) as unknown) as ProjectSpecifications,
         location_details: ((project.location_details || {}) as unknown) as LocationDetails,
+        // New dynamic sections
+        hero_section: ((project.hero_section || {}) as unknown) as HeroSection,
+        project_info_stats: ((project.project_info_stats || []) as unknown) as ProjectInfoStat[],
+        project_detail_section: ((project.project_detail_section || {}) as unknown) as ProjectDetailSection,
+        amenities_section: ((project.amenities_section || { amenities: [] }) as unknown) as AmenitiesSection,
+        nearby_locations_section: ((project.nearby_locations_section || { categories: [] }) as unknown) as NearbyLocationsSection,
+        specifications_section: ((project.specifications_section || { specifications: [] }) as unknown) as SpecificationsSection,
+        floor_plans_section: ((project.floor_plans_section || { floor_plans: [] }) as unknown) as FloorPlansSection,
       }));
     },
   });
@@ -86,6 +102,14 @@ export const useProject = (id: string) => {
         progress_gallery: ((data.progress_gallery || []) as unknown) as ProgressImage[],
         specifications: ((data.specifications || {}) as unknown) as ProjectSpecifications,
         location_details: ((data.location_details || {}) as unknown) as LocationDetails,
+        // New dynamic sections
+        hero_section: ((data.hero_section || {}) as unknown) as HeroSection,
+        project_info_stats: ((data.project_info_stats || []) as unknown) as ProjectInfoStat[],
+        project_detail_section: ((data.project_detail_section || {}) as unknown) as ProjectDetailSection,
+        amenities_section: ((data.amenities_section || { amenities: [] }) as unknown) as AmenitiesSection,
+        nearby_locations_section: ((data.nearby_locations_section || { categories: [] }) as unknown) as NearbyLocationsSection,
+        specifications_section: ((data.specifications_section || { specifications: [] }) as unknown) as SpecificationsSection,
+        floor_plans_section: ((data.floor_plans_section || { floor_plans: [] }) as unknown) as FloorPlansSection,
       };
     },
     enabled: !!id,
@@ -128,15 +152,25 @@ export const useCreateProject = () => {
         button_text: projectData.button_text,
         button_link: projectData.button_link,
         gallery_images: imageUrls,
-        timeline_steps: projectData.timeline_steps as any, // Cast to Json for Supabase
-        client_feedback: projectData.client_feedback as any, // Cast to Json for Supabase
+        timeline_steps: projectData.timeline_steps as any,
+        client_feedback: projectData.client_feedback as any,
+        // Store new dynamic sections
+        hero_section: projectData.hero_section as any,
+        project_info_stats: projectData.project_info_stats as any,
+        project_detail_section: projectData.project_detail_section as any,
+        amenities_section: projectData.amenities_section as any,
+        nearby_locations_section: projectData.nearby_locations_section as any,
+        specifications_section: projectData.specifications_section as any,
+        floor_plans_section: projectData.floor_plans_section as any,
+        brochure_section: projectData.brochure_section as any,
+        gallery_section: projectData.gallery_section as any,
       };
 
       console.log('Inserting project data:', dbData);
 
       const { data, error } = await supabase
         .from('projects')
-        .insert(dbData) // Insert single object, not array
+        .insert(dbData)
         .select()
         .single();
 
@@ -162,6 +196,14 @@ export const useCreateProject = () => {
         progress_gallery: ((data.progress_gallery || []) as unknown) as ProgressImage[],
         specifications: ((data.specifications || {}) as unknown) as ProjectSpecifications,
         location_details: ((data.location_details || {}) as unknown) as LocationDetails,
+        // New dynamic sections
+        hero_section: ((data.hero_section || {}) as unknown) as HeroSection,
+        project_info_stats: ((data.project_info_stats || []) as unknown) as ProjectInfoStat[],
+        project_detail_section: ((data.project_detail_section || {}) as unknown) as ProjectDetailSection,
+        amenities_section: ((data.amenities_section || { amenities: [] }) as unknown) as AmenitiesSection,
+        nearby_locations_section: ((data.nearby_locations_section || { categories: [] }) as unknown) as NearbyLocationsSection,
+        specifications_section: ((data.specifications_section || { specifications: [] }) as unknown) as SpecificationsSection,
+        floor_plans_section: ((data.floor_plans_section || { floor_plans: [] }) as unknown) as FloorPlansSection,
       };
     },
     onSuccess: () => {

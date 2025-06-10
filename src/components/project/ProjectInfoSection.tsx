@@ -7,39 +7,28 @@ interface ProjectInfoSectionProps {
 }
 
 export const ProjectInfoSection = ({ project }: ProjectInfoSectionProps) => {
-  const details = project.project_details;
-  
-  // Default info items that can be dynamically populated
-  const infoItems = [
-    {
-      title: details?.approval_status || 'CMDA Approved',
-      description: 'Lorem ipsum odor amet, consectetur'
-    },
-    {
-      title: project.unit_sizes || '1100 - 2000 sq.ft',
-      description: 'Lorem ipsum odor amet, consectetur'
-    },
-    {
-      title: details?.floors || 'Stilt +3',
-      description: 'Lorem ipsum odor amet, consectetur'
-    },
-    {
-      title: project.unit_types || '2 & 3 BHK',
-      description: 'Lorem ipsum odor amet, consectetur'
-    }
-  ];
+  // Use project_info_stats if available, otherwise create default stats
+  const stats = project.project_info_stats && project.project_info_stats.length > 0 
+    ? project.project_info_stats 
+    : [
+        { label: "Project Type", value: project.type || "Residential" },
+        { label: "Status", value: Array.isArray(project.status) ? project.status.join(", ") : project.status || "Ongoing" },
+        { label: "Location", value: project.location || "Not specified" },
+        { label: "Unit Types", value: project.unit_types || "Not specified" },
+        { label: "Unit Sizes", value: project.unit_sizes || "Not specified" },
+      ];
 
   return (
-    <section className="bg-[rgba(40,45,64,1)] py-12 lg:py-16">
-      <div className="max-w-7xl mx-auto px-5">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {infoItems.map((item, index) => (
-            <div key={index} className="text-center">
-              <h3 className="text-white text-xl lg:text-2xl font-bold mb-3">
-                {item.title}
+    <section className="py-16 bg-white max-md:py-8">
+      <div className="max-w-6xl mx-auto px-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center p-6 bg-gray-50 rounded-lg">
+              <h3 className="text-sm font-medium text-gray-600 mb-2 uppercase tracking-wide">
+                {stat.label}
               </h3>
-              <p className="text-gray-300 text-sm lg:text-base leading-relaxed">
-                {item.description}
+              <p className="text-lg font-bold text-[rgba(40,45,64,1)]">
+                {stat.value}
               </p>
             </div>
           ))}

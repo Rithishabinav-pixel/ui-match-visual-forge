@@ -52,24 +52,26 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
+      {/* Hero Section - using dynamic hero_section */}
       <ProjectHeroSection 
         project={project} 
         onEnquiryOpen={() => setIsEnquiryOpen(true)} 
       />
 
-      {/* Project Info Section */}
+      {/* Project Info Section - using dynamic project_info_stats */}
       <ProjectInfoSection project={project} />
 
-      {/* Project Details Section - Added after Project Info */}
+      {/* Project Details Section - using dynamic project_detail_section */}
       <ProjectDetailsSection 
         projectDetails={project.project_details}
         title={project.title}
-        overview={project.overview}
+        overview={project.project_detail_section?.description || project.overview}
       />
 
-      {/* Amenities Section - Added after Project Details */}
-      {project.amenities && project.amenities.length > 0 ? (
+      {/* Amenities Section - using dynamic amenities_section */}
+      {project.amenities_section && project.amenities_section.amenities && project.amenities_section.amenities.length > 0 ? (
+        <AmenitiesSection amenities={project.amenities_section.amenities.map(name => ({ name }))} />
+      ) : project.amenities && project.amenities.length > 0 ? (
         <AmenitiesSection amenities={project.amenities} />
       ) : (
         <AmenitiesSection amenities={[]} />
@@ -80,16 +82,24 @@ const ProjectDetail = () => {
         <VideoSection videoSection={project.video_section} />
       )}
 
-      {/* Nearby Locations Section */}
-      <NearbyLocationsSection locationDetails={project.location_details} />
+      {/* Nearby Locations Section - using dynamic nearby_locations_section */}
+      <NearbyLocationsSection 
+        locationDetails={project.location_details}
+        nearbyLocationsSection={project.nearby_locations_section}
+      />
 
-      {/* Specifications Accordion Section */}
-      <SpecsAccordionSection specifications={project.specifications} />
+      {/* Specifications Accordion Section - using dynamic specifications_section */}
+      <SpecsAccordionSection 
+        specifications={project.specifications}
+        specificationsSection={project.specifications_section}
+      />
 
-      {/* Floor Plans Download Section */}
-      <FloorPlansDownloadSection floorPlans={project.floor_plans} />
+      {/* Floor Plans Download Section - using dynamic floor_plans_section */}
+      <FloorPlansDownloadSection 
+        floorPlans={project.floor_plans_section?.floor_plans || project.floor_plans}
+      />
 
-      {/* Brochure Download Section */}
+      {/* Brochure Download Section - using dynamic brochure_section */}
       <BrochureDownloadSection 
         brochureSection={project.brochure_section}
         projectId={project.id}
