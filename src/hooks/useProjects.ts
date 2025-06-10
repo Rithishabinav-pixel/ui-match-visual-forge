@@ -1,4 +1,3 @@
-
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { 
@@ -33,21 +32,21 @@ export const useProjects = () => {
         throw new Error(error.message);
       }
 
-      // Cast the Json types to our TypeScript interfaces through unknown
+      // Cast the Json types to our TypeScript interfaces with proper type checking
       return (data || []).map(project => ({
         ...project,
-        timeline_steps: project.timeline_steps as unknown as TimelineStep[],
-        client_feedback: project.client_feedback as unknown as ClientFeedback,
-        project_details: project.project_details as unknown as ProjectDetails,
-        video_section: project.video_section as unknown as VideoSection,
-        amenities: project.amenities as unknown as Amenity[],
-        faq_section: project.faq_section as unknown as FAQ[],
-        additional_gallery: project.additional_gallery as unknown as GallerySection[],
-        floor_plans: project.floor_plans as unknown as FloorPlan[],
-        brochure_section: project.brochure_section as unknown as BrochureSection,
-        progress_gallery: project.progress_gallery as unknown as ProgressImage[],
-        specifications: project.specifications as unknown as ProjectSpecifications,
-        location_details: project.location_details as unknown as LocationDetails,
+        timeline_steps: project.timeline_steps as TimelineStep[],
+        client_feedback: project.client_feedback as ClientFeedback,
+        project_details: (project.project_details || {}) as ProjectDetails,
+        video_section: (project.video_section || {}) as VideoSection,
+        amenities: (project.amenities || []) as Amenity[],
+        faq_section: (project.faq_section || []) as FAQ[],
+        additional_gallery: (project.additional_gallery || []) as GallerySection[],
+        floor_plans: (project.floor_plans || []) as FloorPlan[],
+        brochure_section: (project.brochure_section || {}) as BrochureSection,
+        progress_gallery: (project.progress_gallery || []) as ProgressImage[],
+        specifications: (project.specifications || {}) as ProjectSpecifications,
+        location_details: (project.location_details || {}) as LocationDetails,
       }));
     },
   });
@@ -71,21 +70,21 @@ export const useProject = (id: string) => {
         return null;
       }
 
-      // Cast the Json types to our TypeScript interfaces through unknown
+      // Cast the Json types to our TypeScript interfaces with proper type checking
       return {
         ...data,
-        timeline_steps: data.timeline_steps as unknown as TimelineStep[],
-        client_feedback: data.client_feedback as unknown as ClientFeedback,
-        project_details: data.project_details as unknown as ProjectDetails,
-        video_section: data.video_section as unknown as VideoSection,
-        amenities: data.amenities as unknown as Amenity[],
-        faq_section: data.faq_section as unknown as FAQ[],
-        additional_gallery: data.additional_gallery as unknown as GallerySection[],
-        floor_plans: data.floor_plans as unknown as FloorPlan[],
-        brochure_section: data.brochure_section as unknown as BrochureSection,
-        progress_gallery: data.progress_gallery as unknown as ProgressImage[],
-        specifications: data.specifications as unknown as ProjectSpecifications,
-        location_details: data.location_details as unknown as LocationDetails,
+        timeline_steps: data.timeline_steps as TimelineStep[],
+        client_feedback: data.client_feedback as ClientFeedback,
+        project_details: (data.project_details || {}) as ProjectDetails,
+        video_section: (data.video_section || {}) as VideoSection,
+        amenities: (data.amenities || []) as Amenity[],
+        faq_section: (data.faq_section || []) as FAQ[],
+        additional_gallery: (data.additional_gallery || []) as GallerySection[],
+        floor_plans: (data.floor_plans || []) as FloorPlan[],
+        brochure_section: (data.brochure_section || {}) as BrochureSection,
+        progress_gallery: (data.progress_gallery || []) as ProgressImage[],
+        specifications: (data.specifications || {}) as ProjectSpecifications,
+        location_details: (data.location_details || {}) as LocationDetails,
       };
     },
     enabled: !!id,
@@ -147,11 +146,21 @@ export const useCreateProject = () => {
 
       console.log('Project created successfully:', data);
 
-      // Cast the returned data back to our Project type through unknown
+      // Cast the returned data back to our Project type
       return {
         ...data,
-        timeline_steps: data.timeline_steps as unknown as TimelineStep[],
-        client_feedback: data.client_feedback as unknown as ClientFeedback,
+        timeline_steps: data.timeline_steps as TimelineStep[],
+        client_feedback: data.client_feedback as ClientFeedback,
+        project_details: (data.project_details || {}) as ProjectDetails,
+        video_section: (data.video_section || {}) as VideoSection,
+        amenities: (data.amenities || []) as Amenity[],
+        faq_section: (data.faq_section || []) as FAQ[],
+        additional_gallery: (data.additional_gallery || []) as GallerySection[],
+        floor_plans: (data.floor_plans || []) as FloorPlan[],
+        brochure_section: (data.brochure_section || {}) as BrochureSection,
+        progress_gallery: (data.progress_gallery || []) as ProgressImage[],
+        specifications: (data.specifications || {}) as ProjectSpecifications,
+        location_details: (data.location_details || {}) as LocationDetails,
       };
     },
     onSuccess: () => {
