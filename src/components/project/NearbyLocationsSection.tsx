@@ -81,7 +81,7 @@ export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSecti
 
   return (
     <section className="py-16 bg-gray-50 max-md:py-8">
-      <div className="max-w-6xl mx-auto px-5">
+      <div className="w-full max-w-[1530px] mx-auto px-5">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-[rgba(40,45,64,1)] mb-6 max-md:text-3xl">
             Lorem ipsum dolor sit amet, <span className="text-[rgba(217,37,70,1)]">consectetur adipiscing elit</span>
@@ -94,21 +94,30 @@ export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSecti
         <div className="relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {getCurrentCategories().map((category, index) => (
-              <Card key={index} className="border-2 border-[rgba(217,37,70,0.2)] rounded-lg">
+              <Card key={index} className="border border-[rgba(217,37,70,1)] rounded-lg bg-white hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-2xl">{category.icon}</span>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-8 h-8 flex items-center justify-center text-[rgba(217,37,70,1)]">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <rect width="24" height="24" rx="4" />
+                      </svg>
+                    </div>
                     <h3 className="text-xl font-bold text-[rgba(217,37,70,1)]">
                       {category.title}
                     </h3>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {category.items.map((item, itemIndex) => (
-                      <div key={itemIndex} className="flex items-center gap-2">
-                        <span className="text-[rgba(217,37,70,1)]">📍</span>
-                        <div className="flex-1">
-                          <span className="text-sm text-gray-700">{item.name}</span>
-                          <span className="text-sm text-gray-500 ml-1">- {item.distance}</span>
+                      <div key={itemIndex} className="flex items-start gap-3">
+                        <div className="w-4 h-4 mt-0.5 flex-shrink-0">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <circle cx="8" cy="8" r="2" fill="#D92546"/>
+                            <circle cx="8" cy="8" r="6" stroke="#D92546" strokeWidth="1"/>
+                          </svg>
+                        </div>
+                        <div className="flex-1 text-sm">
+                          <span className="text-gray-700 font-medium">{item.name}</span>
+                          <span className="text-gray-500"> - {item.distance}</span>
                         </div>
                       </div>
                     ))}
@@ -125,13 +134,13 @@ export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSecti
                 onClick={prevSlide}
                 variant="outline"
                 size="icon"
-                className="rounded-full"
+                className="rounded-full w-10 h-10 border-gray-300 hover:bg-gray-50"
                 disabled={currentSlide === 0}
               >
                 <ChevronLeft className="w-4 h-4" />
               </Button>
               
-              <span className="text-[rgba(217,37,70,1)] font-medium">
+              <span className="text-[rgba(217,37,70,1)] font-medium text-lg">
                 {currentSlide + 1} / {maxSlides}
               </span>
               
@@ -139,7 +148,7 @@ export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSecti
                 onClick={nextSlide}
                 variant="outline"
                 size="icon"
-                className="rounded-full"
+                className="rounded-full w-10 h-10 border-gray-300 hover:bg-gray-50"
                 disabled={currentSlide === maxSlides - 1}
               >
                 <ChevronRight className="w-4 h-4" />
