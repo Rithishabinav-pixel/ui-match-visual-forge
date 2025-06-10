@@ -7,7 +7,7 @@ import { EnquiryPopup } from '@/components/EnquiryPopup';
 import { useProject } from '@/hooks/useProjects';
 import { Footer } from '@/components/layout/Footer';
 import { ProjectHeroSection } from '@/components/project/ProjectHeroSection';
-import { ProjectDetailsSection } from '@/components/project/ProjectDetailsSection';
+import { ProjectInfoSection } from '@/components/project/ProjectInfoSection';
 import { VideoSection } from '@/components/project/VideoSection';
 import { AmenitiesSection } from '@/components/project/AmenitiesSection';
 import { SpecificationsSection } from '@/components/project/SpecificationsSection';
@@ -56,8 +56,8 @@ const ProjectDetail = () => {
         onEnquiryOpen={() => setIsEnquiryOpen(true)} 
       />
 
-      {/* Project Details Section */}
-      <ProjectDetailsSection project={project} />
+      {/* Project Info Section */}
+      <ProjectInfoSection project={project} />
 
       {/* Video Section */}
       {project.video_section?.video_url && (

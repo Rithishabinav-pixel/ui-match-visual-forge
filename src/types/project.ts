@@ -63,6 +63,8 @@ export interface ProjectDetails {
   parking?: string;
   builder?: string;
   architect?: string;
+  approval_status?: string;
+  floors?: string;
 }
 
 export interface VideoSection {
