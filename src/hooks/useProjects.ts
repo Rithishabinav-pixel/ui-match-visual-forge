@@ -64,6 +64,7 @@ export const useProjects = () => {
         nearby_locations_section: ((project.nearby_locations_section || { categories: [] }) as unknown) as NearbyLocationsSection,
         specifications_section: ((project.specifications_section || { specifications: [] }) as unknown) as SpecificationsSection,
         floor_plans_section: ((project.floor_plans_section || { floor_plans: [] }) as unknown) as FloorPlansSection,
+        gallery_section: ((project.gallery_section || { images: [] }) as unknown) as GallerySection,
       }));
     },
   });
@@ -110,6 +111,7 @@ export const useProject = (id: string) => {
         nearby_locations_section: ((data.nearby_locations_section || { categories: [] }) as unknown) as NearbyLocationsSection,
         specifications_section: ((data.specifications_section || { specifications: [] }) as unknown) as SpecificationsSection,
         floor_plans_section: ((data.floor_plans_section || { floor_plans: [] }) as unknown) as FloorPlansSection,
+        gallery_section: ((data.gallery_section || { images: [] }) as unknown) as GallerySection,
       };
     },
     enabled: !!id,
@@ -204,6 +206,7 @@ export const useCreateProject = () => {
         nearby_locations_section: ((data.nearby_locations_section || { categories: [] }) as unknown) as NearbyLocationsSection,
         specifications_section: ((data.specifications_section || { specifications: [] }) as unknown) as SpecificationsSection,
         floor_plans_section: ((data.floor_plans_section || { floor_plans: [] }) as unknown) as FloorPlansSection,
+        gallery_section: ((data.gallery_section || { images: [] }) as unknown) as GallerySection,
       };
     },
     onSuccess: () => {

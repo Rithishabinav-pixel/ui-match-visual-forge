@@ -122,6 +122,7 @@ export type Database = {
           floor_plans: Json | null
           floor_plans_section: Json | null
           gallery_images: string[]
+          gallery_section: Json | null
           hero_description: string | null
           hero_image: string | null
           hero_section: Json | null
@@ -166,6 +167,7 @@ export type Database = {
           floor_plans?: Json | null
           floor_plans_section?: Json | null
           gallery_images?: string[]
+          gallery_section?: Json | null
           hero_description?: string | null
           hero_image?: string | null
           hero_section?: Json | null
@@ -210,6 +212,7 @@ export type Database = {
           floor_plans?: Json | null
           floor_plans_section?: Json | null
           gallery_images?: string[]
+          gallery_section?: Json | null
           hero_description?: string | null
           hero_image?: string | null
           hero_section?: Json | null
