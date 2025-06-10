@@ -76,7 +76,7 @@ export const BrochureDownloadSection = ({
 
   return (
     <section className="py-16 bg-gray-50 max-md:py-8">
-      <div className="max-w-6xl mx-auto px-5">
+      <div className="max-w-[1530px] mx-auto px-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Image */}
           <div className="order-2 lg:order-1">

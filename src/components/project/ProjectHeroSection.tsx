@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone } from 'lucide-react';
@@ -18,7 +19,7 @@ export const ProjectHeroSection = ({ project, onEnquiryOpen }: ProjectHeroSectio
   return (
     <section className="relative min-h-[600px] flex items-center">
       {/* Two-column layout matching the reference design */}
-      <div className="w-full max-w-7xl mx-auto px-5">
+      <div className="w-full max-w-[1530px] mx-auto px-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Left column - Content */}
           <div className="text-white z-10 relative">

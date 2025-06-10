@@ -39,7 +39,7 @@ export const NearbyLocationsSection = ({
 
   return (
     <section className="py-16 bg-white">
-      <div className="max-w-6xl mx-auto px-5">
+      <div className="max-w-[1530px] mx-auto px-5">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800 mb-6">
             Lorem ipsum dolor sit amet, <span className="text-red-500 italic">consectetur adipiscing elit</span>
