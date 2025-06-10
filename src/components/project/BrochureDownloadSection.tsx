@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { BrochureSection as BrochureSectionType } from '@/types/project';
-import { useSubmitEnquiry } from '@/hooks/useSubmitEnquiry';
+import { useSubmitProjectEnquiry } from '@/hooks/useSubmitEnquiry';
 import { useToast } from '@/hooks/use-toast';
 
 interface BrochureDownloadSectionProps {
@@ -26,7 +26,7 @@ export const BrochureDownloadSection = ({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  const { submitEnquiry } = useSubmitEnquiry();
+  const { mutate: submitEnquiry } = useSubmitProjectEnquiry();
   const { toast } = useToast();
 
   const handleInputChange = (field: string, value: string) => {
@@ -48,23 +48,18 @@ export const BrochureDownloadSection = ({
 
     setIsSubmitting(true);
     try {
-      await submitEnquiry({
+      submitEnquiry({
         name: formData.name,
         email: formData.email,
         phone: formData.mobile,
         message: `Brochure download request for ${projectTitle}`,
-        projectId
+        project_id: projectId
       });
 
       // If brochure URL exists, open it
       if (brochureSection?.brochure_url) {
         window.open(brochureSection.brochure_url, '_blank');
       }
-
-      toast({
-        title: "Success",
-        description: "Thank you! Your brochure download will begin shortly.",
-      });
 
       // Reset form
       setFormData({ name: '', mobile: '', email: '' });
