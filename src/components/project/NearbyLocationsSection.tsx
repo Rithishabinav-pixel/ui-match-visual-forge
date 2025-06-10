@@ -95,20 +95,25 @@ export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSecti
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {getCurrentCategories().map((category, index) => (
               <Card key={index} className="border border-[rgba(217,37,70,1)] rounded-lg bg-white hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-8 h-8 flex items-center justify-center">
+                <CardContent className="p-6 text-center">
+                  {/* Icon at the top */}
+                  <div className="flex justify-center mb-4">
+                    <div className="w-10 h-10 flex items-center justify-center">
                       <img 
                         src={category.icon} 
                         alt={category.title}
-                        className="w-6 h-6 object-contain"
+                        className="w-10 h-10 object-contain"
                       />
                     </div>
-                    <h3 className="text-xl font-bold text-[rgba(217,37,70,1)]">
-                      {category.title}
-                    </h3>
                   </div>
-                  <div className="space-y-3">
+                  
+                  {/* Heading below the icon */}
+                  <h3 className="text-2xl font-bold text-[rgba(217,37,70,1)] mb-6">
+                    {category.title}
+                  </h3>
+                  
+                  {/* List items in black text */}
+                  <div className="space-y-3 text-left">
                     {category.items.map((item, itemIndex) => (
                       <div key={itemIndex} className="flex items-start gap-3">
                         <div className="w-4 h-4 mt-0.5 flex-shrink-0">
@@ -119,8 +124,8 @@ export const NearbyLocationsSection = ({ locationDetails }: NearbyLocationsSecti
                           />
                         </div>
                         <div className="flex-1 text-sm">
-                          <span className="text-gray-700 font-medium">{item.name}</span>
-                          <span className="text-gray-500"> - {item.distance}</span>
+                          <span className="text-black font-medium">{item.name}</span>
+                          <span className="text-black"> - {item.distance}</span>
                         </div>
                       </div>
                     ))}
