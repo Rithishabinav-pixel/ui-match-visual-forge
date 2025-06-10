@@ -8,14 +8,20 @@ import { useProject } from '@/hooks/useProjects';
 import { Footer } from '@/components/layout/Footer';
 import { ProjectHeroSection } from '@/components/project/ProjectHeroSection';
 import { ProjectInfoSection } from '@/components/project/ProjectInfoSection';
+import { ProjectDetailsSection } from '@/components/project/ProjectDetailsSection';
 import { VideoSection } from '@/components/project/VideoSection';
 import { AmenitiesSection } from '@/components/project/AmenitiesSection';
+import { NearbyLocationsSection } from '@/components/project/NearbyLocationsSection';
+import { SpecsAccordionSection } from '@/components/project/SpecsAccordionSection';
 import { SpecificationsSection } from '@/components/project/SpecificationsSection';
 import { FloorPlansSection } from '@/components/project/FloorPlansSection';
+import { FloorPlansDownloadSection } from '@/components/project/FloorPlansDownloadSection';
 import { GallerySection } from '@/components/project/GallerySection';
+import { ProjectGallerySection } from '@/components/project/ProjectGallerySection';
 import { ProgressGallerySection } from '@/components/project/ProgressGallerySection';
 import { LocationSection } from '@/components/project/LocationSection';
 import { BrochureSection } from '@/components/project/BrochureSection';
+import { BrochureDownloadSection } from '@/components/project/BrochureDownloadSection';
 import { FAQSection } from '@/components/project/FAQSection';
 
 const ProjectDetail = () => {
@@ -59,6 +65,13 @@ const ProjectDetail = () => {
       {/* Project Info Section */}
       <ProjectInfoSection project={project} />
 
+      {/* Project Details Section */}
+      <ProjectDetailsSection 
+        projectDetails={project.project_details}
+        title={project.title}
+        overview={project.overview}
+      />
+
       {/* Video Section */}
       {project.video_section?.video_url && (
         <VideoSection videoSection={project.video_section} />
@@ -69,20 +82,27 @@ const ProjectDetail = () => {
         <AmenitiesSection amenities={project.amenities} />
       )}
 
-      {/* Specifications Section */}
-      {project.specifications && Object.keys(project.specifications).length > 0 && (
-        <SpecificationsSection specifications={project.specifications} />
-      )}
+      {/* Nearby Locations Section */}
+      <NearbyLocationsSection locationDetails={project.location_details} />
 
-      {/* Floor Plans Section */}
-      {project.floor_plans && project.floor_plans.length > 0 && (
-        <FloorPlansSection floorPlans={project.floor_plans} />
-      )}
+      {/* Specifications Accordion Section */}
+      <SpecsAccordionSection specifications={project.specifications} />
 
-      {/* Additional Gallery Section */}
-      {project.additional_gallery && project.additional_gallery.length > 0 && (
-        <GallerySection galleries={project.additional_gallery} />
-      )}
+      {/* Floor Plans Download Section */}
+      <FloorPlansDownloadSection floorPlans={project.floor_plans} />
+
+      {/* Brochure Download Section */}
+      <BrochureDownloadSection 
+        brochureSection={project.brochure_section}
+        projectId={project.id}
+        projectTitle={project.title}
+      />
+
+      {/* Project Gallery Section */}
+      <ProjectGallerySection 
+        galleryImages={project.gallery_images}
+        projectTitle={project.title}
+      />
 
       {/* Progress Gallery Section */}
       {project.progress_gallery && project.progress_gallery.length > 0 && (
@@ -92,11 +112,6 @@ const ProjectDetail = () => {
       {/* Location Section */}
       {project.location_details && Object.keys(project.location_details).length > 0 && (
         <LocationSection locationDetails={project.location_details} />
-      )}
-
-      {/* Brochure Section */}
-      {project.brochure_section?.brochure_url && (
-        <BrochureSection brochureSection={project.brochure_section} />
       )}
 
       {/* FAQ Section */}
