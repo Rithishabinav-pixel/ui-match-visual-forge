@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone } from 'lucide-react';
@@ -17,52 +16,61 @@ export const ProjectHeroSection = ({ project, onEnquiryOpen }: ProjectHeroSectio
   const location = project.hero_section?.location || project.location;
 
   return (
-    <section className="relative min-h-[80vh] flex items-center">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
-        <div className="absolute inset-0 bg-black/50"></div>
-      </div>
-      
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-5">
-        <div className="text-white max-w-3xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight max-md:text-4xl">
-            {heading}
-          </h1>
-          
-          {description && (
-            <p className="text-xl mb-6 text-gray-200 leading-relaxed max-md:text-lg">
-              {description}
-            </p>
-          )}
-          
-          {location && (
-            <div className="flex items-center mb-8 text-lg">
-              <MapPin className="w-5 h-5 mr-2 text-[rgba(217,37,70,1)]" />
-              <span>{location}</span>
+    <section className="relative min-h-[600px] flex items-center">
+      {/* Two-column layout matching the reference design */}
+      <div className="w-full max-w-7xl mx-auto px-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          {/* Left column - Content */}
+          <div className="text-white z-10 relative">
+            {/* Logo/Brand */}
+            <div className="mb-6">
+              <div className="text-red-500 text-sm font-medium mb-2">JKB</div>
+              <div className="text-4xl font-light text-gray-600">Grace</div>
             </div>
-          )}
-          
-          <div className="flex flex-col sm:flex-row gap-4">
+            
+            {/* Main heading */}
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight text-gray-800">
+              The Key to
+            </h1>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-gray-800">
+              Find a Path To a<br />
+              Luxurious Lifestyle.
+            </h2>
+            
+            {/* Subtitle */}
+            <p className="text-lg mb-2 text-gray-700 font-medium">
+              Premium <span className="font-bold">2.5 BHK FLATS</span>
+            </p>
+            
+            {/* Location */}
+            <div className="flex items-center mb-8 text-gray-600">
+              <MapPin className="w-5 h-5 mr-2 text-red-500" />
+              <span>@Ramalinga Nagar, Virugambakkam</span>
+            </div>
+            
+            {/* CTA Button */}
             <Button 
               onClick={onEnquiryOpen}
-              className="bg-[rgba(217,37,70,1)] hover:bg-[rgba(217,37,70,0.9)] px-8 py-3 text-lg"
+              className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 text-lg rounded-md"
             >
               <Phone className="w-5 h-5 mr-2" />
               Enquire Now
             </Button>
-            <Button 
-              variant="outline" 
-              className="border-white text-white hover:bg-white hover:text-[rgba(40,45,64,1)] px-8 py-3 text-lg"
-            >
-              View Floor Plans
-            </Button>
+          </div>
+          
+          {/* Right column - Building Image */}
+          <div className="relative">
+            <img
+              src={heroImage}
+              alt={heading}
+              className="w-full h-[500px] object-cover rounded-lg"
+            />
           </div>
         </div>
       </div>
+      
+      {/* Background - keeping it subtle to not interfere with content */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white via-gray-50 to-transparent"></div>
     </section>
   );
 };
