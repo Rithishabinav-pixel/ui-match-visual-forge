@@ -24,14 +24,24 @@ export interface Project {
   updated_at: string;
   // New dynamic content fields
   hero_section?: HeroSection;
+  hero_image?: string;
   project_info_stats?: ProjectInfoStat[];
   project_detail_section?: ProjectDetailSection;
+  project_details?: ProjectDetails;
   amenities_section?: AmenitiesSection;
+  amenities?: Amenity[];
   nearby_locations_section?: NearbyLocationsSection;
   specifications_section?: SpecificationsSection;
+  specifications?: ProjectSpecifications;
   floor_plans_section?: FloorPlansSection;
+  floor_plans?: FloorPlan[];
   brochure_section?: BrochureDownloadSection;
   gallery_section?: GallerySection;
+  additional_gallery?: GallerySection[];
+  video_section?: VideoSection;
+  progress_gallery?: ProgressImage[];
+  location_details?: LocationDetails;
+  faq_section?: FAQ[];
 }
 
 export interface TimelineStep {
@@ -68,10 +78,22 @@ export interface ProjectDetailSection {
   image?: string;
 }
 
+export interface ProjectDetails {
+  overview?: string;
+  highlights?: string[];
+  specifications?: string[];
+  amenities?: string[];
+}
+
 export interface AmenitiesSection {
   heading?: string;
   description?: string;
   amenities: string[];
+}
+
+export interface Amenity {
+  name: string;
+  icon?: string;
 }
 
 export interface NearbyLocationsSection {
@@ -101,6 +123,10 @@ export interface SpecificationItem {
   content: string;
 }
 
+export interface ProjectSpecifications {
+  [key: string]: any;
+}
+
 export interface FloorPlansSection {
   heading?: string;
   description?: string;
@@ -110,6 +136,9 @@ export interface FloorPlansSection {
 export interface FloorPlan {
   image: string;
   title: string;
+  description?: string;
+  area?: string;
+  bedrooms?: string;
   brochure_url?: string;
 }
 
@@ -117,10 +146,45 @@ export interface BrochureDownloadSection {
   heading?: string;
   description?: string;
   brochure_file?: string;
+  brochure_url?: string;
+}
+
+export interface BrochureSection {
+  title?: string;
+  description?: string;
+  brochure_url?: string;
 }
 
 export interface GallerySection {
   images: string[];
+  title?: string;
+}
+
+export interface VideoSection {
+  video_url?: string;
+  thumbnail?: string;
+  title?: string;
+  description?: string;
+}
+
+export interface ProgressImage {
+  url: string;
+  caption?: string;
+  date?: string;
+}
+
+export interface LocationDetails {
+  address?: string;
+  coordinates?: {
+    lat: number;
+    lng: number;
+  };
+  nearby_locations?: NearbyLocationCategory[];
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
 }
 
 export interface CreateProjectRequest {
