@@ -1,31 +1,46 @@
 
-import React from 'react';
-import { Sidebar } from '@/components/admin/Sidebar';
+import React, { useState } from 'react';
 import { TopNavbar } from '@/components/admin/TopNavbar';
+import { Sidebar } from '@/components/admin/Sidebar';
 import { ProjectsList } from '@/components/admin/ProjectsList';
-import { AdminRoute } from '@/components/admin/AdminRoute';
+import { AddProjectForm } from '@/components/admin/AddProjectForm';
+import { SampleDataInserter } from '@/components/admin/SampleDataInserter';
+import { Button } from '@/components/ui/button';
+import { Plus } from 'lucide-react';
 
 const AdminProjects = () => {
+  const [showAddForm, setShowAddForm] = useState(false);
+
   return (
-    <AdminRoute>
-      <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50">
+      <TopNavbar />
+      <div className="flex">
         <Sidebar />
-        <div className="flex-1 flex flex-col">
-          <TopNavbar />
-          <main className="flex-1 p-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="bg-white rounded-lg shadow-sm border">
-                <div className="border-b px-6 py-4">
-                  <h1 className="text-2xl font-bold text-gray-900">Projects</h1>
-                  <p className="text-gray-600 mt-1">Manage all your real estate projects</p>
-                </div>
+        <div className="flex-1 ml-64">
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h1 className="text-2xl font-bold text-gray-900">Projects Management</h1>
+              <Button onClick={() => setShowAddForm(!showAddForm)}>
+                <Plus className="w-4 h-4 mr-2" />
+                {showAddForm ? 'View Projects' : 'Add New Project'}
+              </Button>
+            </div>
+
+            {showAddForm ? (
+              <div className="space-y-6">
+                <SampleDataInserter />
+                <AddProjectForm />
+              </div>
+            ) : (
+              <div className="space-y-6">
+                <SampleDataInserter />
                 <ProjectsList />
               </div>
-            </div>
-          </main>
+            )}
+          </div>
         </div>
       </div>
-    </AdminRoute>
+    </div>
   );
 };
 
