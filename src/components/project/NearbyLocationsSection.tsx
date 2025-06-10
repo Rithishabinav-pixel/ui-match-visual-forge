@@ -8,17 +8,6 @@ interface NearbyLocationsSectionProps {
   nearbyLocationsSection?: NearbyLocationsSectionType;
 }
 
-// Default icons mapping for categories
-const getCategoryIcon = (heading: string) => {
-  const iconMap: { [key: string]: string } = {
-    'Hospitals': '🏥',
-    'Schools & Colleges': '🎓', 
-    'IT Parks': '🏢',
-    'Leisure': '🎪'
-  };
-  return iconMap[heading] || '📍';
-};
-
 export const NearbyLocationsSection = ({ 
   locationDetails, 
   nearbyLocationsSection 
@@ -63,19 +52,41 @@ export const NearbyLocationsSection = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {currentCategories.map((category, index) => (
             <div key={index} className="bg-white rounded-lg border border-red-200 p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-8 h-8 flex items-center justify-center mr-3">
-                  <span className="text-2xl">{getCategoryIcon(category.heading)}</span>
+              {/* Icon and Title - Left aligned and stacked vertically */}
+              <div className="mb-6">
+                {/* Icon */}
+                <div className="mb-3">
+                  {category.icon ? (
+                    <img 
+                      src={category.icon} 
+                      alt={category.heading}
+                      className="w-10 h-10 object-contain"
+                    />
+                  ) : (
+                    <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                      <span className="text-red-500 text-xl">📍</span>
+                    </div>
+                  )}
                 </div>
+                
+                {/* Title */}
                 <h3 className="text-lg font-semibold text-red-500">
                   {category.heading}
                 </h3>
               </div>
               
+              {/* Places List */}
               <div className="space-y-3">
                 {category.places.map((place, placeIndex) => (
                   <div key={placeIndex} className="flex items-center">
-                    <div className="w-2 h-2 bg-red-500 rotate-45 mr-3 flex-shrink-0"></div>
+                    {/* Custom list icon */}
+                    <div className="mr-3 flex-shrink-0">
+                      <img 
+                        src="https://pixeldigitalagency.com/clients/smilex-ev/wp-content/uploads/2025/06/Icon.png"
+                        alt="location marker"
+                        className="w-4 h-4 object-contain"
+                      />
+                    </div>
                     <div className="flex-1 flex justify-between items-center">
                       <span className="text-gray-700 text-sm">{place.name}</span>
                       <span className="text-red-500 font-medium text-sm ml-2">{place.distance}</span>
