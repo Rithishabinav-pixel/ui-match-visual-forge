@@ -9,19 +9,15 @@ import { Footer } from '@/components/layout/Footer';
 import { ProjectHeroSection } from '@/components/project/ProjectHeroSection';
 import { ProjectInfoSection } from '@/components/project/ProjectInfoSection';
 import { ProjectDetailsSection } from '@/components/project/ProjectDetailsSection';
-import { VideoSection } from '@/components/project/VideoSection';
 import { AmenitiesSection } from '@/components/project/AmenitiesSection';
+import { VideoSection } from '@/components/project/VideoSection';
 import { NearbyLocationsSection } from '@/components/project/NearbyLocationsSection';
 import { SpecsAccordionSection } from '@/components/project/SpecsAccordionSection';
-import { SpecificationsSection } from '@/components/project/SpecificationsSection';
-import { FloorPlansSection } from '@/components/project/FloorPlansSection';
 import { FloorPlansDownloadSection } from '@/components/project/FloorPlansDownloadSection';
-import { GallerySection } from '@/components/project/GallerySection';
+import { BrochureDownloadSection } from '@/components/project/BrochureDownloadSection';
 import { ProjectGallerySection } from '@/components/project/ProjectGallerySection';
 import { ProgressGallerySection } from '@/components/project/ProgressGallerySection';
 import { LocationSection } from '@/components/project/LocationSection';
-import { BrochureSection } from '@/components/project/BrochureSection';
-import { BrochureDownloadSection } from '@/components/project/BrochureDownloadSection';
 import { FAQSection } from '@/components/project/FAQSection';
 
 const ProjectDetail = () => {
@@ -65,21 +61,23 @@ const ProjectDetail = () => {
       {/* Project Info Section */}
       <ProjectInfoSection project={project} />
 
-      {/* Project Details Section */}
+      {/* Project Details Section - Added after Project Info */}
       <ProjectDetailsSection 
         projectDetails={project.project_details}
         title={project.title}
         overview={project.overview}
       />
 
+      {/* Amenities Section - Added after Project Details */}
+      {project.amenities && project.amenities.length > 0 ? (
+        <AmenitiesSection amenities={project.amenities} />
+      ) : (
+        <AmenitiesSection amenities={[]} />
+      )}
+
       {/* Video Section */}
       {project.video_section?.video_url && (
         <VideoSection videoSection={project.video_section} />
-      )}
-
-      {/* Amenities Section */}
-      {project.amenities && project.amenities.length > 0 && (
-        <AmenitiesSection amenities={project.amenities} />
       )}
 
       {/* Nearby Locations Section */}
