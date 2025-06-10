@@ -18,7 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { CalendarIcon, Plus, Trash2, Upload, Star, Loader2, FileText, MapPin, Video, HelpCircle, Image } from 'lucide-react';
+import { CalendarIcon, Plus, Trash2, Star, Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useCreateProject } from '@/hooks/useProjects';
@@ -27,16 +27,27 @@ import {
   CreateProjectRequest, 
   TimelineStep, 
   ClientFeedback,
-  ProjectDetails,
-  VideoSection,
-  Amenity,
-  FAQ,
-  FloorPlan,
-  BrochureSection,
-  ProgressImage,
-  ProjectSpecifications,
-  LocationDetails
+  HeroSection,
+  ProjectInfoStat,
+  ProjectDetailSection,
+  AmenitiesSection,
+  NearbyLocationsSection,
+  SpecificationsSection,
+  FloorPlansSection,
+  BrochureDownloadSection,
+  GallerySection
 } from '@/types/project';
+
+// Import form section components
+import { HeroSectionForm } from './form-sections/HeroSectionForm';
+import { ProjectInfoStatsForm } from './form-sections/ProjectInfoStatsForm';
+import { ProjectDetailSectionForm } from './form-sections/ProjectDetailSectionForm';
+import { AmenitiesSectionForm } from './form-sections/AmenitiesSectionForm';
+import { NearbyLocationsSectionForm } from './form-sections/NearbyLocationsSectionForm';
+import { SpecificationsSectionForm } from './form-sections/SpecificationsSectionForm';
+import { FloorPlansSectionForm } from './form-sections/FloorPlansSectionForm';
+import { BrochureSectionForm } from './form-sections/BrochureSectionForm';
+import { GallerySectionForm } from './form-sections/GallerySectionForm';
 
 const projectSchema = z.object({
   title: z.string().min(1, 'Project title is required'),
@@ -59,15 +70,6 @@ const projectSchema = z.object({
 
 type ProjectFormData = z.infer<typeof projectSchema>;
 
-interface LocationCategory {
-  title: string;
-  icon: string;
-  items: Array<{
-    name: string;
-    distance: string;
-  }>;
-}
-
 export const AddProjectForm = () => {
   const [timelineSteps, setTimelineSteps] = useState<TimelineStep[]>([
     { title: '', status: 'upcoming', description: '', duration: '', unit: 'months' }
@@ -77,17 +79,16 @@ export const AddProjectForm = () => {
   });
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
 
-  // New state for dynamic sections
-  const [projectDetails, setProjectDetails] = useState<ProjectDetails>({});
-  const [videoSection, setVideoSection] = useState<VideoSection>({});
-  const [amenities, setAmenities] = useState<Amenity[]>([]);
-  const [faqs, setFaqs] = useState<FAQ[]>([]);
-  const [floorPlans, setFloorPlans] = useState<FloorPlan[]>([]);
-  const [brochureSection, setBrochureSection] = useState<BrochureSection>({});
-  const [progressGallery, setProgressGallery] = useState<ProgressImage[]>([]);
-  const [specifications, setSpecifications] = useState<ProjectSpecifications>({});
-  const [locationDetails, setLocationDetails] = useState<LocationDetails>({});
-  const [nearbyLocations, setNearbyLocations] = useState<LocationCategory[]>([]);
+  // New dynamic sections state
+  const [heroSection, setHeroSection] = useState<HeroSection>({});
+  const [projectInfoStats, setProjectInfoStats] = useState<ProjectInfoStat[]>([]);
+  const [projectDetailSection, setProjectDetailSection] = useState<ProjectDetailSection>({});
+  const [amenitiesSection, setAmenitiesSection] = useState<AmenitiesSection>({ amenities: [] });
+  const [nearbyLocationsSection, setNearbyLocationsSection] = useState<NearbyLocationsSection>({ categories: [] });
+  const [specificationsSection, setSpecificationsSection] = useState<SpecificationsSection>({ specifications: [] });
+  const [floorPlansSection, setFloorPlansSection] = useState<FloorPlansSection>({ floor_plans: [] });
+  const [brochureSection, setBrochureSection] = useState<BrochureDownloadSection>({});
+  const [gallerySection, setGallerySection] = useState<GallerySection>({ images: [] });
 
   const createProject = useCreateProject();
   const { isUploading } = useImageUpload();
@@ -121,7 +122,7 @@ export const AddProjectForm = () => {
     'Garden & Landscaping', 'Security Systems'
   ];
 
-  // Helper functions for dynamic sections
+  // Helper functions for timeline and client feedback
   const addTimelineStep = () => {
     setTimelineSteps([...timelineSteps, { 
       title: '', status: 'upcoming', description: '', duration: '', unit: 'months' 
@@ -130,69 +131,6 @@ export const AddProjectForm = () => {
 
   const removeTimelineStep = (index: number) => {
     setTimelineSteps(timelineSteps.filter((_, i) => i !== index));
-  };
-
-  const addAmenity = () => {
-    setAmenities([...amenities, { name: '', icon: '', description: '' }]);
-  };
-
-  const removeAmenity = (index: number) => {
-    setAmenities(amenities.filter((_, i) => i !== index));
-  };
-
-  const addFAQ = () => {
-    setFaqs([...faqs, { question: '', answer: '' }]);
-  };
-
-  const removeFAQ = (index: number) => {
-    setFaqs(faqs.filter((_, i) => i !== index));
-  };
-
-  const addFloorPlan = () => {
-    setFloorPlans([...floorPlans, { title: '', image: '', description: '', area: '', bedrooms: '' }]);
-  };
-
-  const removeFloorPlan = (index: number) => {
-    setFloorPlans(floorPlans.filter((_, i) => i !== index));
-  };
-
-  const addProgressImage = () => {
-    setProgressGallery([...progressGallery, { title: '', image: '', date: '', description: '' }]);
-  };
-
-  const removeProgressImage = (index: number) => {
-    setProgressGallery(progressGallery.filter((_, i) => i !== index));
-  };
-
-  const addLocationCategory = () => {
-    setNearbyLocations([...nearbyLocations, { 
-      title: '', 
-      icon: '', 
-      items: [{ name: '', distance: '' }] 
-    }]);
-  };
-
-  const removeLocationCategory = (index: number) => {
-    setNearbyLocations(nearbyLocations.filter((_, i) => i !== index));
-  };
-
-  const addLocationItem = (categoryIndex: number) => {
-    const updated = [...nearbyLocations];
-    updated[categoryIndex].items.push({ name: '', distance: '' });
-    setNearbyLocations(updated);
-  };
-
-  const removeLocationItem = (categoryIndex: number, itemIndex: number) => {
-    const updated = [...nearbyLocations];
-    updated[categoryIndex].items = updated[categoryIndex].items.filter((_, i) => i !== itemIndex);
-    setNearbyLocations(updated);
-  };
-
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files) {
-      setSelectedImages([...selectedImages, ...Array.from(files)]);
-    }
   };
 
   const onSubmit = async (data: ProjectFormData) => {
@@ -217,18 +155,15 @@ export const AddProjectForm = () => {
       timeline_steps: timelineSteps,
       client_feedback: clientFeedback,
       // New dynamic sections
-      project_details: projectDetails,
-      video_section: videoSection,
-      amenities: amenities,
-      faq_section: faqs,
-      floor_plans: floorPlans,
+      hero_section: heroSection,
+      project_info_stats: projectInfoStats,
+      project_detail_section: projectDetailSection,
+      amenities_section: amenitiesSection,
+      nearby_locations_section: nearbyLocationsSection,
+      specifications_section: specificationsSection,
+      floor_plans_section: floorPlansSection,
       brochure_section: brochureSection,
-      progress_gallery: progressGallery,
-      specifications: specifications,
-      location_details: {
-        ...locationDetails,
-        nearby_categories: nearbyLocations
-      },
+      gallery_section: gallerySection,
     };
 
     await createProject.mutateAsync(projectData);
@@ -238,16 +173,15 @@ export const AddProjectForm = () => {
     setTimelineSteps([{ title: '', status: 'upcoming', description: '', duration: '', unit: 'months' }]);
     setClientFeedback({ name: '', designation: '', company: '', testimonial: '', rating: 5 });
     setSelectedImages([]);
-    setProjectDetails({});
-    setVideoSection({});
-    setAmenities([]);
-    setFaqs([]);
-    setFloorPlans([]);
+    setHeroSection({});
+    setProjectInfoStats([]);
+    setProjectDetailSection({});
+    setAmenitiesSection({ amenities: [] });
+    setNearbyLocationsSection({ categories: [] });
+    setSpecificationsSection({ specifications: [] });
+    setFloorPlansSection({ floor_plans: [] });
     setBrochureSection({});
-    setProgressGallery([]);
-    setSpecifications({});
-    setLocationDetails({});
-    setNearbyLocations([]);
+    setGallerySection({ images: [] });
   };
 
   const isSubmitting = createProject.isPending || isUploading;
@@ -377,6 +311,39 @@ export const AddProjectForm = () => {
               />
             </div>
           </div>
+
+          {/* Hero Section */}
+          <HeroSectionForm heroSection={heroSection} setHeroSection={setHeroSection} />
+
+          {/* Project Info Stats */}
+          <ProjectInfoStatsForm stats={projectInfoStats} setStats={setProjectInfoStats} />
+
+          {/* Project Detail Section */}
+          <ProjectDetailSectionForm section={projectDetailSection} setSection={setProjectDetailSection} />
+
+          {/* Amenities Section */}
+          <AmenitiesSectionForm section={amenitiesSection} setSection={setAmenitiesSection} />
+
+          {/* Nearby Locations Section */}
+          <NearbyLocationsSectionForm section={nearbyLocationsSection} setSection={setNearbyLocationsSection} />
+
+          {/* Specifications Section */}
+          <SpecificationsSectionForm section={specificationsSection} setSection={setSpecificationsSection} />
+
+          {/* Floor Plans Section */}
+          <FloorPlansSectionForm section={floorPlansSection} setSection={setFloorPlansSection} />
+
+          {/* Brochure Section */}
+          <BrochureSectionForm section={brochureSection} setSection={setBrochureSection} />
+
+          {/* Gallery Section */}
+          <GallerySectionForm 
+            section={gallerySection} 
+            setSection={setGallerySection}
+            selectedImages={selectedImages}
+            setSelectedImages={setSelectedImages}
+            isUploading={isUploading}
+          />
 
           {/* Project Overview */}
           <div className="bg-gray-50 p-6 rounded-lg">
@@ -557,557 +524,6 @@ export const AddProjectForm = () => {
                   </FormItem>
                 )}
               />
-
-              {/* Additional Project Details */}
-              <Input
-                placeholder="RERA Number"
-                value={projectDetails.rera_number || ''}
-                onChange={(e) => setProjectDetails({...projectDetails, rera_number: e.target.value})}
-              />
-              <Input
-                placeholder="Total Area"
-                value={projectDetails.total_area || ''}
-                onChange={(e) => setProjectDetails({...projectDetails, total_area: e.target.value})}
-              />
-              <Input
-                placeholder="Total Towers"
-                value={projectDetails.total_towers || ''}
-                onChange={(e) => setProjectDetails({...projectDetails, total_towers: e.target.value})}
-              />
-              <Input
-                placeholder="Total Units"
-                value={projectDetails.total_units || ''}
-                onChange={(e) => setProjectDetails({...projectDetails, total_units: e.target.value})}
-              />
-              <Input
-                placeholder="Builder"
-                value={projectDetails.builder || ''}
-                onChange={(e) => setProjectDetails({...projectDetails, builder: e.target.value})}
-              />
-              <Input
-                placeholder="Floors (e.g., Stilt +3)"
-                value={projectDetails.floors || ''}
-                onChange={(e) => setProjectDetails({...projectDetails, floors: e.target.value})}
-              />
-            </div>
-          </div>
-
-          {/* Video Section */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <div className="flex items-center gap-2 mb-4">
-              <Video className="w-5 h-5" />
-              <h2 className="text-xl font-semibold text-[rgba(40,45,64,1)]">Video Section</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Input
-                placeholder="Video Title"
-                value={videoSection.title || ''}
-                onChange={(e) => setVideoSection({...videoSection, title: e.target.value})}
-              />
-              <Input
-                placeholder="Video URL"
-                value={videoSection.video_url || ''}
-                onChange={(e) => setVideoSection({...videoSection, video_url: e.target.value})}
-              />
-              <Input
-                placeholder="Thumbnail URL"
-                value={videoSection.thumbnail || ''}
-                onChange={(e) => setVideoSection({...videoSection, thumbnail: e.target.value})}
-              />
-            </div>
-            <Textarea
-              placeholder="Video Description"
-              className="mt-4"
-              value={videoSection.description || ''}
-              onChange={(e) => setVideoSection({...videoSection, description: e.target.value})}
-            />
-          </div>
-
-          {/* Amenities Section */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-[rgba(40,45,64,1)]">Amenities</h2>
-              <Button type="button" onClick={addAmenity} variant="outline" size="sm">
-                <Plus className="w-4 h-4 mr-2" />
-                Add Amenity
-              </Button>
-            </div>
-            
-            <div className="space-y-4">
-              {amenities.map((amenity, index) => (
-                <div key={index} className="bg-white p-4 rounded-lg border">
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="font-medium">Amenity {index + 1}</h3>
-                    <Button
-                      type="button"
-                      onClick={() => removeAmenity(index)}
-                      variant="ghost"
-                      size="sm"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Input
-                      placeholder="Amenity Name"
-                      value={amenity.name}
-                      onChange={(e) => {
-                        const newAmenities = [...amenities];
-                        newAmenities[index].name = e.target.value;
-                        setAmenities(newAmenities);
-                      }}
-                    />
-                    <Input
-                      placeholder="Icon URL"
-                      value={amenity.icon || ''}
-                      onChange={(e) => {
-                        const newAmenities = [...amenities];
-                        newAmenities[index].icon = e.target.value;
-                        setAmenities(newAmenities);
-                      }}
-                    />
-                  </div>
-                  
-                  <Textarea
-                    placeholder="Amenity Description"
-                    className="mt-3"
-                    value={amenity.description || ''}
-                    onChange={(e) => {
-                      const newAmenities = [...amenities];
-                      newAmenities[index].description = e.target.value;
-                      setAmenities(newAmenities);
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Nearby Locations */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                <h2 className="text-xl font-semibold text-[rgba(40,45,64,1)]">Nearby Locations</h2>
-              </div>
-              <Button type="button" onClick={addLocationCategory} variant="outline" size="sm">
-                <Plus className="w-4 h-4 mr-2" />
-                Add Category
-              </Button>
-            </div>
-            
-            <div className="space-y-6">
-              {nearbyLocations.map((category, categoryIndex) => (
-                <div key={categoryIndex} className="bg-white p-4 rounded-lg border">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="font-medium">Category {categoryIndex + 1}</h3>
-                    <Button
-                      type="button"
-                      onClick={() => removeLocationCategory(categoryIndex)}
-                      variant="ghost"
-                      size="sm"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <Input
-                      placeholder="Category Title (e.g., Hospitals)"
-                      value={category.title}
-                      onChange={(e) => {
-                        const updated = [...nearbyLocations];
-                        updated[categoryIndex].title = e.target.value;
-                        setNearbyLocations(updated);
-                      }}
-                    />
-                    <Input
-                      placeholder="Icon URL"
-                      value={category.icon}
-                      onChange={(e) => {
-                        const updated = [...nearbyLocations];
-                        updated[categoryIndex].icon = e.target.value;
-                        setNearbyLocations(updated);
-                      }}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <h4 className="font-medium text-sm">Locations</h4>
-                      <Button
-                        type="button"
-                        onClick={() => addLocationItem(categoryIndex)}
-                        variant="outline"
-                        size="sm"
-                      >
-                        <Plus className="w-3 h-3 mr-1" />
-                        Add Location
-                      </Button>
-                    </div>
-                    
-                    {category.items.map((item, itemIndex) => (
-                      <div key={itemIndex} className="flex gap-2 items-center">
-                        <Input
-                          placeholder="Location Name"
-                          value={item.name}
-                          onChange={(e) => {
-                            const updated = [...nearbyLocations];
-                            updated[categoryIndex].items[itemIndex].name = e.target.value;
-                            setNearbyLocations(updated);
-                          }}
-                        />
-                        <Input
-                          placeholder="Distance"
-                          value={item.distance}
-                          onChange={(e) => {
-                            const updated = [...nearbyLocations];
-                            updated[categoryIndex].items[itemIndex].distance = e.target.value;
-                            setNearbyLocations(updated);
-                          }}
-                        />
-                        <Button
-                          type="button"
-                          onClick={() => removeLocationItem(categoryIndex, itemIndex)}
-                          variant="ghost"
-                          size="sm"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Specifications */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <div className="flex items-center gap-2 mb-4">
-              <FileText className="w-5 h-5" />
-              <h2 className="text-xl font-semibold text-[rgba(40,45,64,1)]">Specifications</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Textarea
-                placeholder="Structure specifications"
-                value={specifications.structure || ''}
-                onChange={(e) => setSpecifications({...specifications, structure: e.target.value})}
-              />
-              <Textarea
-                placeholder="Flooring specifications"
-                value={specifications.flooring || ''}
-                onChange={(e) => setSpecifications({...specifications, flooring: e.target.value})}
-              />
-              <Textarea
-                placeholder="Doors & Windows specifications"
-                value={specifications.doors_windows || ''}
-                onChange={(e) => setSpecifications({...specifications, doors_windows: e.target.value})}
-              />
-              <Textarea
-                placeholder="Kitchen specifications"
-                value={specifications.kitchen || ''}
-                onChange={(e) => setSpecifications({...specifications, kitchen: e.target.value})}
-              />
-              <Textarea
-                placeholder="Bathroom specifications"
-                value={specifications.bathroom || ''}
-                onChange={(e) => setSpecifications({...specifications, bathroom: e.target.value})}
-              />
-              <Textarea
-                placeholder="Electrical specifications"
-                value={specifications.electrical || ''}
-                onChange={(e) => setSpecifications({...specifications, electrical: e.target.value})}
-              />
-              <Textarea
-                placeholder="Safety specifications"
-                value={specifications.safety || ''}
-                onChange={(e) => setSpecifications({...specifications, safety: e.target.value})}
-              />
-            </div>
-          </div>
-
-          {/* Floor Plans */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-[rgba(40,45,64,1)]">Floor Plans</h2>
-              <Button type="button" onClick={addFloorPlan} variant="outline" size="sm">
-                <Plus className="w-4 h-4 mr-2" />
-                Add Floor Plan
-              </Button>
-            </div>
-            
-            <div className="space-y-4">
-              {floorPlans.map((plan, index) => (
-                <div key={index} className="bg-white p-4 rounded-lg border">
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="font-medium">Floor Plan {index + 1}</h3>
-                    <Button
-                      type="button"
-                      onClick={() => removeFloorPlan(index)}
-                      variant="ghost"
-                      size="sm"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Input
-                      placeholder="Plan Title"
-                      value={plan.title}
-                      onChange={(e) => {
-                        const newPlans = [...floorPlans];
-                        newPlans[index].title = e.target.value;
-                        setFloorPlans(newPlans);
-                      }}
-                    />
-                    <Input
-                      placeholder="Image URL"
-                      value={plan.image}
-                      onChange={(e) => {
-                        const newPlans = [...floorPlans];
-                        newPlans[index].image = e.target.value;
-                        setFloorPlans(newPlans);
-                      }}
-                    />
-                    <Input
-                      placeholder="Area (e.g., 1200 sq.ft)"
-                      value={plan.area || ''}
-                      onChange={(e) => {
-                        const newPlans = [...floorPlans];
-                        newPlans[index].area = e.target.value;
-                        setFloorPlans(newPlans);
-                      }}
-                    />
-                    <Input
-                      placeholder="Bedrooms (e.g., 2 BHK)"
-                      value={plan.bedrooms || ''}
-                      onChange={(e) => {
-                        const newPlans = [...floorPlans];
-                        newPlans[index].bedrooms = e.target.value;
-                        setFloorPlans(newPlans);
-                      }}
-                    />
-                  </div>
-                  
-                  <Textarea
-                    placeholder="Plan Description"
-                    className="mt-3"
-                    value={plan.description || ''}
-                    onChange={(e) => {
-                      const newPlans = [...floorPlans];
-                      newPlans[index].description = e.target.value;
-                      setFloorPlans(newPlans);
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Brochure Section */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <div className="flex items-center gap-2 mb-4">
-              <FileText className="w-5 h-5" />
-              <h2 className="text-xl font-semibold text-[rgba(40,45,64,1)]">Brochure Section</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Input
-                placeholder="Brochure Title"
-                value={brochureSection.title || ''}
-                onChange={(e) => setBrochureSection({...brochureSection, title: e.target.value})}
-              />
-              <Input
-                placeholder="Brochure URL"
-                value={brochureSection.brochure_url || ''}
-                onChange={(e) => setBrochureSection({...brochureSection, brochure_url: e.target.value})}
-              />
-            </div>
-            <Textarea
-              placeholder="Brochure Description"
-              className="mt-4"
-              value={brochureSection.description || ''}
-              onChange={(e) => setBrochureSection({...brochureSection, description: e.target.value})}
-            />
-          </div>
-
-          {/* FAQ Section */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center gap-2">
-                <HelpCircle className="w-5 h-5" />
-                <h2 className="text-xl font-semibold text-[rgba(40,45,64,1)]">FAQ Section</h2>
-              </div>
-              <Button type="button" onClick={addFAQ} variant="outline" size="sm">
-                <Plus className="w-4 h-4 mr-2" />
-                Add FAQ
-              </Button>
-            </div>
-            
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div key={index} className="bg-white p-4 rounded-lg border">
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="font-medium">FAQ {index + 1}</h3>
-                    <Button
-                      type="button"
-                      onClick={() => removeFAQ(index)}
-                      variant="ghost"
-                      size="sm"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <Input
-                      placeholder="Question"
-                      value={faq.question}
-                      onChange={(e) => {
-                        const newFaqs = [...faqs];
-                        newFaqs[index].question = e.target.value;
-                        setFaqs(newFaqs);
-                      }}
-                    />
-                    <Textarea
-                      placeholder="Answer"
-                      value={faq.answer}
-                      onChange={(e) => {
-                        const newFaqs = [...faqs];
-                        newFaqs[index].answer = e.target.value;
-                        setFaqs(newFaqs);
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Progress Gallery */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center gap-2">
-                <Image className="w-5 h-5" />
-                <h2 className="text-xl font-semibold text-[rgba(40,45,64,1)]">Progress Gallery</h2>
-              </div>
-              <Button type="button" onClick={addProgressImage} variant="outline" size="sm">
-                <Plus className="w-4 h-4 mr-2" />
-                Add Progress Image
-              </Button>
-            </div>
-            
-            <div className="space-y-4">
-              {progressGallery.map((progress, index) => (
-                <div key={index} className="bg-white p-4 rounded-lg border">
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="font-medium">Progress Image {index + 1}</h3>
-                    <Button
-                      type="button"
-                      onClick={() => removeProgressImage(index)}
-                      variant="ghost"
-                      size="sm"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Input
-                      placeholder="Image Title"
-                      value={progress.title}
-                      onChange={(e) => {
-                        const newProgress = [...progressGallery];
-                        newProgress[index].title = e.target.value;
-                        setProgressGallery(newProgress);
-                      }}
-                    />
-                    <Input
-                      placeholder="Image URL"
-                      value={progress.image}
-                      onChange={(e) => {
-                        const newProgress = [...progressGallery];
-                        newProgress[index].image = e.target.value;
-                        setProgressGallery(newProgress);
-                      }}
-                    />
-                    <Input
-                      placeholder="Date"
-                      value={progress.date || ''}
-                      onChange={(e) => {
-                        const newProgress = [...progressGallery];
-                        newProgress[index].date = e.target.value;
-                        setProgressGallery(newProgress);
-                      }}
-                    />
-                  </div>
-                  
-                  <Textarea
-                    placeholder="Image Description"
-                    className="mt-3"
-                    value={progress.description || ''}
-                    onChange={(e) => {
-                      const newProgress = [...progressGallery];
-                      newProgress[index].description = e.target.value;
-                      setProgressGallery(newProgress);
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Project Gallery */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h2 className="text-xl font-semibold mb-4 text-[rgba(40,45,64,1)]">Project Gallery</h2>
-            <div className="space-y-4">
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                <Upload className="mx-auto h-12 w-12 text-gray-400" />
-                <div className="mt-4">
-                  <label htmlFor="images" className="cursor-pointer">
-                    <span className="mt-2 block text-sm font-medium text-gray-900">
-                      {isUploading ? 'Uploading images...' : 'Upload images'}
-                    </span>
-                    <span className="mt-1 block text-sm text-gray-600">
-                      PNG, JPG, GIF up to 10MB each
-                    </span>
-                  </label>
-                  <input
-                    id="images"
-                    type="file"
-                    multiple
-                    accept="image/*"
-                    className="hidden"
-                    onChange={handleImageUpload}
-                    disabled={isUploading}
-                  />
-                </div>
-              </div>
-              
-              {selectedImages.length > 0 && (
-                <div className="grid grid-cols-3 gap-4">
-                  {selectedImages.map((image, index) => (
-                    <div key={index} className="relative">
-                      <img
-                        src={URL.createObjectURL(image)}
-                        alt={`Preview ${index}`}
-                        className="w-full h-24 object-cover rounded-lg"
-                        onLoad={() => URL.revokeObjectURL(URL.createObjectURL(image))}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setSelectedImages(selectedImages.filter((_, i) => i !== index))}
-                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
-                        disabled={isUploading}
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
 
@@ -1344,16 +760,15 @@ export const AddProjectForm = () => {
                 setTimelineSteps([{ title: '', status: 'upcoming', description: '', duration: '', unit: 'months' }]);
                 setClientFeedback({ name: '', designation: '', company: '', testimonial: '', rating: 5 });
                 setSelectedImages([]);
-                setProjectDetails({});
-                setVideoSection({});
-                setAmenities([]);
-                setFaqs([]);
-                setFloorPlans([]);
+                setHeroSection({});
+                setProjectInfoStats([]);
+                setProjectDetailSection({});
+                setAmenitiesSection({ amenities: [] });
+                setNearbyLocationsSection({ categories: [] });
+                setSpecificationsSection({ specifications: [] });
+                setFloorPlansSection({ floor_plans: [] });
                 setBrochureSection({});
-                setProgressGallery([]);
-                setSpecifications({});
-                setLocationDetails({});
-                setNearbyLocations([]);
+                setGallerySection({ images: [] });
               }}
               className="px-8"
               disabled={isSubmitting}

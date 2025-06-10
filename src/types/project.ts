@@ -23,19 +23,15 @@ export interface Project {
   created_at: string;
   updated_at: string;
   // New dynamic content fields
-  hero_image?: string;
-  hero_tags?: string[];
-  hero_description?: string;
-  project_details?: ProjectDetails;
-  video_section?: VideoSection;
-  amenities?: Amenity[];
-  faq_section?: FAQ[];
-  additional_gallery?: GallerySection[];
-  floor_plans?: FloorPlan[];
-  brochure_section?: BrochureSection;
-  progress_gallery?: ProgressImage[];
-  specifications?: ProjectSpecifications;
-  location_details?: LocationDetails;
+  hero_section?: HeroSection;
+  project_info_stats?: ProjectInfoStat[];
+  project_detail_section?: ProjectDetailSection;
+  amenities_section?: AmenitiesSection;
+  nearby_locations_section?: NearbyLocationsSection;
+  specifications_section?: SpecificationsSection;
+  floor_plans_section?: FloorPlansSection;
+  brochure_section?: BrochureDownloadSection;
+  gallery_section?: GallerySection;
 }
 
 export interface TimelineStep {
@@ -54,82 +50,77 @@ export interface ClientFeedback {
   rating: number;
 }
 
-export interface ProjectDetails {
-  rera_number?: string;
-  possession_date?: string;
-  total_area?: string;
-  total_towers?: string;
-  total_units?: string;
-  parking?: string;
-  builder?: string;
-  architect?: string;
-  approval_status?: string;
-  floors?: string;
-}
-
-export interface VideoSection {
-  title?: string;
+export interface HeroSection {
+  main_image?: string;
+  heading?: string;
   description?: string;
-  video_url?: string;
-  thumbnail?: string;
+  location?: string;
 }
 
-export interface Amenity {
-  name: string;
-  icon?: string;
+export interface ProjectInfoStat {
+  label: string;
+  value: string;
+}
+
+export interface ProjectDetailSection {
+  heading?: string;
+  description?: string;
   image?: string;
+}
+
+export interface AmenitiesSection {
+  heading?: string;
   description?: string;
+  amenities: string[];
 }
 
-export interface FAQ {
-  question: string;
-  answer: string;
+export interface NearbyLocationsSection {
+  heading?: string;
+  description?: string;
+  categories: NearbyLocationCategory[];
 }
 
-export interface GallerySection {
-  title: string;
-  images: string[];
+export interface NearbyLocationCategory {
+  icon?: string;
+  heading: string;
+  places: NearbyPlace[];
+}
+
+export interface NearbyPlace {
+  name: string;
+  distance: string;
+}
+
+export interface SpecificationsSection {
+  heading?: string;
+  specifications: SpecificationItem[];
+}
+
+export interface SpecificationItem {
+  subheading: string;
+  content: string;
+}
+
+export interface FloorPlansSection {
+  heading?: string;
+  description?: string;
+  floor_plans: FloorPlan[];
 }
 
 export interface FloorPlan {
-  title: string;
   image: string;
-  description?: string;
-  area?: string;
-  bedrooms?: string;
-}
-
-export interface BrochureSection {
-  title?: string;
-  description?: string;
+  title: string;
   brochure_url?: string;
 }
 
-export interface ProgressImage {
-  title: string;
-  image: string;
-  date?: string;
+export interface BrochureDownloadSection {
+  heading?: string;
   description?: string;
+  brochure_file?: string;
 }
 
-export interface ProjectSpecifications {
-  structure?: string;
-  flooring?: string;
-  doors_windows?: string;
-  kitchen?: string;
-  bathroom?: string;
-  electrical?: string;
-  safety?: string;
-}
-
-export interface LocationDetails {
-  address?: string;
-  nearby_landmarks?: string[];
-  connectivity?: string[];
-  coordinates?: {
-    lat: number;
-    lng: number;
-  };
+export interface GallerySection {
+  images: string[];
 }
 
 export interface CreateProjectRequest {
@@ -152,18 +143,14 @@ export interface CreateProjectRequest {
   gallery_images?: File[];
   timeline_steps: TimelineStep[];
   client_feedback: ClientFeedback;
-  // New dynamic content fields
-  hero_image?: string;
-  hero_tags?: string[];
-  hero_description?: string;
-  project_details?: ProjectDetails;
-  video_section?: VideoSection;
-  amenities?: Amenity[];
-  faq_section?: FAQ[];
-  additional_gallery?: GallerySection[];
-  floor_plans?: FloorPlan[];
-  brochure_section?: BrochureSection;
-  progress_gallery?: ProgressImage[];
-  specifications?: ProjectSpecifications;
-  location_details?: LocationDetails;
+  // New dynamic sections
+  hero_section?: HeroSection;
+  project_info_stats?: ProjectInfoStat[];
+  project_detail_section?: ProjectDetailSection;
+  amenities_section?: AmenitiesSection;
+  nearby_locations_section?: NearbyLocationsSection;
+  specifications_section?: SpecificationsSection;
+  floor_plans_section?: FloorPlansSection;
+  brochure_section?: BrochureDownloadSection;
+  gallery_section?: GallerySection;
 }
