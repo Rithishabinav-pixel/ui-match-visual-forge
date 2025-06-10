@@ -56,7 +56,7 @@ export const useProjects = () => {
         progress_gallery: ((project.progress_gallery || []) as unknown) as ProgressImage[],
         specifications: ((project.specifications || {}) as unknown) as ProjectSpecifications,
         location_details: ((project.location_details || {}) as unknown) as LocationDetails,
-        // New dynamic sections
+        // New dynamic sections - now properly accessing from database
         hero_section: ((project.hero_section || {}) as unknown) as HeroSection,
         project_info_stats: ((project.project_info_stats || []) as unknown) as ProjectInfoStat[],
         project_detail_section: ((project.project_detail_section || {}) as unknown) as ProjectDetailSection,
@@ -102,7 +102,7 @@ export const useProject = (id: string) => {
         progress_gallery: ((data.progress_gallery || []) as unknown) as ProgressImage[],
         specifications: ((data.specifications || {}) as unknown) as ProjectSpecifications,
         location_details: ((data.location_details || {}) as unknown) as LocationDetails,
-        // New dynamic sections
+        // New dynamic sections - now properly accessing from database
         hero_section: ((data.hero_section || {}) as unknown) as HeroSection,
         project_info_stats: ((data.project_info_stats || []) as unknown) as ProjectInfoStat[],
         project_detail_section: ((data.project_detail_section || {}) as unknown) as ProjectDetailSection,
@@ -154,7 +154,7 @@ export const useCreateProject = () => {
         gallery_images: imageUrls,
         timeline_steps: projectData.timeline_steps as any,
         client_feedback: projectData.client_feedback as any,
-        // Store new dynamic sections
+        // Store new dynamic sections in the new database columns
         hero_section: projectData.hero_section as any,
         project_info_stats: projectData.project_info_stats as any,
         project_detail_section: projectData.project_detail_section as any,
@@ -196,7 +196,7 @@ export const useCreateProject = () => {
         progress_gallery: ((data.progress_gallery || []) as unknown) as ProgressImage[],
         specifications: ((data.specifications || {}) as unknown) as ProjectSpecifications,
         location_details: ((data.location_details || {}) as unknown) as LocationDetails,
-        // New dynamic sections
+        // New dynamic sections - now properly accessing from database
         hero_section: ((data.hero_section || {}) as unknown) as HeroSection,
         project_info_stats: ((data.project_info_stats || []) as unknown) as ProjectInfoStat[],
         project_detail_section: ((data.project_detail_section || {}) as unknown) as ProjectDetailSection,

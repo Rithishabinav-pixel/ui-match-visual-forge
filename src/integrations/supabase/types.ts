@@ -108,6 +108,7 @@ export type Database = {
         Row: {
           additional_gallery: Json | null
           amenities: Json | null
+          amenities_section: Json | null
           brochure_section: Json | null
           button_link: string | null
           button_text: string | null
@@ -119,19 +120,25 @@ export type Database = {
           cta_title: string | null
           faq_section: Json | null
           floor_plans: Json | null
+          floor_plans_section: Json | null
           gallery_images: string[]
           hero_description: string | null
           hero_image: string | null
+          hero_section: Json | null
           hero_tags: string[] | null
           highlights: string[]
           id: string
           location: string | null
           location_details: Json | null
+          nearby_locations_section: Json | null
           objectives: string | null
           overview: string | null
           progress_gallery: Json | null
+          project_detail_section: Json | null
           project_details: Json | null
+          project_info_stats: Json | null
           specifications: Json | null
+          specifications_section: Json | null
           status: string[]
           subtitle: string | null
           timeline_steps: Json
@@ -145,6 +152,7 @@ export type Database = {
         Insert: {
           additional_gallery?: Json | null
           amenities?: Json | null
+          amenities_section?: Json | null
           brochure_section?: Json | null
           button_link?: string | null
           button_text?: string | null
@@ -156,19 +164,25 @@ export type Database = {
           cta_title?: string | null
           faq_section?: Json | null
           floor_plans?: Json | null
+          floor_plans_section?: Json | null
           gallery_images?: string[]
           hero_description?: string | null
           hero_image?: string | null
+          hero_section?: Json | null
           hero_tags?: string[] | null
           highlights?: string[]
           id?: string
           location?: string | null
           location_details?: Json | null
+          nearby_locations_section?: Json | null
           objectives?: string | null
           overview?: string | null
           progress_gallery?: Json | null
+          project_detail_section?: Json | null
           project_details?: Json | null
+          project_info_stats?: Json | null
           specifications?: Json | null
+          specifications_section?: Json | null
           status?: string[]
           subtitle?: string | null
           timeline_steps?: Json
@@ -182,6 +196,7 @@ export type Database = {
         Update: {
           additional_gallery?: Json | null
           amenities?: Json | null
+          amenities_section?: Json | null
           brochure_section?: Json | null
           button_link?: string | null
           button_text?: string | null
@@ -193,19 +208,25 @@ export type Database = {
           cta_title?: string | null
           faq_section?: Json | null
           floor_plans?: Json | null
+          floor_plans_section?: Json | null
           gallery_images?: string[]
           hero_description?: string | null
           hero_image?: string | null
+          hero_section?: Json | null
           hero_tags?: string[] | null
           highlights?: string[]
           id?: string
           location?: string | null
           location_details?: Json | null
+          nearby_locations_section?: Json | null
           objectives?: string | null
           overview?: string | null
           progress_gallery?: Json | null
+          project_detail_section?: Json | null
           project_details?: Json | null
+          project_info_stats?: Json | null
           specifications?: Json | null
+          specifications_section?: Json | null
           status?: string[]
           subtitle?: string | null
           timeline_steps?: Json
