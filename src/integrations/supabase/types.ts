@@ -106,6 +106,9 @@ export type Database = {
       }
       projects: {
         Row: {
+          additional_gallery: Json | null
+          amenities: Json | null
+          brochure_section: Json | null
           button_link: string | null
           button_text: string | null
           client_feedback: Json | null
@@ -114,12 +117,21 @@ export type Database = {
           created_at: string
           cta_subtitle: string | null
           cta_title: string | null
+          faq_section: Json | null
+          floor_plans: Json | null
           gallery_images: string[]
+          hero_description: string | null
+          hero_image: string | null
+          hero_tags: string[] | null
           highlights: string[]
           id: string
           location: string | null
+          location_details: Json | null
           objectives: string | null
           overview: string | null
+          progress_gallery: Json | null
+          project_details: Json | null
+          specifications: Json | null
           status: string[]
           subtitle: string | null
           timeline_steps: Json
@@ -128,8 +140,12 @@ export type Database = {
           unit_sizes: string | null
           unit_types: string | null
           updated_at: string
+          video_section: Json | null
         }
         Insert: {
+          additional_gallery?: Json | null
+          amenities?: Json | null
+          brochure_section?: Json | null
           button_link?: string | null
           button_text?: string | null
           client_feedback?: Json | null
@@ -138,12 +154,21 @@ export type Database = {
           created_at?: string
           cta_subtitle?: string | null
           cta_title?: string | null
+          faq_section?: Json | null
+          floor_plans?: Json | null
           gallery_images?: string[]
+          hero_description?: string | null
+          hero_image?: string | null
+          hero_tags?: string[] | null
           highlights?: string[]
           id?: string
           location?: string | null
+          location_details?: Json | null
           objectives?: string | null
           overview?: string | null
+          progress_gallery?: Json | null
+          project_details?: Json | null
+          specifications?: Json | null
           status?: string[]
           subtitle?: string | null
           timeline_steps?: Json
@@ -152,8 +177,12 @@ export type Database = {
           unit_sizes?: string | null
           unit_types?: string | null
           updated_at?: string
+          video_section?: Json | null
         }
         Update: {
+          additional_gallery?: Json | null
+          amenities?: Json | null
+          brochure_section?: Json | null
           button_link?: string | null
           button_text?: string | null
           client_feedback?: Json | null
@@ -162,12 +191,21 @@ export type Database = {
           created_at?: string
           cta_subtitle?: string | null
           cta_title?: string | null
+          faq_section?: Json | null
+          floor_plans?: Json | null
           gallery_images?: string[]
+          hero_description?: string | null
+          hero_image?: string | null
+          hero_tags?: string[] | null
           highlights?: string[]
           id?: string
           location?: string | null
+          location_details?: Json | null
           objectives?: string | null
           overview?: string | null
+          progress_gallery?: Json | null
+          project_details?: Json | null
+          specifications?: Json | null
           status?: string[]
           subtitle?: string | null
           timeline_steps?: Json
@@ -176,6 +214,7 @@ export type Database = {
           unit_sizes?: string | null
           unit_types?: string | null
           updated_at?: string
+          video_section?: Json | null
         }
         Relationships: []
       }

@@ -1,7 +1,22 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
-import { Project, CreateProjectRequest, TimelineStep, ClientFeedback } from '@/types/project';
+import { 
+  Project, 
+  CreateProjectRequest, 
+  TimelineStep, 
+  ClientFeedback,
+  ProjectDetails,
+  VideoSection,
+  Amenity,
+  FAQ,
+  GallerySection,
+  FloorPlan,
+  BrochureSection,
+  ProgressImage,
+  ProjectSpecifications,
+  LocationDetails
+} from '@/types/project';
 import { useToast } from '@/hooks/use-toast';
 import { useImageUpload } from '@/hooks/useImageUpload';
 
@@ -23,6 +38,16 @@ export const useProjects = () => {
         ...project,
         timeline_steps: project.timeline_steps as unknown as TimelineStep[],
         client_feedback: project.client_feedback as unknown as ClientFeedback,
+        project_details: project.project_details as unknown as ProjectDetails,
+        video_section: project.video_section as unknown as VideoSection,
+        amenities: project.amenities as unknown as Amenity[],
+        faq_section: project.faq_section as unknown as FAQ[],
+        additional_gallery: project.additional_gallery as unknown as GallerySection[],
+        floor_plans: project.floor_plans as unknown as FloorPlan[],
+        brochure_section: project.brochure_section as unknown as BrochureSection,
+        progress_gallery: project.progress_gallery as unknown as ProgressImage[],
+        specifications: project.specifications as unknown as ProjectSpecifications,
+        location_details: project.location_details as unknown as LocationDetails,
       }));
     },
   });
@@ -51,6 +76,16 @@ export const useProject = (id: string) => {
         ...data,
         timeline_steps: data.timeline_steps as unknown as TimelineStep[],
         client_feedback: data.client_feedback as unknown as ClientFeedback,
+        project_details: data.project_details as unknown as ProjectDetails,
+        video_section: data.video_section as unknown as VideoSection,
+        amenities: data.amenities as unknown as Amenity[],
+        faq_section: data.faq_section as unknown as FAQ[],
+        additional_gallery: data.additional_gallery as unknown as GallerySection[],
+        floor_plans: data.floor_plans as unknown as FloorPlan[],
+        brochure_section: data.brochure_section as unknown as BrochureSection,
+        progress_gallery: data.progress_gallery as unknown as ProgressImage[],
+        specifications: data.specifications as unknown as ProjectSpecifications,
+        location_details: data.location_details as unknown as LocationDetails,
       };
     },
     enabled: !!id,

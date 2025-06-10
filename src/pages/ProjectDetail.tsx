@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ArrowRight, MapPin, Calendar, Users, Award, ChevronLeft, ChevronRight, Star, Loader2 } from 'lucide-react';
