@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,17 +6,15 @@ import { Label } from '@/components/ui/label';
 import { BrochureSection as BrochureSectionType } from '@/types/project';
 import { useSubmitProjectEnquiry } from '@/hooks/useSubmitEnquiry';
 import { useToast } from '@/hooks/use-toast';
-
 interface BrochureDownloadSectionProps {
   brochureSection?: BrochureSectionType;
   projectId: string;
   projectTitle: string;
 }
-
-export const BrochureDownloadSection = ({ 
-  brochureSection, 
-  projectId, 
-  projectTitle 
+export const BrochureDownloadSection = ({
+  brochureSection,
+  projectId,
+  projectTitle
 }: BrochureDownloadSectionProps) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -25,27 +22,27 @@ export const BrochureDownloadSection = ({
     email: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const { mutate: submitEnquiry } = useSubmitProjectEnquiry();
-  const { toast } = useToast();
-
+  const {
+    mutate: submitEnquiry
+  } = useSubmitProjectEnquiry();
+  const {
+    toast
+  } = useToast();
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
   };
-
   const handleDownload = async () => {
     if (!formData.name || !formData.mobile || !formData.email) {
       toast({
         title: "Required Fields",
         description: "Please fill all required fields to download the brochure.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-
     setIsSubmitting(true);
     try {
       submitEnquiry({
@@ -62,30 +59,28 @@ export const BrochureDownloadSection = ({
       }
 
       // Reset form
-      setFormData({ name: '', mobile: '', email: '' });
+      setFormData({
+        name: '',
+        mobile: '',
+        email: ''
+      });
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to process your request. Please try again.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  return (
-    <section className="py-16 bg-gray-50 max-md:py-8">
+  return <section className="py-16 bg-gray-50 max-md:py-8">
       <div className="max-w-[1530px] mx-auto px-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Image */}
           <div className="order-2 lg:order-1">
             <div className="rounded-2xl overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=500&fit=crop" 
-                alt="Building"
-                className="w-full h-[500px] object-cover"
-              />
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=500&fit=crop" alt="Building" className="w-full h-[500px] object-cover" />
             </div>
           </div>
 
@@ -102,46 +97,20 @@ export const BrochureDownloadSection = ({
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="name">Name *</Label>
-                  <Input
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
-                    placeholder="Enter your name"
-                    className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3"
-                    disabled={isSubmitting}
-                  />
+                  <Input id="name" value={formData.name} onChange={e => handleInputChange('name', e.target.value)} placeholder="Enter your name" className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3" disabled={isSubmitting} />
                 </div>
 
                 <div>
                   <Label htmlFor="mobile">Mobile number *</Label>
-                  <Input
-                    id="mobile"
-                    value={formData.mobile}
-                    onChange={(e) => handleInputChange('mobile', e.target.value)}
-                    placeholder="Enter your mobile number"
-                    className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3"
-                    disabled={isSubmitting}
-                  />
+                  <Input id="mobile" value={formData.mobile} onChange={e => handleInputChange('mobile', e.target.value)} placeholder="Enter your mobile number" className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3" disabled={isSubmitting} />
                 </div>
 
                 <div>
                   <Label htmlFor="email">Email address *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    placeholder="Enter your email address"
-                    className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3"
-                    disabled={isSubmitting}
-                  />
+                  <Input id="email" type="email" value={formData.email} onChange={e => handleInputChange('email', e.target.value)} placeholder="Enter your email address" className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3" disabled={isSubmitting} />
                 </div>
 
-                <Button
-                  onClick={handleDownload}
-                  disabled={isSubmitting}
-                  className="w-full bg-[rgba(217,37,70,1)] hover:bg-[rgba(217,37,70,0.9)] text-white py-3 rounded-full text-lg font-medium flex items-center justify-center gap-2"
-                >
+                <Button onClick={handleDownload} disabled={isSubmitting} className="w-fit hover:bg-[rgba(217,37,70,0.9)] text-white py-3 rounded-full text-lg font-medium flex items-center justify-center gap-2">
                   <Download className="w-5 h-5" />
                   {isSubmitting ? 'Processing...' : 'Download Brochure'}
                 </Button>
@@ -150,6 +119,5 @@ export const BrochureDownloadSection = ({
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
