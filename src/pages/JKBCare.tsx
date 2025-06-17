@@ -1,10 +1,36 @@
+
 import React from 'react';
 import { Heart, Users, Building, Award, CheckCircle, Phone } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
+import { SEOHead } from '@/components/seo/SEOHead';
+import { seoPages, organizationSchema, webPageSchema, breadcrumbSchema } from '@/utils/seoData';
 
 const JKBCare = () => {
+  const breadcrumbs = [
+    { name: "Home", url: "https://jkbhousing.com/" },
+    { name: "JKB Care", url: "https://jkbhousing.com/jkb-care" }
+  ];
+
+  const structuredData = [
+    organizationSchema,
+    webPageSchema(
+      "JKB Care - Community Development",
+      "JKB Care represents our commitment to community development through healthcare, education, and infrastructure initiatives.",
+      "https://jkbhousing.com/jkb-care"
+    ),
+    breadcrumbSchema(breadcrumbs)
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead
+        title={seoPages.jkbCare.title}
+        description={seoPages.jkbCare.description}
+        keywords={seoPages.jkbCare.keywords}
+        canonical="https://jkbhousing.com/jkb-care"
+        structuredData={structuredData}
+        author="JKB Housing"
+      />
       {/* Hero Section */}
       <section className="bg-[rgba(40,45,64,1)] text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4">

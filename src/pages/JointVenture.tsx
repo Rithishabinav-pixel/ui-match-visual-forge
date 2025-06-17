@@ -1,10 +1,36 @@
+
 import React from 'react';
 import { Handshake, Building2, TrendingUp, Award, Users, MapPin, Phone } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
+import { SEOHead } from '@/components/seo/SEOHead';
+import { seoPages, organizationSchema, webPageSchema, breadcrumbSchema } from '@/utils/seoData';
 
 const JointVenture = () => {
+  const breadcrumbs = [
+    { name: "Home", url: "https://jkbhousing.com/" },
+    { name: "Joint Venture", url: "https://jkbhousing.com/joint-venture" }
+  ];
+
+  const structuredData = [
+    organizationSchema,
+    webPageSchema(
+      "Joint Ventures - Strategic Partnerships",
+      "Partner with JKB Housing for strategic real estate development opportunities and investment partnerships.",
+      "https://jkbhousing.com/joint-venture"
+    ),
+    breadcrumbSchema(breadcrumbs)
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead
+        title={seoPages.jointVenture.title}
+        description={seoPages.jointVenture.description}
+        keywords={seoPages.jointVenture.keywords}
+        canonical="https://jkbhousing.com/joint-venture"
+        structuredData={structuredData}
+        author="JKB Housing"
+      />
       {/* Hero Section */}
       <section className="bg-[rgba(40,45,64,1)] text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4">

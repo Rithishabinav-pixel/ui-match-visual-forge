@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ArrowRight, MapPin, Calendar, Filter, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,8 +7,10 @@ import { Badge } from '@/components/ui/badge';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { SEOHead } from '@/components/seo/SEOHead';
 import { useProjects } from '@/hooks/useProjects';
 import { Project } from '@/types/project';
+import { seoPages, organizationSchema, webPageSchema, breadcrumbSchema } from '@/utils/seoData';
 
 const ProjectListing = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -15,6 +18,21 @@ const ProjectListing = () => {
   const itemsPerPage = 6;
 
   const { data: projects = [], isLoading, error } = useProjects();
+
+  const breadcrumbs = [
+    { name: "Home", url: "https://jkbhousing.com/" },
+    { name: "Projects", url: "https://jkbhousing.com/projects" }
+  ];
+
+  const structuredData = [
+    organizationSchema,
+    webPageSchema(
+      "Projects - JKB Housing Portfolio",
+      "Explore JKB Housing's diverse portfolio of 160+ completed projects including residential, commercial, and mixed-use developments.",
+      "https://jkbhousing.com/projects"
+    ),
+    breadcrumbSchema(breadcrumbs)
+  ];
 
   const filters = [
     { id: 'all', label: 'All Projects' },
@@ -62,6 +80,13 @@ const ProjectListing = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-white">
+        <SEOHead
+          title={seoPages.projects.title}
+          description={seoPages.projects.description}
+          keywords={seoPages.projects.keywords}
+          canonical="https://jkbhousing.com/projects"
+          structuredData={structuredData}
+        />
         <Header />
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
@@ -77,6 +102,13 @@ const ProjectListing = () => {
   if (error) {
     return (
       <div className="min-h-screen bg-white">
+        <SEOHead
+          title={seoPages.projects.title}
+          description={seoPages.projects.description}
+          keywords={seoPages.projects.keywords}
+          canonical="https://jkbhousing.com/projects"
+          structuredData={structuredData}
+        />
         <Header />
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
@@ -93,6 +125,14 @@ const ProjectListing = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEOHead
+        title={seoPages.projects.title}
+        description={seoPages.projects.description}
+        keywords={seoPages.projects.keywords}
+        canonical="https://jkbhousing.com/projects"
+        structuredData={structuredData}
+        author="JKB Housing"
+      />
       <Header />
       
       {/* Page Header */}

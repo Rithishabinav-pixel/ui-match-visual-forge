@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { EnquiryPopup } from '@/components/EnquiryPopup';
 import { useProject } from '@/hooks/useProjects';
 import { Footer } from '@/components/layout/Footer';
+import { SEOHead } from '@/components/seo/SEOHead';
 import { ProjectHeroSection } from '@/components/project/ProjectHeroSection';
 import { ProjectInfoSection } from '@/components/project/ProjectInfoSection';
 import { ProjectDetailsSection } from '@/components/project/ProjectDetailsSection';
@@ -19,6 +20,7 @@ import { ProjectGallerySection } from '@/components/project/ProjectGallerySectio
 import { ProgressGallerySection } from '@/components/project/ProgressGallerySection';
 import { LocationSection } from '@/components/project/LocationSection';
 import { FAQSection } from '@/components/project/FAQSection';
+import { organizationSchema, webPageSchema, breadcrumbSchema } from '@/utils/seoData';
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -50,8 +52,52 @@ const ProjectDetail = () => {
     );
   }
 
+  const breadcrumbs = [
+    { name: "Home", url: "https://jkbhousing.com/" },
+    { name: "Projects", url: "https://jkbhousing.com/projects" },
+    { name: project.title, url: `https://jkbhousing.com/project/${project.id}` }
+  ];
+
+  const structuredData = [
+    organizationSchema,
+    webPageSchema(
+      project.title,
+      project.overview.substring(0, 155),
+      `https://jkbhousing.com/project/${project.id}`
+    ),
+    breadcrumbSchema(breadcrumbs),
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateProject",
+      "name": project.title,
+      "description": project.overview,
+      "url": `https://jkbhousing.com/project/${project.id}`,
+      "image": project.gallery_images[0] || "",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": project.location.split(',')[0],
+        "addressRegion": "Tamil Nadu",
+        "addressCountry": "India"
+      },
+      "developer": {
+        "@type": "Organization",
+        "name": "JKB Housing"
+      }
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white">
+      <SEOHead
+        title={`${project.title} | JKB Housing - Premium ${project.type} Project`}
+        description={project.overview.substring(0, 155)}
+        keywords={`${project.title}, JKB Housing, ${project.type.toLowerCase()} project, ${project.location}, ${project.unit_types}`}
+        canonical={`https://jkbhousing.com/project/${project.id}`}
+        structuredData={structuredData}
+        ogImage={project.gallery_images[0] || "/lovable-uploads/cf2c111e-2a85-4fba-af35-2d35a8e86479.png"}
+        author="JKB Housing"
+      />
+
       {/* Hero Section - using dynamic hero_section */}
       <ProjectHeroSection 
         project={project} 

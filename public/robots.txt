@@ -1,8 +1,21 @@
+
 User-agent: Googlebot
 Allow: /
+Allow: /about
+Allow: /projects
+Allow: /project/*
+Allow: /contact
+Allow: /jkb-care
+Allow: /joint-venture
 
 User-agent: Bingbot
 Allow: /
+Allow: /about
+Allow: /projects
+Allow: /project/*
+Allow: /contact
+Allow: /jkb-care
+Allow: /joint-venture
 
 User-agent: Twitterbot
 Allow: /
@@ -12,3 +25,13 @@ Allow: /
 
 User-agent: *
 Allow: /
+Allow: /about
+Allow: /projects
+Allow: /project/*
+Allow: /contact
+Allow: /jkb-care
+Allow: /joint-venture
+Disallow: /admin
+Disallow: /admin/*
+
+Sitemap: https://jkbhousing.com/sitemap.xml

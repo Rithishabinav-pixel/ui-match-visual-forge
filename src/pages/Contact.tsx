@@ -8,10 +8,35 @@ import { ContactDetails } from '@/components/contact/ContactDetails';
 import { ContactMap } from '@/components/contact/ContactMap';
 import { SocialMediaLinks } from '@/components/contact/SocialMediaLinks';
 import { ContactCTA } from '@/components/contact/ContactCTA';
+import { SEOHead } from '@/components/seo/SEOHead';
+import { seoPages, organizationSchema, webPageSchema, breadcrumbSchema } from '@/utils/seoData';
 
 const Contact = () => {
+  const breadcrumbs = [
+    { name: "Home", url: "https://jkbhousing.com/" },
+    { name: "Contact", url: "https://jkbhousing.com/contact" }
+  ];
+
+  const structuredData = [
+    organizationSchema,
+    webPageSchema(
+      "Contact JKB Housing",
+      "Contact JKB Housing for premium construction services and expert consultation for residential & commercial projects.",
+      "https://jkbhousing.com/contact"
+    ),
+    breadcrumbSchema(breadcrumbs)
+  ];
+
   return (
     <div className="min-h-screen bg-white">
+      <SEOHead
+        title={seoPages.contact.title}
+        description={seoPages.contact.description}
+        keywords={seoPages.contact.keywords}
+        canonical="https://jkbhousing.com/contact"
+        structuredData={structuredData}
+        author="JKB Housing"
+      />
       <Header />
       
       <ContactHero />
