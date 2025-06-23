@@ -219,3 +219,14 @@
     @apply transition-all duration-300 hover:scale-105 hover:gap-3;
   }
 }
+
+
+.hero_video::before{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%);
+}

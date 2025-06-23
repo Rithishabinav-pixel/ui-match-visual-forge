@@ -3,6 +3,14 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { useCountUp } from '@/hooks/useCountUp';
+import card1 from '@/assets/card1.png';
+import card2 from '@/assets/card2.png';
+import card3 from '@/assets/card3.png';
+
+
+
+const cards = [card1, card2, card3];
+
 
 const StatItem = ({ number, label, delay = 0 }: { number: string; label: string; delay?: number }) => {
   const { elementRef, hasIntersected } = useIntersectionObserver({
@@ -78,21 +86,23 @@ export const Stats = () => {
         </div>
       </div>
 
+    
       <div className="flex w-full items-center gap-[30px] justify-center flex-wrap mt-10 max-md:max-w-full">
-        {[1, 2, 3].map((index) => (
-          <div 
-            key={index}
-            className="self-stretch min-w-60 flex-1 shrink basis-[0%] my-auto max-md:max-w-full"
-            data-aos="fade-up"
-            data-aos-delay={200 + (index * 200)}
-          >
-            <img
-              src={`https://images.unsplash.com/photo-148671844${index + 1}-163732cd154${index + 3}?w=500&h=380&fit=crop`}
-              alt={`Stats Image ${index + 1}`}
-              className="aspect-[1.32] object-cover w-full rounded-3xl max-md:max-w-full"
-            />
-          </div>
-        ))}
+        {cards.map((card, index) => (
+  <div 
+    key={index}
+    className="self-stretch min-w-60 flex-1 shrink basis-[0%] my-auto max-md:max-w-full"
+    data-aos="fade-up"
+    data-aos-delay={200 + (index * 200)}
+  >
+    <img
+      src={card}
+      alt={`Stats Image ${index + 1}`}
+      className="aspect-[1.32] object-cover w-full rounded-3xl max-md:max-w-full"
+    />
+  </div>
+))}
+
       </div>
     </section>
   );

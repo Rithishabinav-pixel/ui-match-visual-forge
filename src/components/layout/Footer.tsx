@@ -1,5 +1,12 @@
 import React from 'react';
 import { Facebook, Instagram, Linkedin, X, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
+import facebook from '@/assets/facebook.svg'
+import twitter from '@/assets/twitter.svg'
+import instagram from '@/assets/instagram-icon.svg'
+import linkedin from '@/assets/Linked-in.svg'
+
+
+
 export const Footer = () => {
   return <footer className="bg-[rgba(40,45,64,1)] text-white">
       {/* Hero Section */}
@@ -34,20 +41,23 @@ export const Footer = () => {
           <div className="lg:col-span-1 md:col-span-2 lg:col-span-1">
             <div className="mb-8 lg:mb-8 md:mb-6">
               <img src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/4efcacee27e527131b287a95ff8236af05b22057?placeholderIfAbsent=true" alt="JKB Housing Logo" className="w-[190px] lg:w-[190px] md:w-[160px] mb-4" />
-              <p className="text-lg lg:text-lg md:text-base font-medium">Delivered with Integrity</p>
             </div>
             <div className="flex gap-4 lg:gap-4 md:gap-3">
-              <div className="w-10 h-10 lg:w-10 lg:h-10 md:w-9 md:h-9 bg-[rgba(217,37,70,1)] rounded-full flex items-center justify-center cursor-pointer hover:bg-[rgba(197,27,60,1)] transition-colors">
-                <Facebook className="w-5 h-5 lg:w-5 lg:h-5 md:w-4 md:h-4 text-white" />
+              <div className="w-10 h-10 lg:w-10 lg:h-10 md:w-9 md:h-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors">
+                {/* <Facebook className="w-5 h-5 lg:w-5 lg:h-5 md:w-4 md:h-4 text-white" /> */}
+                <img src={facebook}/>
               </div>
-              <div className="w-10 h-10 lg:w-10 lg:h-10 md:w-9 md:h-9 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors">
-                <X className="w-5 h-5 lg:w-5 lg:h-5 md:w-4 md:h-4 text-black" />
+              <div className="w-10 h-10 lg:w-10 lg:h-10 md:w-9 md:h-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors">
+                {/* <X className="w-5 h-5 lg:w-5 lg:h-5 md:w-4 md:h-4 text-black" /> */}
+                  <img src={twitter}/>
               </div>
-              <div className="w-10 h-10 lg:w-10 lg:h-10 md:w-9 md:h-9 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors">
-                <Instagram className="w-5 h-5 lg:w-5 lg:h-5 md:w-4 md:h-4 text-[rgba(217,37,70,1)]" />
+              <div className="w-10 h-10 lg:w-10 lg:h-10 md:w-9 md:h-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors">
+                {/* <Instagram className="w-5 h-5 lg:w-5 lg:h-5 md:w-4 md:h-4 text-[rgba(217,37,70,1)]" /> */}
+                  <img src={instagram}/>
               </div>
-              <div className="w-10 h-10 lg:w-10 lg:h-10 md:w-9 md:h-9 bg-[rgba(217,37,70,1)] rounded-full flex items-center justify-center cursor-pointer hover:bg-[rgba(197,27,60,1)] transition-colors">
-                <Linkedin className="w-5 h-5 lg:w-5 lg:h-5 md:w-4 md:h-4 text-white" />
+              <div className="w-10 h-10 lg:w-10 lg:h-10 md:w-9 md:h-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors">
+                {/* <Linkedin className="w-5 h-5 lg:w-5 lg:h-5 md:w-4 md:h-4 text-white" /> */}
+                  <img src={linkedin}/>
               </div>
             </div>
           </div>

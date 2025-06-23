@@ -2,11 +2,20 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
+import video from '@/assets/jkb-banner.mp4';
+
 
 export const Hero = () => {
   return (
-    <div className="relative min-h-[878px] w-full bg-gradient-to-b from-[rgba(40,45,64,1)] to-[rgba(40,45,64,0.8)]">
-      <div className="max-w-[1530px] mx-auto">
+    <div className="relative min-h-[878px] w-full bg-gradient-to-b from-[rgba(40,45,64,1)] to-[rgba(40,45,64,0.8)] overflow-hidden">
+
+      <div className="hero_video absolute">
+  <video className="bg_video" autoPlay muted loop playsInline>
+    <source src={video} type="video/mp4" />
+  </video>
+</div>
+
+      <div className="max-w-[1530px] mx-auto px-5">
         <div className="pt-6">
           <Header />
         </div>
@@ -17,7 +26,7 @@ export const Hero = () => {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <span className="font-semibold">Llorem ipsum dolor sit amet,</span>{" "}
+            <span className="font-semibold">Lorem ipsum dolor sit amet,</span>{" "}
             <span className="font-normal">consectetur adipiscing elit,</span>{" "}
             <span className="font-normal">sed do</span>{" "}
             <span className="font-semibold italic">eiusmod tempor</span>
