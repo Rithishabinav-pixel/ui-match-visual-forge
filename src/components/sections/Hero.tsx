@@ -4,16 +4,15 @@ import { ArrowRight } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import video from '@/assets/jkb-banner.mp4';
 
-
 export const Hero = () => {
   return (
     <div className="relative min-h-[878px] w-full bg-gradient-to-b from-[rgba(40,45,64,1)] to-[rgba(40,45,64,0.8)] overflow-hidden">
 
       <div className="hero_video absolute">
-  <video className="bg_video" autoPlay muted loop playsInline>
-    <source src={video} type="video/mp4" />
-  </video>
-</div>
+        <video className="bg_video" autoPlay muted loop playsInline>
+          <source src={video} type="video/mp4" />
+        </video>
+      </div>
 
       <div className="max-w-[1530px] mx-auto px-5">
         <div className="pt-6">
@@ -26,10 +25,10 @@ export const Hero = () => {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <span className="font-semibold">Lorem ipsum dolor sit amet,</span>{" "}
-            <span className="font-normal">consectetur adipiscing elit,</span>{" "}
-            <span className="font-normal">sed do</span>{" "}
-            <span className="font-semibold italic">eiusmod tempor</span>
+            <span className="font-semibold">Premium CMDA & RERA Approved</span>{" "}
+            <span className="font-normal">Flats & Apartments in</span>{" "}
+            <span className="font-normal">Chennai's</span>{" "}
+            <span className="font-semibold italic">Prime Locations</span>
           </h1>
           
           <div 
@@ -39,7 +38,7 @@ export const Hero = () => {
           >
             <div className="flex flex-col items-start text-base font-normal max-md:items-center">
               <p className="leading-6 text-left max-md:text-center max-md:max-w-full">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Your trusted Chennai builder for 15+ years. We deliver quality 2BHK & 3BHK homes with modern amenities, legal transparency, and on-time completion. Experience the perfect blend of comfort, convenience, and affordability in Chennai's most sought-after neighborhoods.
               </p>
               
               <button 
@@ -47,7 +46,7 @@ export const Hero = () => {
                 data-aos="zoom-in"
                 data-aos-delay="600"
               >
-                <span>Enquire Now</span>
+                <span>Explore Our Projects</span>
                 <ArrowRight className="w-6 h-6" />
               </button>
             </div>

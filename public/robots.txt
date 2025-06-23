@@ -1,4 +1,7 @@
 
+# JKB Housing - Chennai's Premier Real Estate Developer
+# CMDA & RERA Approved Flats and Apartments
+
 User-agent: Googlebot
 Allow: /
 Allow: /about
@@ -7,8 +10,19 @@ Allow: /project/*
 Allow: /contact
 Allow: /jkb-care
 Allow: /joint-venture
+Crawl-delay: 1
 
 User-agent: Bingbot
+Allow: /
+Allow: /about
+Allow: /projects
+Allow: /project/*
+Allow: /contact
+Allow: /jkb-care
+Allow: /joint-venture
+Crawl-delay: 1
+
+User-agent: Yandex
 Allow: /
 Allow: /about
 Allow: /projects
@@ -23,6 +37,12 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
 User-agent: *
 Allow: /
 Allow: /about
@@ -31,7 +51,17 @@ Allow: /project/*
 Allow: /contact
 Allow: /jkb-care
 Allow: /joint-venture
-Disallow: /admin
-Disallow: /admin/*
 
+# Block admin and sensitive areas
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /test/
+Disallow: /staging/
+
+# Sitemap location
 Sitemap: https://jkbhousing.com/sitemap.xml
+
+# Host declaration
+Host: jkbhousing.com

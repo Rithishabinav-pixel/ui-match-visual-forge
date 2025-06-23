@@ -7,10 +7,7 @@ import card1 from '@/assets/card1.png';
 import card2 from '@/assets/card2.png';
 import card3 from '@/assets/card3.png';
 
-
-
 const cards = [card1, card2, card3];
-
 
 const StatItem = ({ number, label, delay = 0 }: { number: string; label: string; delay?: number }) => {
   const { elementRef, hasIntersected } = useIntersectionObserver({
@@ -40,10 +37,10 @@ const StatItem = ({ number, label, delay = 0 }: { number: string; label: string;
 
 export const Stats = () => {
   const stats = [
-    { number: '160+', label: 'Completed Projects' },
-    { number: '6L+', label: 'Sq.ft Area' },
-    { number: '600+', label: 'Happy Families' },
-    { number: '10+', label: 'Ongoing Projects' }
+    { number: '160+', label: 'CMDA & RERA Approved Projects' },
+    { number: '6L+', label: 'Sq.ft Premium Living Space' },
+    { number: '600+', label: 'Happy Families in Chennai' },
+    { number: '10+', label: 'Ongoing Premium Developments' }
   ];
 
   return (
@@ -53,9 +50,9 @@ export const Stats = () => {
           className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full"
           data-aos="fade-right"
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do{" "}
+          Chennai's Most Trusted Builder for{" "}
           <span className="font-semibold italic text-[rgba(217,37,70,1)]">
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Quality Homes & Unmatched Excellence
           </span>
         </h2>
 
@@ -71,7 +68,7 @@ export const Stats = () => {
           data-aos-delay="600"
         >
           <p className="text-neutral-800 leading-6 max-md:max-w-full">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            At JKB Housing, we specialize in delivering premium 2BHK and 3BHK flats across Chennai's prime locations. Our commitment to quality construction, legal transparency, and customer satisfaction has made us the preferred choice for homebuyers seeking CMDA & RERA approved properties with modern amenities and timely delivery.
           </p>
           
           <button 
@@ -80,29 +77,27 @@ export const Stats = () => {
             data-aos="zoom-in"
             data-aos-delay="800"
           >
-            <span>Step Into Our World</span>
+            <span>Discover Our Premium Projects</span>
             <ArrowRight className="w-6 h-6" />
           </button>
         </div>
       </div>
 
-    
       <div className="flex w-full items-center gap-[30px] justify-center flex-wrap mt-10 max-md:max-w-full">
         {cards.map((card, index) => (
-  <div 
-    key={index}
-    className="self-stretch min-w-60 flex-1 shrink basis-[0%] my-auto max-md:max-w-full"
-    data-aos="fade-up"
-    data-aos-delay={200 + (index * 200)}
-  >
-    <img
-      src={card}
-      alt={`Stats Image ${index + 1}`}
-      className="aspect-[1.32] object-cover w-full rounded-3xl max-md:max-w-full"
-    />
-  </div>
-))}
-
+          <div 
+            key={index}
+            className="self-stretch min-w-60 flex-1 shrink basis-[0%] my-auto max-md:max-w-full"
+            data-aos="fade-up"
+            data-aos-delay={200 + (index * 200)}
+          >
+            <img
+              src={card}
+              alt={`JKB Housing Premium Project ${index + 1} - Quality Construction in Chennai`}
+              className="aspect-[1.32] object-cover w-full rounded-3xl max-md:max-w-full"
+            />
+          </div>
+        ))}
       </div>
     </section>
   );

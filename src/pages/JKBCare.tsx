@@ -14,11 +14,41 @@ const JKBCare = () => {
   const structuredData = [
     organizationSchema,
     webPageSchema(
-      "JKB Care - Community Development",
-      "JKB Care represents our commitment to community development through healthcare, education, and infrastructure initiatives.",
-      "https://jkbhousing.com/jkb-care"
+      "JKB Care - Community Development Chennai | JKB Housing",
+      "JKB Care represents our commitment to Chennai's community development through healthcare, education, and infrastructure initiatives by JKB Housing.",
+      "https://jkbhousing.com/jkb-care",
+      "WebPage"
     ),
-    breadcrumbSchema(breadcrumbs)
+    breadcrumbSchema(breadcrumbs),
+    {
+      "@context": "https://schema.org",
+      "@type": "NonProfit",
+      "name": "JKB Care",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "JKB Housing"
+      },
+      "areaServed": "Chennai",
+      "foundingDate": "2010",
+      "mission": "Creating positive impact in Chennai communities through healthcare, education, and infrastructure development",
+      "program": [
+        {
+          "@type": "Thing",
+          "name": "Healthcare Programs",
+          "description": "Mobile health clinics and medical camps for Chennai communities"
+        },
+        {
+          "@type": "Thing", 
+          "name": "Education Support",
+          "description": "School building construction and scholarship programs"
+        },
+        {
+          "@type": "Thing",
+          "name": "Infrastructure Development", 
+          "description": "Essential infrastructure improvements in rural Chennai areas"
+        }
+      ]
+    }
   ];
 
   return (
@@ -30,6 +60,7 @@ const JKBCare = () => {
         canonical="https://jkbhousing.com/jkb-care"
         structuredData={structuredData}
         author="JKB Housing"
+        ogImage="https://jkbhousing.com/lovable-uploads/cf2c111e-2a85-4fba-af35-2d35a8e86479.png"
       />
       {/* Hero Section */}
       <section className="bg-[rgba(40,45,64,1)] text-white py-20 pt-32">
@@ -37,7 +68,7 @@ const JKBCare = () => {
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">JKB Care</h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-              Committed to giving back to our community through meaningful initiatives and social responsibility
+              Building homes, nurturing communities. Our commitment to Chennai's social development through meaningful initiatives and responsible construction practices.
             </p>
           </div>
         </div>
@@ -48,20 +79,19 @@ const JKBCare = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[rgba(40,45,64,1)] mb-4">
-              Our Mission
+              Our Mission for Chennai
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              JKB Care represents our commitment to creating positive impact in the communities where we build. 
-              We believe in responsible development that benefits not just our customers, but society as a whole.
+              JKB Care represents our deep-rooted commitment to Chennai's community development. As a responsible builder, we believe in creating positive impact beyond our CMDA & RERA approved projects, fostering growth in healthcare, education, and infrastructure across Chennai's neighborhoods.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-lg shadow-lg text-center">
               <Heart className="w-16 h-16 text-[rgba(217,37,70,1)] mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-[rgba(40,45,64,1)] mb-3">Community Health</h3>
+              <h3 className="text-xl font-bold text-[rgba(40,45,64,1)] mb-3">Community Health Chennai</h3>
               <p className="text-gray-600">
-                Supporting healthcare initiatives and medical facilities in underserved communities.
+                Supporting healthcare initiatives and medical facilities in underserved Chennai communities with mobile clinics and health screenings.
               </p>
             </div>
 
@@ -69,7 +99,7 @@ const JKBCare = () => {
               <Users className="w-16 h-16 text-[rgba(217,37,70,1)] mx-auto mb-4" />
               <h3 className="text-xl font-bold text-[rgba(40,45,64,1)] mb-3">Education Support</h3>
               <p className="text-gray-600">
-                Funding educational programs and infrastructure to empower future generations.
+                Funding educational programs and school infrastructure to empower Chennai's future generations with quality learning environments.
               </p>
             </div>
 
@@ -77,7 +107,7 @@ const JKBCare = () => {
               <Building className="w-16 h-16 text-[rgba(217,37,70,1)] mx-auto mb-4" />
               <h3 className="text-xl font-bold text-[rgba(40,45,64,1)] mb-3">Infrastructure Development</h3>
               <p className="text-gray-600">
-                Building essential infrastructure to improve quality of life in rural areas.
+                Building essential infrastructure to improve quality of life in Chennai's developing areas and rural outskirts.
               </p>
             </div>
           </div>
@@ -146,26 +176,29 @@ const JKBCare = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[rgba(40,45,64,1)] mb-4">
-              Our Impact
+              Our Impact in Chennai
             </h2>
+            <p className="text-lg text-gray-600">
+              15 years of dedicated community service alongside quality home construction
+            </p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="bg-white p-6 rounded-lg shadow-lg">
               <div className="text-3xl font-bold text-[rgba(217,37,70,1)] mb-2">50+</div>
-              <div className="text-gray-600">Schools Supported</div>
+              <div className="text-gray-600">Schools Supported in Chennai</div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-lg">
               <div className="text-3xl font-bold text-[rgba(217,37,70,1)] mb-2">25+</div>
-              <div className="text-gray-600">Healthcare Centers</div>
+              <div className="text-gray-600">Healthcare Centers Enhanced</div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-lg">
               <div className="text-3xl font-bold text-[rgba(217,37,70,1)] mb-2">1000+</div>
-              <div className="text-gray-600">Families Benefited</div>
+              <div className="text-gray-600">Chennai Families Benefited</div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-lg">
               <div className="text-3xl font-bold text-[rgba(217,37,70,1)] mb-2">15</div>
-              <div className="text-gray-600">Years of Service</div>
+              <div className="text-gray-600">Years of Community Service</div>
             </div>
           </div>
         </div>
@@ -175,10 +208,10 @@ const JKBCare = () => {
       <section className="py-16 bg-[rgba(40,45,64,1)] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Join Our Mission
+            Join Our Mission for Chennai
           </h2>
           <p className="text-xl mb-8">
-            Partner with us in creating positive change in our communities. Together, we can build a better tomorrow.
+            Partner with JKB Housing in creating positive change across Chennai's communities. Together, we can build better homes and stronger neighborhoods for tomorrow's generation.
           </p>
           <a
             href="tel:9710397104"
