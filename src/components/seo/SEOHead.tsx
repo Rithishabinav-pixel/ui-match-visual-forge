@@ -17,16 +17,15 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   title,
   description,
   canonical,
-  ogImage = "/lovable-uploads/cf2c111e-2a85-4fba-af35-2d35a8e86479.png",
+  ogImage = "https://jkbhousing.com/lovable-uploads/cf2c111e-2a85-4fba-af35-2d35a8e86479.png",
   ogType = "website",
   keywords,
   author,
   structuredData = []
 }) => {
   const fullTitle = title.includes('JKB Housing') ? title : `${title} | JKB Housing`;
-  const currentUrl = canonical || window.location.href;
+  const currentUrl = canonical || (typeof window !== 'undefined' ? window.location.href : 'https://jkbhousing.com');
   const siteName = "JKB Housing";
-  const siteUrl = "https://jkbhousing.com";
 
   return (
     <Helmet>
