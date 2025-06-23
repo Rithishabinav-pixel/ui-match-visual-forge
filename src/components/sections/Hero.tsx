@@ -17,7 +17,7 @@ export const Hero = () => {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <span className="font-semibold">Lorem ipsum dolor sit amet,</span>{" "}
+            <span className="font-semibold">Llorem ipsum dolor sit amet,</span>{" "}
             <span className="font-normal">consectetur adipiscing elit,</span>{" "}
             <span className="font-normal">sed do</span>{" "}
             <span className="font-semibold italic">eiusmod tempor</span>
