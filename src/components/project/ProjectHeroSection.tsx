@@ -47,7 +47,7 @@ export const ProjectHeroSection = ({ project, onEnquiryOpen }: ProjectHeroSectio
             </p>
             <div className="flex items-center text-gray-600">
               <MapPin className="w-4 h-4 mr-2 text-red-500" />
-              <span className="text-base">@Ramalinga Nagar, Virugambakkam</span>
+              <span className="text-base">@Gnanamoorthy Nagar, Virugambakkam</span>
             </div>
           </div>
           

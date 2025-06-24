@@ -15,15 +15,49 @@ export const NearbyLocationsSection = ({
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
-  // Use the new dynamic section if available, otherwise fall back to legacy data
-  const categories = nearbyLocationsSection?.categories || [];
-  const heading = nearbyLocationsSection?.heading || "Nearby Locations";
-  const description = nearbyLocationsSection?.description || "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per.";
+  // Use the new dynamic section if available, otherwise create default categories
+  const defaultCategories = [
+    {
+      heading: "Hospitals",
+      places: [
+        { name: "Vijaya Hospital", distance: "2.3 km" },
+        { name: "SRM Clinic", distance: "1.4 km" },
+        { name: "Apollo Clinic", distance: "3.1 km" },
+        { name: "Fortis Malar", distance: "4.2 km" }
+      ]
+    },
+    {
+      heading: "Schools & Colleges", 
+      places: [
+        { name: "Kendriya Vidyalaya", distance: "3.0 km" },
+        { name: "AVM Matric School", distance: "2.1 km" },
+        { name: "DAV School", distance: "2.8 km" },
+        { name: "Anna University", distance: "5.5 km" }
+      ]
+    },
+    {
+      heading: "IT Parks",
+      places: [
+        { name: "Olympia Tech Park", distance: "5.1 km" },
+        { name: "DLF IT Park", distance: "6.2 km" },
+        { name: "Tidel Park", distance: "8.3 km" },
+        { name: "L&T Tech Park", distance: "7.1 km" }
+      ]
+    },
+    {
+      heading: "Leisure",
+      places: [
+        { name: "Forum Vijaya Mall", distance: "3.3 km" },
+        { name: "AVM Studios", distance: "2.8 km" },
+        { name: "Phoenix MarketCity", distance: "4.7 km" },
+        { name: "Express Avenue", distance: "6.5 km" }
+      ]
+    }
+  ];
 
-  // If no dynamic data, don't render the section
-  if (categories.length === 0) {
-    return null;
-  }
+  const categories = nearbyLocationsSection?.categories || defaultCategories;
+  const heading = nearbyLocationsSection?.heading || "Connectivity & Convenience";
+  const description = nearbyLocationsSection?.description || "JKB Grace is strategically located in Virugambakkam, offering excellent connectivity to Chennai's major business districts, educational institutions, healthcare facilities, and entertainment hubs. Enjoy the perfect balance of urban convenience and peaceful residential living.";
 
   const totalPages = Math.ceil(categories.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -42,7 +76,7 @@ export const NearbyLocationsSection = ({
       <div className="max-w-[1530px] mx-auto px-5">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800 mb-6">
-            Lorem ipsum dolor sit amet, <span className="text-red-500 italic">consectetur adipiscing elit</span>
+            Prime Location with <span className="text-red-500 italic">Unmatched Connectivity</span>
           </h2>
           <p className="text-base text-gray-600 max-w-4xl mx-auto leading-relaxed">
             {description}

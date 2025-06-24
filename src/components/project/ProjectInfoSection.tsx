@@ -13,19 +13,19 @@ export const ProjectInfoSection = ({
   const stats = project.project_info_stats && project.project_info_stats.length > 0 ? project.project_info_stats : [
     {
       label: "CMDA APPROVED",
-      value: "Government approved residential project with all necessary clearances and certifications"
+      value: "Government approved residential project with all necessary clearances and certifications for secure investment"
     },
     {
-      label: project.unit_sizes || "1100 - 2000 SQ.FT",
-      value: "Spacious unit configurations designed for modern family living with optimal space utilization"
+      label: "1100 - 2000 SQ.FT",
+      value: "Spacious unit configurations designed for modern family living with optimal space utilization and comfort"
     },
     {
       label: "STILT +3",
-      value: "Well-planned vertical construction with ground floor parking and three residential floors"
+      value: "Well-planned vertical construction with ground floor parking and three residential floors for convenience"
     },
     {
-      label: project.unit_types || "2 & 3 BHK",
-      value: "Premium apartment configurations with modern amenities and quality construction standards"
+      label: "2 & 3 BHK",
+      value: "Premium apartment configurations with modern amenities and quality construction standards for luxurious living"
     }
   ];
 
