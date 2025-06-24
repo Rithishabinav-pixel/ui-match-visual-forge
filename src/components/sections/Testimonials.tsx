@@ -34,15 +34,15 @@ export const Testimonials = () => {
             data-aos="fade-right"
           >
             <h2 className="text-[rgba(40,45,64,1)] text-[40px] font-bold leading-[48px] max-md:max-w-full font-montserrat">
-              Lorem ipsum dolor sit amet,{" "}
+              What Our Happy Homeowners{" "}
               <span className="font-semibold italic text-[rgba(217,37,70,1)]">
-                consectetur adipiscing
+                Say About Us
               </span>
             </h2>
             
             <div className="flex w-full flex-col items-stretch text-base font-normal mt-8 max-md:max-w-full">
               <p className="text-[rgba(40,45,64,1)] leading-6 max-md:max-w-full font-acumin">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Over 600 satisfied families have made JKB Housing their trusted partner in finding dream homes. From our transparent processes to quality construction and on-time delivery, discover why Chennai residents choose us for their most important investment. Read genuine testimonials from our community members.
               </p>
               
               <button 
@@ -50,7 +50,7 @@ export const Testimonials = () => {
                 data-aos="zoom-in"
                 data-aos-delay="400"
               >
-                <span>Step Into Our World</span>
+                <span>Join Our Community</span>
                 <ArrowRight className="w-6 h-6" />
               </button>
             </div>
