@@ -29,6 +29,20 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
   return (
     <Helmet>
+      {/* Google Search Console Verification */}
+      <meta name="google-site-verification" content="_QExo2Wq-yY3HqRYZrG79Gks8hYrbTRX-iysmtIKwlI" />
+
+      {/* Google Analytics */}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4HPRF9HT5"></script>
+      <script>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-N4HPRF9HT5');
+        `}
+      </script>
+
       {/* Primary Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="title" content={fullTitle} />

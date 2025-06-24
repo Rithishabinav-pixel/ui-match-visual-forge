@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
@@ -41,7 +42,7 @@ export const Testimonials = () => {
             
             <div className="flex w-full flex-col items-stretch text-base font-normal mt-8 max-md:max-w-full">
               <p className="text-[rgba(40,45,64,1)] leading-6 max-md:max-w-full font-acumin">
-                Over 600 satisfied families have made JKB Housing their trusted partner in finding dream homes. From our transparent processes to quality construction and on-time delivery, discover why Chennai residents choose us for their most important investment. Read genuine testimonials from our community members.
+                Over 600 satisfied families have made JKB Housing their trusted partner in finding dream homes. From our transparent processes to quality construction and on-time delivery, discover why Chennai residents choose us for their most important investment. Read genuine testimonials from our community members who have experienced the JKB difference firsthand.
               </p>
               
               <button 
