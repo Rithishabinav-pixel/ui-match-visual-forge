@@ -1,31 +1,50 @@
 
-import React from 'react';
-import { Sidebar } from '@/components/admin/Sidebar';
-import { TopNavbar } from '@/components/admin/TopNavbar';
+import React, { useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ProjectsList } from '@/components/admin/ProjectsList';
 import { AddProjectForm } from '@/components/admin/AddProjectForm';
-import { AdminRoute } from '@/components/admin/AdminRoute';
+import { AddJKBGraceProject } from '@/components/admin/AddJKBGraceProject';
 
 const AdminDashboard = () => {
   return (
-    <AdminRoute>
-      <div className="min-h-screen bg-gray-50 flex">
-        <Sidebar />
-        <div className="flex-1 flex flex-col">
-          <TopNavbar />
-          <main className="flex-1 p-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="bg-white rounded-lg shadow-sm border">
-                <div className="border-b px-6 py-4">
-                  <h1 className="text-2xl font-bold text-gray-900">Add New Project</h1>
-                  <p className="text-gray-600 mt-1">Create a new real estate project with detailed information</p>
-                </div>
-                <AddProjectForm />
-              </div>
-            </div>
-          </main>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        <div className="bg-white shadow-sm border-b">
+          <div className="px-6 py-4">
+            <h1 className="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
+            <p className="text-gray-600">Manage your projects and content</p>
+          </div>
         </div>
+
+        <Tabs defaultValue="projects" className="w-full">
+          <TabsList className="grid w-full grid-cols-4 bg-white border-b">
+            <TabsTrigger value="projects">Projects</TabsTrigger>
+            <TabsTrigger value="add-project">Add Project</TabsTrigger>
+            <TabsTrigger value="jkb-grace">Create JKB Grace</TabsTrigger>
+            <TabsTrigger value="settings">Settings</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="projects" className="mt-0">
+            <ProjectsList />
+          </TabsContent>
+          
+          <TabsContent value="add-project" className="mt-0">
+            <AddProjectForm />
+          </TabsContent>
+
+          <TabsContent value="jkb-grace" className="mt-0">
+            <AddJKBGraceProject />
+          </TabsContent>
+          
+          <TabsContent value="settings" className="mt-0">
+            <div className="p-6">
+              <h2 className="text-xl font-semibold mb-4">Settings</h2>
+              <p className="text-gray-600">Settings panel coming soon...</p>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
-    </AdminRoute>
+    </div>
   );
 };
 
