@@ -1,27 +1,26 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
 export const Testimonials = () => {
   const testimonials = [{
-    content: "JKB and his Team are doing great Job in construction field. JKB Housing are trusted partners, reliable people, whom with you can invest. I have recently invested a property at JKB Paradise, Valasaravakkam. From the day I went to their office for enquiry, to till the day they hand overed key to me, it was pleasant experience. They understand your requirement well, ....",
-    author: "Mr. Ramesh",
+    content: "JKB Housing delivered our dream home at JKB Paradise exactly as promised. Their transparent approach, quality construction, and timely delivery impressed us throughout the journey. The team was responsive to all our queries and made the entire home-buying process smooth and stress-free. We're proud homeowners today thanks to JKB's commitment to excellence.",
+    author: "Mr. Ramesh Kumar",
     project: "JKB Paradise A2",
     image: "https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/a400e9697a5de28996e54d92d291ca76d8782ecc?placeholderIfAbsent=true"
   }, {
-    content: "JKB and his Team are doing great Job in construction field. JKB Housing are trusted partners, reliable people, whom with you can invest. I have recently invested a property at JKB Paradise, Valasaravakkam. From the day I went to their office for enquiry, to till the day they hand overed key to me, it was pleasant experience. They understand your requirement well, ....",
-    author: "Mr. Ramesh",
-    project: "JKB Paradise A2",
+    content: "Moving to JKB Green Homes was the best decision for our family. The eco-friendly features, spacious layouts, and excellent amenities make it perfect for modern living. JKB's after-sales service through the JKB Care app is outstanding - we get regular updates and instant support whenever needed.",
+    author: "Mrs. Priya Sharma",
+    project: "JKB Green Homes",
     image: "https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/446c5940036d1764d0c02e35f58d94b15c46784f?placeholderIfAbsent=true"
   }, {
-    content: "JKB and his Team are doing great Job in construction field. JKB Housing are trusted partners, reliable people, whom with you can invest. I have recently invested a property at JKB Paradise, Valasaravakkam. From the day I went to their office for enquiry, to till the day they hand overed key to me, it was pleasant experience. They understand your requirement well, ....",
-    author: "Mr. Ramesh",
-    project: "JKB Paradise A2",
+    content: "As first-time home buyers, we were nervous about the process. JKB Housing's team guided us every step of the way, explaining all details clearly. The quality of construction at JKB Elite Residences exceeded our expectations. Three years later, we still receive excellent maintenance support from their team.",
+    author: "Mr. Arun Patel",
+    project: "JKB Elite Residences",
     image: "https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/a400e9697a5de28996e54d92d291ca76d8782ecc?placeholderIfAbsent=true"
   }, {
-    content: "JKB and his Team are doing great Job in construction field. JKB Housing are trusted partners, reliable people, whom with you can invest. I have recently invested a property at JKB Paradise, Valasaravakkam. From the day I went to their office for enquiry, to till the day they hand overed key to me, it was pleasant experience. They understand your requirement well, ....",
-    author: "Mr. Ramesh",
-    project: "JKB Paradise A2",
+    content: "JKB Housing's commitment to customer satisfaction is remarkable. From the initial site visit to possession, everything was handled professionally. The strategic location of JKB Royal Heights near IT corridors and schools made it perfect for our family. Their transparent pricing with no hidden costs was refreshing.",
+    author: "Dr. Kavitha Reddy",
+    project: "JKB Royal Heights",
     image: "https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/446c5940036d1764d0c02e35f58d94b15c46784f?placeholderIfAbsent=true"
   }];
 
