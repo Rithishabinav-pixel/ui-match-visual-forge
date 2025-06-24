@@ -19,6 +19,7 @@ export const NearbyLocationsSection = ({
   const defaultCategories = [
     {
       heading: "Hospitals",
+      icon: undefined,
       places: [
         { name: "Vijaya Hospital", distance: "2.3 km" },
         { name: "SRM Clinic", distance: "1.4 km" },
@@ -27,7 +28,8 @@ export const NearbyLocationsSection = ({
       ]
     },
     {
-      heading: "Schools & Colleges", 
+      heading: "Schools & Colleges",
+      icon: undefined,
       places: [
         { name: "Kendriya Vidyalaya", distance: "3.0 km" },
         { name: "AVM Matric School", distance: "2.1 km" },
@@ -37,6 +39,7 @@ export const NearbyLocationsSection = ({
     },
     {
       heading: "IT Parks",
+      icon: undefined,
       places: [
         { name: "Olympia Tech Park", distance: "5.1 km" },
         { name: "DLF IT Park", distance: "6.2 km" },
@@ -46,6 +49,7 @@ export const NearbyLocationsSection = ({
     },
     {
       heading: "Leisure",
+      icon: undefined,
       places: [
         { name: "Forum Vijaya Mall", distance: "3.3 km" },
         { name: "AVM Studios", distance: "2.8 km" },
