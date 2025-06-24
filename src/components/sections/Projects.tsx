@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { MapPin, Ruler, Building2, ArrowRight } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -138,12 +139,12 @@ export const Projects = () => {
           <div className="w-[620px] max-w-full text-white text-center">
             <div className="flex w-full flex-col max-md:max-w-full">
               <h2 className="text-[40px] leading-[48px] max-md:max-w-full max-md:text-[30px] max-md:leading-[38px]">
-                <span className="font-bold">Lorem ipsum dolor sit amet,</span>
+                <span className="font-bold">Discover Our Premium</span>
                 <br />
-                <span className="italic">consectetur adipiscing elit</span>
+                <span className="italic">CMDA & RERA Approved Projects</span>
               </h2>
               <p className="text-base leading-6 mt-6 max-md:max-w-full">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.
+                Explore JKB Housing's extensive portfolio of quality residential projects across Chennai's prime locations. From ongoing constructions to completed landmarks and upcoming developments, find your perfect home with guaranteed legal compliance and superior construction quality.
               </p>
             </div>
           </div>

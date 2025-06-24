@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
@@ -8,7 +9,7 @@ export const AppDownload = () => {
         <div className="self-stretch flex min-w-60 flex-col flex-1 shrink basis-[0%] my-auto max-md:max-w-full">
           <img
             src="https://cdn.builder.io/api/v1/image/assets/6d5e86a0b8e84edc8bb078b115d662fd/e0c4bd0eeab3f837342dddd40fe6940df68bf76d?placeholderIfAbsent=true"
-            alt="Mobile App"
+            alt="JKB Care Mobile App"
             className="aspect-[0.7] object-contain w-[386px] max-w-full transform transition-all duration-700 hover:scale-105 hover:rotate-2 animate-[float_3s_ease-in-out_infinite] cursor-pointer"
             data-aos="fade-right"
             data-aos-duration="1000"
@@ -21,9 +22,9 @@ export const AppDownload = () => {
             data-aos="fade-left"
             data-aos-delay="200"
           >
-            Lorem ipsum dolor sit amet,{" "}
+            Experience JKB Care with Our{" "}
             <span className="font-semibold italic text-[rgba(217,37,70,1)]">
-              consectetur adipiscing
+              Mobile App
             </span>
           </h2>
           
@@ -33,7 +34,7 @@ export const AppDownload = () => {
               data-aos="fade-left"
               data-aos-delay="300"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Download the JKB Care app and stay connected with your property investment journey. Get real-time project updates, construction progress photos, payment schedules, and direct communication with our customer care team. Experience seamless property management, instant notifications, and exclusive app-only offers from Chennai's most trusted housing developer.
             </p>
             
             <div 
@@ -76,7 +77,7 @@ export const AppDownload = () => {
               data-aos="zoom-in"
               data-aos-delay="500"
             >
-              <span>Step Into Our World</span>
+              <span>Download JKB Care App</span>
               <ArrowRight className="w-6 h-6" />
             </button>
           </div>
