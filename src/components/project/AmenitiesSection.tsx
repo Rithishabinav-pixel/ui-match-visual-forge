@@ -50,11 +50,14 @@ export const AmenitiesSection = ({ amenities, amenitiesSection }: AmenitiesSecti
               {sectionHeading.includes('consectetur adipiscing elit') ? (
                 <>
                   {sectionHeading.split('consectetur adipiscing elit')[0]}
-                  <span className="text-[rgba(217,37,70,1)]">consectetur adipiscing elit</span>
+                  <em className="text-[rgba(217,37,70,1)] not-italic font-bold">{' consectetur adipiscing elit'}</em>
                   {sectionHeading.split('consectetur adipiscing elit')[1]}
                 </>
               ) : (
-                <span className="text-[rgba(217,37,70,1)]">{sectionHeading}</span>
+                <>
+                  <span className="text-white font-bold">Lorem ipsum dolor sit amet, </span>
+                  <em className="text-[rgba(217,37,70,1)] not-italic font-bold">consectetur adipiscing elit</em>
+                </>
               )}
             </h2>
             <p className="text-lg text-gray-300 leading-relaxed">

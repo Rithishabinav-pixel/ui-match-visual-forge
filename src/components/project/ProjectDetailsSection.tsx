@@ -31,12 +31,15 @@ export const ProjectDetailsSection = ({
           <h2 className="text-4xl font-bold text-[rgba(40,45,64,1)] mb-6 max-md:text-3xl">
             {sectionHeading.includes('consectetur adipiscing elit') ? (
               <>
-                {sectionHeading.split('consectetur adipiscing elit')[0]}
-                <span className="text-[rgba(217,37,70,1)]">consectetur adipiscing elit</span>
-                {sectionHeading.split('consectetur adipiscing elit')[1]}
+                <span className="text-[rgba(40,45,64,1)] font-bold">{sectionHeading.split('consectetur adipiscing elit')[0]}</span>
+                <em className="text-[rgba(217,37,70,1)] not-italic font-bold">consectetur adipiscing elit</em>
+                <span className="text-[rgba(40,45,64,1)] font-bold">{sectionHeading.split('consectetur adipiscing elit')[1]}</span>
               </>
             ) : (
-              <span className="text-[rgba(217,37,70,1)]">{sectionHeading}</span>
+              <>
+                <span className="text-[rgba(40,45,64,1)] font-bold">Lorem ipsum dolor sit amet, </span>
+                <em className="text-[rgba(217,37,70,1)] not-italic font-bold">consectetur adipiscing elit</em>
+              </>
             )}
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">

@@ -6,11 +6,13 @@ import { Label } from '@/components/ui/label';
 import { BrochureSection as BrochureSectionType } from '@/types/project';
 import { useSubmitProjectEnquiry } from '@/hooks/useSubmitEnquiry';
 import { useToast } from '@/hooks/use-toast';
+
 interface BrochureDownloadSectionProps {
   brochureSection?: BrochureSectionType;
   projectId: string;
   projectTitle: string;
 }
+
 export const BrochureDownloadSection = ({
   brochureSection,
   projectId,
@@ -22,18 +24,17 @@ export const BrochureDownloadSection = ({
     email: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const {
-    mutate: submitEnquiry
-  } = useSubmitProjectEnquiry();
-  const {
-    toast
-  } = useToast();
+
+  const { mutate: submitEnquiry } = useSubmitProjectEnquiry();
+  const { toast } = useToast();
+
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
   };
+
   const handleDownload = async () => {
     if (!formData.name || !formData.mobile || !formData.email) {
       toast({
@@ -43,7 +44,9 @@ export const BrochureDownloadSection = ({
       });
       return;
     }
+
     setIsSubmitting(true);
+
     try {
       submitEnquiry({
         name: formData.name,
@@ -74,13 +77,19 @@ export const BrochureDownloadSection = ({
       setIsSubmitting(false);
     }
   };
-  return <section className="py-16 bg-gray-50 max-md:py-8">
+
+  return (
+    <section className="py-16 bg-gray-50 max-md:py-8">
       <div className="max-w-[1530px] mx-auto px-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Image */}
           <div className="order-2 lg:order-1">
             <div className="rounded-2xl overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=500&fit=crop" alt="Building" className="w-full h-[500px] object-cover" />
+              <img 
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=500&fit=crop" 
+                alt="Building" 
+                className="w-full h-[500px] object-cover" 
+              />
             </div>
           </div>
 
@@ -88,7 +97,8 @@ export const BrochureDownloadSection = ({
           <div className="order-1 lg:order-2">
             <div className="max-w-md">
               <h2 className="text-4xl font-bold text-[rgba(40,45,64,1)] mb-6 max-md:text-3xl">
-                Download Brochure
+                <span className="text-[rgba(40,45,64,1)] font-bold">Download </span>
+                <em className="text-[rgba(217,37,70,1)] not-italic font-bold">Brochure</em>
               </h2>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 {brochureSection?.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"}
@@ -97,20 +107,46 @@ export const BrochureDownloadSection = ({
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="name">Name *</Label>
-                  <Input id="name" value={formData.name} onChange={e => handleInputChange('name', e.target.value)} placeholder="Enter your name" className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3" disabled={isSubmitting} />
+                  <Input 
+                    id="name" 
+                    value={formData.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    placeholder="Enter your name" 
+                    className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3"
+                    disabled={isSubmitting}
+                  />
                 </div>
 
                 <div>
                   <Label htmlFor="mobile">Mobile number *</Label>
-                  <Input id="mobile" value={formData.mobile} onChange={e => handleInputChange('mobile', e.target.value)} placeholder="Enter your mobile number" className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3" disabled={isSubmitting} />
+                  <Input 
+                    id="mobile" 
+                    value={formData.mobile}
+                    onChange={(e) => handleInputChange('mobile', e.target.value)}
+                    placeholder="Enter your mobile number" 
+                    className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3"
+                    disabled={isSubmitting}
+                  />
                 </div>
 
                 <div>
                   <Label htmlFor="email">Email address *</Label>
-                  <Input id="email" type="email" value={formData.email} onChange={e => handleInputChange('email', e.target.value)} placeholder="Enter your email address" className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3" disabled={isSubmitting} />
+                  <Input 
+                    id="email" 
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    placeholder="Enter your email address" 
+                    className="border-2 border-[rgba(217,37,70,0.3)] focus:border-[rgba(217,37,70,1)] rounded-full px-4 py-3"
+                    disabled={isSubmitting}
+                  />
                 </div>
 
-                <Button onClick={handleDownload} disabled={isSubmitting} className="w-fit hover:bg-[rgba(217,37,70,0.9)] text-white py-3 rounded-full text-lg font-medium flex items-center justify-center gap-2">
+                <Button 
+                  onClick={handleDownload}
+                  disabled={isSubmitting}
+                  className="w-fit hover:bg-[rgba(217,37,70,0.9)] text-white py-3 rounded-full text-lg font-medium flex items-center justify-center gap-2"
+                >
                   <Download className="w-5 h-5" />
                   {isSubmitting ? 'Processing...' : 'Download Brochure'}
                 </Button>
@@ -119,5 +155,6 @@ export const BrochureDownloadSection = ({
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
