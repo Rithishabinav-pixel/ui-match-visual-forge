@@ -51,6 +51,10 @@ const ProjectDetail = () => {
     );
   }
 
+  // Debug logging to check amenities section data
+  console.log('Project amenities_section:', project.amenities_section);
+  console.log('Project specifications_section:', project.specifications_section);
+
   const breadcrumbs = [
     { name: "Home", url: "https://jkbhousing.com/" },
     { name: "Projects", url: "https://jkbhousing.com/projects" },
@@ -115,22 +119,10 @@ const ProjectDetail = () => {
       />
 
       {/* Amenities Section - using dynamic amenities_section */}
-      {project.amenities_section && project.amenities_section.amenities && project.amenities_section.amenities.length > 0 ? (
-        <AmenitiesSection 
-          amenities={project.amenities_section.amenities.map(name => ({ name }))} 
-          amenitiesSection={project.amenities_section}
-        />
-      ) : project.amenities && project.amenities.length > 0 ? (
-        <AmenitiesSection 
-          amenities={project.amenities} 
-          amenitiesSection={project.amenities_section}
-        />
-      ) : (
-        <AmenitiesSection 
-          amenities={[]} 
-          amenitiesSection={project.amenities_section}
-        />
-      )}
+      <AmenitiesSection 
+        amenities={project.amenities || []} 
+        amenitiesSection={project.amenities_section}
+      />
 
       {/* Video Section */}
       {project.video_section?.video_url && (
