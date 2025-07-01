@@ -111,7 +111,8 @@ const ProjectDetail = () => {
       <ProjectDetailsSection 
         projectDetails={project.project_details}
         title={project.title}
-        overview={project.project_detail_section?.description || project.overview}
+        overview={project.overview}
+        projectDetailSection={project.project_detail_section}
       />
 
       {/* Amenities Section - using dynamic amenities_section */}
