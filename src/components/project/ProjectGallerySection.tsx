@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -47,8 +48,7 @@ export const ProjectGallerySection = ({ galleryImages, projectTitle }: ProjectGa
       <div className="max-w-6xl mx-auto px-5">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-[rgba(40,45,64,1)] mb-6 max-md:text-3xl">
-            <span className="text-[rgba(40,45,64,1)] font-bold">Each Frame Shows Your </span>
-            <em className="text-[rgba(217,37,70,1)] not-italic font-bold">Home in Progress</em>
+            Each Frame Shows Your <span className="text-[rgba(217,37,70,1)]">Home in Progress</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Witness the transformation of your dream home through our comprehensive gallery. From foundation to finishing touches, every image captures the dedication, craftsmanship, and attention to detail that goes into creating your perfect living space. These visual milestones showcase the journey of excellence that defines our construction process.

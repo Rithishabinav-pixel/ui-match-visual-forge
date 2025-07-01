@@ -27,8 +27,7 @@ export const FloorPlansDownloadSection = ({
       <div className="max-w-6xl mx-auto px-5">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-[rgba(40,45,64,1)] mb-6 max-md:text-3xl">
-            <span className="text-[rgba(40,45,64,1)] font-bold">Floor </span>
-            <em className="text-[rgba(217,37,70,1)] not-italic font-bold">Plans</em>
+            {heading}
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
             {description}
