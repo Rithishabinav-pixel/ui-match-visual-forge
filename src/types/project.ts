@@ -125,6 +125,7 @@ export interface NearbyPlace {
 
 export interface SpecificationsSection {
   heading?: string;
+  description?: string;
   specifications: SpecificationItem[];
 }
 
