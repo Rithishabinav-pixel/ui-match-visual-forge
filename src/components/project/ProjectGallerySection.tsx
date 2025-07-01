@@ -48,10 +48,10 @@ export const ProjectGallerySection = ({ galleryImages, projectTitle }: ProjectGa
       <div className="max-w-6xl mx-auto px-5">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-[rgba(40,45,64,1)] mb-6 max-md:text-3xl">
-            Lorem ipsum dolor sit amet, <span className="text-[rgba(217,37,70,1)]">consectetur adipiscing elit</span>
+            Each Frame Shows Your <span className="text-[rgba(217,37,70,1)]">Home in Progress</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per.
+            Witness the transformation of your dream home through our comprehensive gallery. From foundation to finishing touches, every image captures the dedication, craftsmanship, and attention to detail that goes into creating your perfect living space. These visual milestones showcase the journey of excellence that defines our construction process.
           </p>
         </div>
 

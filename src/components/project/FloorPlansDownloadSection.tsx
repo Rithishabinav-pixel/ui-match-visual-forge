@@ -1,75 +1,83 @@
+
 import React from 'react';
-import { ArrowDown } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { FloorPlan } from '@/types/project';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
+import { FloorPlan, FloorPlansSection } from '@/types/project';
+
 interface FloorPlansDownloadSectionProps {
   floorPlans?: FloorPlan[];
+  floorPlansSection?: FloorPlansSection;
 }
-export const FloorPlansDownloadSection = ({
-  floorPlans
+
+export const FloorPlansDownloadSection = ({ 
+  floorPlans = [], 
+  floorPlansSection 
 }: FloorPlansDownloadSectionProps) => {
-  // Default floor plans based on screenshot
-  const defaultPlans: FloorPlan[] = [{
-    title: "1st Floor - 2BHK (West)",
-    image: "/lovable-uploads/3cbfa16f-b4dc-4ac3-86c3-f92f189294c1.png",
-    description: "Spacious 2BHK layout with western exposure",
-    area: "1200 sq.ft",
-    bedrooms: "2"
-  }, {
-    title: "1st Floor - 2BHK (West)",
-    image: "/lovable-uploads/3cbfa16f-b4dc-4ac3-86c3-f92f189294c1.png",
-    description: "Spacious 2BHK layout with western exposure",
-    area: "1200 sq.ft",
-    bedrooms: "2"
-  }, {
-    title: "1st Floor - 2BHK (West)",
-    image: "/lovable-uploads/3cbfa16f-b4dc-4ac3-86c3-f92f189294c1.png",
-    description: "Spacious 2BHK layout with western exposure",
-    area: "1200 sq.ft",
-    bedrooms: "2"
-  }];
-  const plans = floorPlans && floorPlans.length > 0 ? floorPlans : defaultPlans;
-  const handleDownload = (plan: FloorPlan) => {
-    // In a real implementation, this would download the actual floor plan file
-    console.log('Downloading floor plan:', plan.title);
-    // For now, we'll just open the image in a new tab
-    window.open(plan.image, '_blank');
-  };
-  return <section className="py-16 bg-[#2B3544] max-md:py-8">
-      <div className="max-w-[1200px] mx-auto px-8">
+  // Use dynamic content from floor_plans_section if available
+  const heading = floorPlansSection?.heading || "Floor Plans";
+  const description = floorPlansSection?.description || "Download detailed floor plans for your perfect home layout.";
+  const plans = floorPlansSection?.floor_plans || floorPlans;
+
+  if (plans.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="py-16 bg-gray-50 max-md:py-8">
+      <div className="max-w-6xl mx-auto px-5">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-6 max-md:text-3xl">
-            Lorem ipsum dolor sit amet, <span className="text-[rgba(217,37,70,1)]">consectetur adipiscing elit</span>
+          <h2 className="text-4xl font-bold text-[rgba(40,45,64,1)] mb-6 max-md:text-3xl">
+            {heading}
           </h2>
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            {description}
           </p>
         </div>
-
-        <div className="flex justify-center gap-8 max-lg:flex-col max-lg:items-center max-lg:gap-6">
-          {plans.slice(0, 3).map((plan, index) => <div key={index} className="flex-shrink-0">
-              <Card className="bg-white rounded-2xl overflow-hidden w-[280px] max-md:w-[320px]">
-                <CardContent className="p-6 px-0 py-0">
-                  {/* Floor Plan Image Container */}
-                  <div className="aspect-square bg-white rounded-lg overflow-hidden mb-4 flex items-center justify-center">
-                    <img src={plan.image} alt={plan.title} className="max-w-full max-h-full object-contain" />
-                  </div>
-                  
-                  {/* Title */}
-                  <h3 className="text-lg font-semibold text-[#2B3544] text-center mb-4 leading-tight">
-                    {plan.title}
-                  </h3>
-                  
-                  {/* Download Icon */}
-                  <div className="flex justify-center">
-                    <button onClick={() => handleDownload(plan)} className="text-white hover:text-gray-300 transition-colors duration-200" aria-label={`Download ${plan.title}`}>
-                      <ArrowDown className="w-6 h-6" />
-                    </button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>)}
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {plans.map((plan, index) => (
+            <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src={plan.image} 
+                  alt={plan.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-[rgba(40,45,64,1)] mb-3">
+                  {plan.title}
+                </h3>
+                {plan.description && (
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                    {plan.description}
+                  </p>
+                )}
+                <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
+                  {plan.area && <span className="font-medium">Area: {plan.area}</span>}
+                  {plan.bedrooms && <span className="font-medium">Bedrooms: {plan.bedrooms}</span>}
+                </div>
+                {plan.brochure_url && (
+                  <Button 
+                    asChild 
+                    className="w-full bg-[rgba(217,37,70,1)] hover:bg-[rgba(217,37,70,0.9)]"
+                  >
+                    <a 
+                      href={plan.brochure_url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download Floor Plan
+                    </a>
+                  </Button>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };

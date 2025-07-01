@@ -54,6 +54,7 @@ const ProjectDetail = () => {
   // Debug logging to check amenities section data
   console.log('Project amenities_section:', project.amenities_section);
   console.log('Project specifications_section:', project.specifications_section);
+  console.log('Project floor_plans_section:', project.floor_plans_section);
 
   const breadcrumbs = [
     { name: "Home", url: "https://jkbhousing.com/" },
@@ -144,6 +145,7 @@ const ProjectDetail = () => {
       {/* Floor Plans Download Section - using dynamic floor_plans_section */}
       <FloorPlansDownloadSection 
         floorPlans={project.floor_plans_section?.floor_plans || project.floor_plans}
+        floorPlansSection={project.floor_plans_section}
       />
 
       {/* Brochure Download Section - using dynamic brochure_section */}
