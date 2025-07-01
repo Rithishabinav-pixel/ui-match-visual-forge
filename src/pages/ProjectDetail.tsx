@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
@@ -117,11 +116,20 @@ const ProjectDetail = () => {
 
       {/* Amenities Section - using dynamic amenities_section */}
       {project.amenities_section && project.amenities_section.amenities && project.amenities_section.amenities.length > 0 ? (
-        <AmenitiesSection amenities={project.amenities_section.amenities.map(name => ({ name }))} />
+        <AmenitiesSection 
+          amenities={project.amenities_section.amenities.map(name => ({ name }))} 
+          amenitiesSection={project.amenities_section}
+        />
       ) : project.amenities && project.amenities.length > 0 ? (
-        <AmenitiesSection amenities={project.amenities} />
+        <AmenitiesSection 
+          amenities={project.amenities} 
+          amenitiesSection={project.amenities_section}
+        />
       ) : (
-        <AmenitiesSection amenities={[]} />
+        <AmenitiesSection 
+          amenities={[]} 
+          amenitiesSection={project.amenities_section}
+        />
       )}
 
       {/* Video Section */}

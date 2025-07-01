@@ -1,12 +1,13 @@
 
 import React from 'react';
-import { Amenity } from '@/types/project';
+import { Amenity, AmenitiesSection as AmenitiesSectionType } from '@/types/project';
 
 interface AmenitiesSectionProps {
   amenities: Amenity[];
+  amenitiesSection?: AmenitiesSectionType;
 }
 
-export const AmenitiesSection = ({ amenities }: AmenitiesSectionProps) => {
+export const AmenitiesSection = ({ amenities, amenitiesSection }: AmenitiesSectionProps) => {
   // Default amenities based on the screenshot
   const defaultAmenities: Amenity[] = [
     { name: "Video Door Phone", icon: "video-door-phone" },
@@ -25,7 +26,19 @@ export const AmenitiesSection = ({ amenities }: AmenitiesSectionProps) => {
     { name: "Heat Resistant Tiles in Terrace", icon: "heat-resistant-tiles-in-terrace" }
   ];
 
-  const displayAmenities = amenities && amenities.length > 0 ? amenities : defaultAmenities;
+  // Use dynamic content from amenities_section if available, otherwise fall back to defaults
+  const sectionHeading = amenitiesSection?.heading || "Lorem ipsum dolor sit amet, consectetur adipiscing elit";
+  const sectionDescription = amenitiesSection?.description || "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.";
+  
+  // Use amenities from amenities_section if available, otherwise use the passed amenities or defaults
+  let displayAmenities: Amenity[] = [];
+  if (amenitiesSection?.amenities && amenitiesSection.amenities.length > 0) {
+    displayAmenities = amenitiesSection.amenities.map(name => ({ name }));
+  } else if (amenities && amenities.length > 0) {
+    displayAmenities = amenities;
+  } else {
+    displayAmenities = defaultAmenities;
+  }
 
   return (
     <section className="py-16 bg-gradient-to-br from-[rgba(40,45,64,1)] to-[rgba(60,55,84,1)] max-md:py-8">
@@ -34,10 +47,18 @@ export const AmenitiesSection = ({ amenities }: AmenitiesSectionProps) => {
           {/* Left Side - Content */}
           <div>
             <h2 className="text-4xl font-bold text-white mb-6 max-md:text-3xl leading-tight">
-              Lorem ipsum dolor sit amet, <span className="text-[rgba(217,37,70,1)]">consectetur adipiscing elit</span>
+              {sectionHeading.includes('consectetur adipiscing elit') ? (
+                <>
+                  {sectionHeading.split('consectetur adipiscing elit')[0]}
+                  <span className="text-[rgba(217,37,70,1)]">consectetur adipiscing elit</span>
+                  {sectionHeading.split('consectetur adipiscing elit')[1]}
+                </>
+              ) : (
+                <span className="text-[rgba(217,37,70,1)]">{sectionHeading}</span>
+              )}
             </h2>
             <p className="text-lg text-gray-300 leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+              {sectionDescription}
             </p>
           </div>
 
